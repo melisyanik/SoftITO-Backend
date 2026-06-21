@@ -70,7 +70,7 @@ Projede Code First yaklaşımı kullanılmıştır.
 Migration işlemleri:
 
 ```powershell
-Add-Migration InitialCreate
+Add-Migration Init
 Update-Database
 ```
 
@@ -153,7 +153,7 @@ The project uses the Code First approach.
 Migration commands:
 
 ```powershell
-Add-Migration InitialCreate
+Add-Migration Init
 Update-Database
 ```
 
