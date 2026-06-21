@@ -1,0 +1,57 @@
+﻿@model BiletSinema.ViewModels.RaporViewModel
+
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>📈 Genel Dashboard</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-dark text-white p-3">
+            <h5>Toplam Film</h5>
+            <h2>@Model.GenelRapor.ToplamFilm</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-dark text-white p-3">
+            <h5>Toplam Dizi</h5>
+            <h2>@Model.GenelRapor.ToplamDizi</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-dark text-white p-3">
+            <h5>Toplam Tiyatro</h5>
+            <h2>@Model.GenelRapor.ToplamTiyatro</h2>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-secondary text-white p-3">
+            <h6>Film Ortalama</h6>
+            <h3>@Model.GenelRapor.OrtalamaFilmPuan</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-secondary text-white p-3">
+            <h6>Dizi Ortalama</h6>
+            <h3>@Model.GenelRapor.OrtalamaDiziPuan</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-secondary text-white p-3">
+            <h6>Tiyatro Ortalama</h6>
+            <h3>@Model.GenelRapor.OrtalamaTiyatroPuan</h3>
+        </div>
+    </div>
+</div>

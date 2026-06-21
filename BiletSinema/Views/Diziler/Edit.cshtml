@@ -1,0 +1,55 @@
+﻿@model BiletSinema.Models.Diziler
+
+@{
+    ViewData["Title"] = "Dizi Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>✏️ Dizi Güncelle</h2>
+
+<form method="post">
+
+    <input type="hidden" name="DiziNo" value="@Model.DiziNo" />
+
+    <div class="mb-2">
+        <label>Adı</label>
+        <input type="text" name="Adi" value="@Model.Adi" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Tarih</label>
+        <input type="date" name="Tarihi" value="@Model.Tarihi.ToString("yyyy-MM-dd")" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Bölüm Sayısı</label>
+        <input type="number" name="BolumSayisi" value="@Model.BolumSayisi" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Puan</label>
+        <input type="number" step="0.1" name="Puan" value="@Model.Puan" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Yorum</label>
+        <textarea name="Yorum" class="form-control">@Model.Yorum</textarea>
+    </div>
+
+    <div class="mb-2">
+        <label>Kategori</label>
+        <select name="KategoriNo" class="form-control">
+
+            @foreach (var k in ViewBag.Kategoriler)
+            {
+                <option value="@k.KategoriNo"
+                        selected="@(k.KategoriNo == Model.KategoriNo)">
+                    @k.KategoriAdi
+                </option>
+            }
+
+        </select>
+    </div>
+
+    <button class="btn btn-success">Güncelle</button>
+</form>

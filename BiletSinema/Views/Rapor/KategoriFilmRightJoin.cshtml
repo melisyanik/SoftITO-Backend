@@ -1,0 +1,27 @@
+﻿@model BiletSinema.ViewModels.RaporViewModel
+
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>🎭 Kategori - Film </h3>
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Kategori</th>
+            <th>Film</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.KategoriRaporu)
+        {
+            <tr>
+                <td>@item.KategoriAdi</td>
+                <td>@item.FilmAdi</td>
+            </tr>
+        }
+    </tbody>
+</table>

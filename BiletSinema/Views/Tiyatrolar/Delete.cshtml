@@ -1,0 +1,38 @@
+﻿@model BiletSinema.Models.Tiyatrolar
+
+@{
+    ViewData["Title"] = "Tiyatro Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>🗑️ Tiyatro Sil</h2>
+
+<div class="alert alert-danger">
+    <b>@Model.Adi</b> silinecek. Emin misin?
+</div>
+
+<table class="table">
+    <tr>
+        <th>Yazar</th>
+        <td>@Model.YazarAdi</td>
+    </tr>
+    <tr>
+        <th>Süre</th>
+        <td>@Model.Sure dk</td>
+    </tr>
+    <tr>
+        <th>Puan</th>
+        <td>@Model.Puan</td>
+    </tr>
+    <tr>
+        <th>Kategori</th>
+        <td>@Model.kategori?.KategoriAdi</td>
+    </tr>
+</table>
+
+<form method="post">
+    <input type="hidden" name="TiyatroNo" value="@Model.TiyatroNo" />
+
+    <button class="btn btn-danger">Evet Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

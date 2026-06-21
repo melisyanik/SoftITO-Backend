@@ -1,0 +1,34 @@
+﻿@model BiletSinema.Models.Filmler
+
+@{
+    ViewData["Title"] = "Film Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>➕ Film Ekle</h2>
+
+<form method="post">
+
+    <label>Film Adı</label>
+    <input type="text" name="Adi" class="form-control mb-2"/>
+
+    <label>Yayınlanma Tarihi</label>
+    <input type="date" name="Tarihi" class="form-control mb-2" />
+
+    <label>Puanı</label>
+    <input type="number" step="0.1" name="Puan" class="form-control mb-2"  />
+
+    <label>Yorum</label>
+    <textarea name="Yorum" class="form-control mb-2"></textarea>
+
+    <select name="KategoriNo" class="form-control mb-2">
+        <option value="">Kategori Seç</option>
+
+        @foreach (var k in ViewBag.Kategoriler)
+        {
+            <option value="@k.KategoriNo">@k.KategoriAdi</option>
+        }
+    </select>
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>

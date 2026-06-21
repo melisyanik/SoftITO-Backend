@@ -1,0 +1,21 @@
+﻿@model BiletSinema.ViewModels.RaporViewModel
+
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>⭐ En Yüksek Puanlı İçerikler</h3>
+
+<div class="card bg-dark text-white p-3 mb-2">
+    <b>Film:</b> @Model.EnYuksekFilm?.FilmAdi - @Model.EnYuksekFilm?.Puan
+</div>
+
+<div class="card bg-dark text-white p-3 mb-2">
+    <b>Dizi:</b> @Model.EnYuksekDizi?.Adi - @Model.EnYuksekDizi?.Puan
+</div>
+
+<div class="card bg-dark text-white p-3">
+    <b>Tiyatro:</b> @Model.EnYuksekTiyatro?.Adi - @Model.EnYuksekTiyatro?.Puan
+</div>

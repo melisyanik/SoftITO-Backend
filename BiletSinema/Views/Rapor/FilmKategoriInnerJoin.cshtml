@@ -1,0 +1,28 @@
+﻿@model BiletSinema.ViewModels.RaporViewModel
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>🎬 Inner Join Filmler</h3>
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Film</th>
+            <th>Kategori</th>
+            <th>Puan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FilmRaporu)
+        {
+            <tr>
+                <td>@item.FilmAdi</td>
+                <td>@item.KategoriAdi</td>
+                <td>@item.Puan</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@model BiletSinema.Models.Filmler
+
+@{
+    ViewData["Title"] = "Film Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>✏️ Film Güncelle</h2>
+
+<form method="post">
+
+    <input type="hidden" name="FilmNo" value="@Model.FilmNo" />
+
+    <input type="text" name="Adi" value="@Model.Adi" class="form-control mb-2" />
+
+    <input type="date" name="Tarihi" value="@Model.Tarihi.ToString("yyyy-MM-dd")" class="form-control mb-2" />
+
+
+    <input type="number" step="0.1" name="Puan" value="@Model.Puan" class="form-control mb-2" />
+
+    <textarea name="Yorum" class="form-control mb-2">@Model.Yorum</textarea>
+
+    <select name="KategoriNo" class="form-control mb-2">
+        @foreach (var k in ViewBag.Kategoriler)
+        {
+            <option value="@k.KategoriNo" selected="@(k.KategoriNo == Model.KategoriNo)">
+                @k.KategoriAdi
+            </option>
+        }
+    </select>
+
+    <button class="btn btn-success">Güncelle</button>
+</form>

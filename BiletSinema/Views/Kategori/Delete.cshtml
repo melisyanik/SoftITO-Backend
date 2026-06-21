@@ -1,0 +1,21 @@
+﻿@model BiletSinema.Models.Kategori
+
+@{
+    ViewData["Title"] = "Kategori Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>🗑️ Kategori Sil</h2>
+
+<div class="alert alert-danger">
+    <b>@Model.KategoriAdi</b> silinecek. Emin misiniz?
+</div>
+
+<form method="post">
+
+    <input type="hidden" name="KategoriNo" value="@Model.KategoriNo" />
+
+    <button class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+
+</form>

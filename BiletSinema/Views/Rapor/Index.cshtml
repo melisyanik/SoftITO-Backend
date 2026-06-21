@@ -1,0 +1,111 @@
+﻿@model BiletSinema.ViewModels.RaporViewModel
+
+@{
+    ViewData["Title"] = "Raporlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-white mb-3">📊 Rapor Paneli</h3>
+
+<form method="get">
+    <select name="raporId" class="form-select w-50 mb-4" onchange="this.form.submit()">
+
+        @foreach (var item in Model.RaporListesi)
+        {
+            <option value="@item.Value"
+                    selected="@(Model.SecilenRapor.ToString() == item.Value ? "selected" : null)">
+                @item.Text
+            </option>
+        }
+
+    </select>
+</form>
+
+<div class="row mb-4">
+
+    <div class="col-md-6">
+        <h6 class="text-white">📊 Kategori - Film Sayısı</h6>
+        <canvas id="chart1"></canvas>
+    </div>
+
+    <div class="col-md-6">
+        <h6 class="text-white">⭐ Ortalama Dağılım</h6>
+        <canvas id="chart2" style="max-width:220px; max-height:220px;"></canvas>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="text-white">
+
+    @if (Model.SecilenRapor == 1 || Model.SecilenRapor == 3)
+    {
+        <h5>🎬 Film Raporu</h5>
+
+        <ul class="list-group mb-4">
+            @foreach (var x in Model.FilmRaporu)
+            {
+                <li class="list-group-item bg-dark text-white">
+                    @x.FilmAdi - @x.KategoriAdi - @x.Puan
+                </li>
+            }
+        </ul>
+    }
+
+    @if (Model.SecilenRapor == 2)
+    {
+        <h5>📁 Kategori Raporu</h5>
+
+        <ul class="list-group mb-4">
+            @foreach (var x in Model.KategoriRaporu)
+            {
+                <li class="list-group-item bg-dark text-white">
+                    @x.KategoriAdi - @x.FilmAdi
+                </li>
+            }
+        </ul>
+    }
+
+    @if (Model.SecilenRapor == 4)
+    {
+        <h5>📊 Kategori Analiz</h5>
+
+        <ul class="list-group mb-4">
+            @foreach (var x in Model.GroupRaporu)
+            {
+                <li class="list-group-item bg-dark text-white">
+                    @x.KategoriAdi | Film: @x.FilmSayisi | Ort: @x.OrtalamaPuan
+                </li>
+            }
+        </ul>
+    }
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    new Chart(document.getElementById('chart1'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.KategoriAdlari)),
+            datasets: [{
+                label: 'Film Sayısı',
+                data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.KategoriFilmSayilari)),
+                backgroundColor: 'steelblue'
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('chart2'), {
+        type: 'pie',
+        data: {
+            labels: ['Film', 'Dizi', 'Tiyatro'],
+            datasets: [{
+                data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.OzetDagilim)),
+                backgroundColor: ['#ff4d4d', '#4da6ff', '#4dff88']
+            }]
+        }
+    });
+</script>

@@ -1,0 +1,50 @@
+﻿@model BiletSinema.Models.Diziler
+
+@{
+    ViewData["Title"] = "Dizi Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>➕ Dizi Ekle</h2>
+
+<form method="post">
+
+    <div class="mb-2">
+        <label>Adı</label>
+        <input type="text" name="Adi" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Tarih</label>
+        <input type="date" name="Tarihi" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Bölüm Sayısı</label>
+        <input type="number" name="BolumSayisi" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Puan</label>
+        <input type="number" step="0.1" name="Puan" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Yorum</label>
+        <textarea name="Yorum" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-2">
+        <label>Kategori</label>
+        <select name="KategoriNo" class="form-control">
+            <option value="">Kategori Seç</option>
+
+            @foreach (var k in ViewBag.Kategoriler)
+            {
+                <option value="@k.KategoriNo">@k.KategoriAdi</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>

@@ -1,0 +1,20 @@
+﻿@model BiletSinema.Models.Kategori
+
+@{
+    ViewData["Title"] = "Kategori Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>✏️ Kategori Güncelle</h2>
+
+<form method="post">
+
+    <input type="hidden" name="KategoriNo" value="@Model.KategoriNo" />
+
+    <div class="mb-2">
+        <label>Kategori Adı</label>
+        <input type="text" name="KategoriAdi" value="@Model.KategoriAdi" class="form-control" />
+    </div>
+
+    <button class="btn btn-success">Güncelle</button>
+</form>

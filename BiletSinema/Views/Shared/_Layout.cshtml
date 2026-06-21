@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Admin Panel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+
+    <style>
+
+        body {
+            overflow-x: hidden;
+            background: #141414;
+            color: #e5e5e5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+
+
+        #wrapper {
+            display: flex;
+            min-height: 100vh;
+            gap: 12px;
+            padding: 12px;
+        }
+
+
+        #sidebar {
+            width: 250px;
+            background: #181818;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+       
+            #sidebar.hidden {
+                margin-left: -260px;
+            }
+
+         
+            #sidebar h5 {
+                color: #bdbdbd;
+                padding: 15px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                font-weight: 600;
+            }
+
+       
+            #sidebar a {
+                display: block;
+                padding: 12px 15px;
+                margin: 4px 8px;
+                border-radius: 10px;
+                text-decoration: none;
+                color: #bdbdbd;
+                transition: all 0.25s ease;
+            }
+
+          
+                #sidebar a:hover {
+                    background: rgba(255,255,255,0.08);
+                    color: #ffffff;
+                    transform: translateX(5px);
+                }
+
+              
+                #sidebar a.active {
+                    background: rgba(229, 9, 20, 0.15);
+                    border-left: 3px solid #e50914;
+                    color: #ffffff;
+                }
+
+
+
+        #content {
+            flex: 1;
+        }
+
+
+
+        .topbar {
+            height: 58px;
+            background: #1f1f1f;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 12px;
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+   
+
+        .p-4 {
+            background: #1a1a1a;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #e5e5e5;
+        }
+
+
+
+        .table {
+            color: #e5e5e5;
+        }
+
+            .table th {
+                background: #222;
+                color: #fff;
+                border-color: #2a2a2a;
+            }
+
+            .table td {
+                background: #161616;
+                border-color: #2a2a2a;
+            }
+
+        .table-hover tbody tr:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+
+        .btn-primary {
+            background: #e50914;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background: #ff1f2a;
+            }
+
+        .btn-success {
+            background: #22c55e;
+            border: none;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            border: none;
+        }
+
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #141414;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="sidebar">
+
+            <h5>🎬 ADMIN PANEL</h5>
+
+            <a href="/Filmler"><i class="fas fa-film me-2"></i> Filmler</a>
+            <a href="/Diziler"><i class="fas fa-tv me-2"></i> Diziler</a>
+            <a href="/Tiyatrolar"><i class="fas fa-masks-theater me-2"></i> Tiyatrolar</a>
+            <a href="/Kategori"><i class="fas fa-list me-2"></i> Kategoriler</a>
+            <a href="/Rapor"><i class="fas fa-chart-line me-2"></i> İstatistikler</a>
+            <a href="/Home"><i class="fas fa-home me-2"></i> Kullanıcı Sayfası</a>
+
+        </div>
+
+        <div id="content">
+
+            <div class="topbar">
+                <span class="toggle-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </span>
+                <span>Admin Dashboard</span>
+            </div>
+
+            <div class="p-4">
+                @RenderBody()
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("hidden");
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

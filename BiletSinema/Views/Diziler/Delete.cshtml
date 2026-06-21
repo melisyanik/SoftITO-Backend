@@ -1,0 +1,44 @@
+﻿@model BiletSinema.Models.Diziler
+
+@{
+    ViewData["Title"] = "Dizi Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>🗑️ Dizi Sil</h2>
+
+<div class="alert alert-danger">
+    <strong>@Model.Adi</strong> silinecek. Emin misiniz?
+</div>
+
+<table class="table">
+    <tr>
+        <th>Adı</th>
+        <td>@Model.Adi</td>
+    </tr>
+    <tr>
+        <th>Tarih</th>
+        <td>@Model.Tarihi.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Bölüm Sayısı</th>
+        <td>@Model.BolumSayisi</td>
+    </tr>
+    <tr>
+        <th>Puan</th>
+        <td>@Model.Puan</td>
+    </tr>
+    <tr>
+        <th>Kategori</th>
+        <td>@Model.kategori?.KategoriAdi</td>
+    </tr>
+</table>
+
+<form method="post">
+
+    <input type="hidden" name="DiziNo" value="@Model.DiziNo" />
+
+    <button class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+
+</form>

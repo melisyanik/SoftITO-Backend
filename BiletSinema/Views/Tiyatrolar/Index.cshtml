@@ -1,0 +1,97 @@
+﻿@model List<BiletSinema.Models.Tiyatrolar>
+
+@{
+    ViewData["Title"] = "Tiyatrolar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>🎭 Tiyatro Listesi</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">+ Yeni Tiyatro Ekle</a>
+
+<form method="get" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <select name="filterType" class="form-control">
+
+                <option value="TiyatroNo">Tiyatro No</option>
+                <option value="Adi">Adı</option>
+                <option value="Tarihi">Tarih</option>
+                <option value="YazarAdi">Yazar</option>
+                <option value="Sure">Süre</option>
+                <option value="Yorum">Yorum</option>
+                <option value="KategoriNo">Kategori No</option>
+                <option value="Kategori">Kategori Adı</option>
+
+            </select>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <input type="text"
+                   name="search"
+                   class="form-control"
+                   placeholder="Arama yap..." />
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">
+                🔍 Ara
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+<div class="mb-3">
+    <a asp-action="ExportToPdf" class="btn btn-danger">
+        📄 PDF İndir
+    </a>
+
+    <a asp-action="ExportToExcel" class="btn btn-success">
+        📊 Excel İndir
+    </a>
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>TiyatroNo</th>
+            <th>Adı</th>
+            <th>Tarih</th>
+            <th>Yazar</th>
+            <th>Süre</th>
+            <th>Puan</th>
+            <th>Yorum</th>
+            <th>Kategori No</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TiyatroNo</td>
+                <td>@item.Adi</td>
+                <td>@item.Tarihi.ToShortDateString()</td>
+                <td>@item.YazarAdi</td>
+                <td>@item.Sure dk</td>
+                <td>@item.Puan</td>
+                <td>@item.Yorum</td>
+                <td>@item.kategori?.KategoriNo</td>
+                <td>@item.kategori?.KategoriAdi</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TiyatroNo" class="btn btn-success btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.TiyatroNo" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
