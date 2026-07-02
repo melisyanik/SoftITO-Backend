@@ -1,4 +1,5 @@
-﻿using BiletSinema.Models;
+using Microsoft.AspNetCore.Authorization;
+using BiletSinema.Models;
 using BiletSinema.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace BiletSinema.Controllers
 {
+    [Authorize]
     public class RaporController : Controller
     {
         private readonly ApplicationDbContext db;

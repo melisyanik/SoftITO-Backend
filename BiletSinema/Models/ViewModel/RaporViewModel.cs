@@ -1,4 +1,4 @@
-﻿using BiletSinema.Models;
+using BiletSinema.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
@@ -6,19 +6,16 @@ namespace BiletSinema.ViewModels
 {
     public class RaporViewModel
     {
-        // LISTELER
         public List<FilmRaporVM> FilmRaporu { get; set; }
         public List<KategoriRaporVM> KategoriRaporu { get; set; }
         public List<RaporGroupVM> GroupRaporu { get; set; }
 
-        // TEKİL RAPORLAR
         public FilmRaporVM EnYuksekFilm { get; set; }
         public Diziler EnYuksekDizi { get; set; }
         public Tiyatrolar EnYuksekTiyatro { get; set; }
 
         public GenelRaporVM GenelRapor { get; set; }
 
-        // DROPDOWN
         public int SecilenRapor { get; set; }
         public List<SelectListItem> RaporListesi { get; set; }
     }

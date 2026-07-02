@@ -1,4 +1,5 @@
-ï»¿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BiletSinema.Models;
 using QuestPDF.Fluent;
@@ -8,6 +9,7 @@ using OfficeOpenXml;
 
 namespace BiletSinema.Controllers
 {
+    [Authorize]
     public class DizilerController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -156,7 +158,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("ðŸ“º Dizi Raporu")
+                        .Text("?? Dizi Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>
@@ -176,9 +178,9 @@ namespace BiletSinema.Controllers
                         table.Header(header =>
                         {
                             header.Cell().Text("No").Bold();
-                            header.Cell().Text("Dizi AdÄ±").Bold();
+                            header.Cell().Text("Dizi Adý").Bold();
                             header.Cell().Text("Tarih").Bold();
-                            header.Cell().Text("BÃ¶lÃ¼m SayÄ±sÄ±").Bold();
+                            header.Cell().Text("Bölüm Sayýsý").Bold();
                             header.Cell().Text("Yorum").Bold();
                             header.Cell().Text("Kategori No").Bold();
                             header.Cell().Text("Kategori").Bold();
@@ -223,9 +225,9 @@ namespace BiletSinema.Controllers
 
                
                 ws.Cells[1, 1].Value = "Dizi No";
-                ws.Cells[1, 2].Value = "Dizi AdÄ±";
+                ws.Cells[1, 2].Value = "Dizi Adý";
                 ws.Cells[1, 3].Value = "Tarih";
-                ws.Cells[1, 4].Value = "BÃ¶lÃ¼m SayÄ±sÄ±";
+                ws.Cells[1, 4].Value = "Bölüm Sayýsý";
                 ws.Cells[1, 5].Value = "Yorum";
                 ws.Cells[1, 6].Value = "Kategori No";
                 ws.Cells[1, 7].Value = "Kategori";

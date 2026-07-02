@@ -1,4 +1,4 @@
-﻿@model BiletSinema.Models.HomeViewModel
+@model BiletSinema.Models.HomeViewModel
 
 @{
     ViewData["Title"] = "Ana Sayfa";
@@ -434,6 +434,19 @@
 
     </div>
 
+
+    <div class="text-center" style="margin-top:50px; margin-bottom:50px;">
+        <h2>IMDB sayfasına gitmek için taratın</h2>
+        <p>Bu karekod sizi IMDB web sitesine güvenli bir şekilde yönlendirecektir</p>
+        @if (ViewBag.KareKodGorseli != null)
+        {
+            <img src="@ViewBag.KareKodGorseli" alt="Yönlendirme Karekodu" style="width:250px;height:250px;border:1px solid #dc2626;padding:10px;border-radius:8px; background:white;" />
+        }
+        else
+        {
+            <p style="color:red;">Karekod oluştururken bir hata oluştu</p>
+        }
+    </div>
 
     <script>
 

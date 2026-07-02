@@ -1,4 +1,5 @@
-ï»¿using BiletSinema.Models;
+using Microsoft.AspNetCore.Authorization;
+using BiletSinema.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using OfficeOpenXml;
 
 namespace BiletSinema.Controllers
 {
+    [Authorize]
     public class TiyatrolarController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -163,7 +165,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("ðŸŽ­ Tiyatro Raporu")
+                        .Text("?? Tiyatro Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>
@@ -184,10 +186,10 @@ namespace BiletSinema.Controllers
                         table.Header(header =>
                         {
                             header.Cell().Text("No").Bold();
-                            header.Cell().Text("Tiyatro AdÄ±").Bold();
+                            header.Cell().Text("Tiyatro Adý").Bold();
                             header.Cell().Text("Tarih").Bold();
                             header.Cell().Text("Yazar").Bold();
-                            header.Cell().Text("SÃ¼re").Bold();
+                            header.Cell().Text("Süre").Bold();
                             header.Cell().Text("Puan").Bold();
                             header.Cell().Text("Yorum").Bold();
                             header.Cell().Text("Kategori No").Bold();
@@ -233,10 +235,10 @@ namespace BiletSinema.Controllers
                 var ws = package.Workbook.Worksheets.Add("Tiyatrolar");
 
                 ws.Cells[1, 1].Value = "Tiyatro No";
-                ws.Cells[1, 2].Value = "AdÄ±";
+                ws.Cells[1, 2].Value = "Adý";
                 ws.Cells[1, 3].Value = "Tarih";
                 ws.Cells[1, 4].Value = "Yazar";
-                ws.Cells[1, 5].Value = "SÃ¼re";
+                ws.Cells[1, 5].Value = "Süre";
                 ws.Cells[1, 6].Value = "Puan";
                 ws.Cells[1, 7].Value = "Yorum";
                 ws.Cells[1, 8].Value = "Kategori No";

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BiletSinema.Models;
 
 namespace BiletSinema.Controllers
 {
+    [Authorize]
     public class KategoriController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -102,4 +104,5 @@ namespace BiletSinema.Controllers
         }
     }
 }
+
 

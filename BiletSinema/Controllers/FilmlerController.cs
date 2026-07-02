@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BiletSinema.Models;
 using QuestPDF.Fluent;
@@ -8,6 +9,7 @@ using OfficeOpenXml;
 
 namespace BiletSinema.Controllers
 {
+    [Authorize]
     public class FilmlerController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -136,7 +138,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("🎬 Film Raporu")
+                        .Text("?? Film Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>
@@ -156,7 +158,7 @@ namespace BiletSinema.Controllers
                         table.Header(header =>
                         {
                             header.Cell().Text("No").Bold();
-                            header.Cell().Text("Film Adı").Bold();
+                            header.Cell().Text("Film Ad�").Bold();
                             header.Cell().Text("Tarih").Bold();
                             header.Cell().Text("Puan").Bold();
                             header.Cell().Text("Yorum").Bold();
@@ -202,7 +204,7 @@ namespace BiletSinema.Controllers
 
               
                 ws.Cells[1, 1].Value = "Film No";
-                ws.Cells[1, 2].Value = "Film Adı";
+                ws.Cells[1, 2].Value = "Film Ad�";
                 ws.Cells[1, 3].Value = "Tarih";
                 ws.Cells[1, 4].Value = "Puan";
                 ws.Cells[1, 5].Value = "Yorum";
