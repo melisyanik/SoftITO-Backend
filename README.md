@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎬 BiletSinema CMS
+# 🎬 BiletSinema CMS (Project 1 - Code First)
 **Enterprise-Grade Cinema & Entertainment Content Management System**
 
 [![.NET](https://img.shields.io/badge/.NET_8.0-5C2D91?style=flat-square&logo=.net&logoColor=white)](#)
