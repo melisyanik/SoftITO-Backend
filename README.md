@@ -23,10 +23,13 @@
 ### 🚀 Scope & Capabilities
 
 #### 1. Identity & Routing Management
-- **Role-Based Routing:** Smart routing powered by ASP.NET Core Identity. Admins are redirected to the management dashboard, while regular users are routed to the public homepage.
-- **Account Administration:** Full lifecycle management of user accounts (creation, login, registration).
+- **Secure Authentication & Login Screen:** A dedicated, fully functional login and registration interface ensuring robust session management.
+- **Role-Based Routing:** Smart routing powered by ASP.NET Core Identity. Admins are redirected to the management dashboard upon login, while regular users are routed to the public homepage.
+- **Account Administration:** Full lifecycle management of user accounts.
 - **Admin Management:** Dedicated interface within the dashboard to securely create and onboard new administrator accounts.
-- **Secure Authentication:** Implementation of secure cookie-based authentication.
+
+![Login Screen](docs/images/login-placeholder.png)
+*> Screenshot placeholder: Secure Login and Registration Interface*
 
 #### 2. Public User Experience
 - **Interactive Homepage:** A dynamic, user-facing homepage displaying the catalog of movies, series, and theater plays.
@@ -66,9 +69,13 @@
 ### 🚀 Proje Kapsamı ve Yetenekleri
 
 #### 1. Kimlik Yönetimi ve Yönlendirme
+- **Giriş ve Kayıt Ekranı (Login):** Kullanıcıların sisteme güvenli bir şekilde dahil olduğu, cookie (çerez) tabanlı tam donanımlı giriş ve kayıt arayüzü.
 - **Kimlik Tabanlı Yönlendirme (Identity Routing):** ASP.NET Core Identity ile güçlendirilmiş akıllı yönlendirme. Giriş yapan yetkili kullanıcılar admin paneline yönlendirilirken, standart kullanıcılar anasayfaya yönlendirilir.
-- **Kullanıcı İşlemleri:** Güvenli kayıt olma, giriş yapma ve hesap yönetimi.
+- **Kullanıcı İşlemleri:** Şifre yönetimi ve güvenli hesap işlemleri.
 - **Yönetici (Admin) Ekleme:** Admin paneli üzerinden sisteme yetkili yeni yöneticiler (admin) eklenebilmesi.
+
+![Giriş Ekranı](docs/images/login-placeholder.png)
+*> Ekran görüntüsü (Placeholder): Giriş Yap (Login) ve Kayıt Ol Arayüzü*
 
 #### 2. Kullanıcı Arayüzü (Ön Yüz)
 - **Kullanıcı Anasayfası:** Müşterilerin görebildiği; film, dizi ve tiyatro oyunlarının listelendiği dinamik ve modern anasayfa.
