@@ -1,0 +1,92 @@
+﻿@page
+@model gardrobum.Pages.Takilar.IndexModel
+
+<h2>Takılarım</h2>
+
+<div class="card-pro p-3 mb-3">
+
+    <form method="get">
+
+       
+        <select name="alan" class="form-select mb-2">
+            <option value="TakıAdi">Takı Adı</option>
+            <option value="Tur">Tür</option>
+            <option value="Renk">Renk</option>
+            <option value="Marka">Marka</option>
+            <option value="Fiyat">Fiyat</option>
+        </select>
+
+        <input type="text"
+               name="q"
+               class="form-control mb-2"
+               placeholder="Arama yap..." />
+
+        <button class="btn btn-pro w-100">
+            🔍 Ara
+        </button>
+
+    </form>
+
+</div>
+
+<div class="card-pro p-3 mb-3 d-flex justify-content-between">
+
+    <div>
+        <h5 style="color:white;">Takı Listesi</h5>
+    </div>
+
+    <a href="/Takilar/Create" class="btn btn-pro">
+        ➕ Takı Ekle
+    </a>
+    
+
+</div>
+
+<div class="card-pro p-3">
+
+    <table class="table table-dark table-hover">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Takı</th>
+                <th>Tür</th>
+                <th>Renk</th>
+                <th>Marka</th>
+                <th>Fiyat</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var x in Model.liste)
+            {
+                <tr>
+                    <td>@x.ID</td>
+                    <td><b>@x.TakıAdi</b></td>
+                    <td>@x.Tur</td>
+                    <td>@x.Renk</td>
+                    <td>@x.Marka</td>
+                    <td>@x.Fiyat</td>
+
+                    <td class="d-flex gap-2">
+
+                        <a class="btn btn-sm btn-light-pro px-3"
+                           href="/Takilar/Edit?ID=@x.ID">
+                            ✏️ Düzenle
+                        </a>
+
+                        <a class="btn btn-sm btn-light-pro px-3"
+                           href="/Takilar/Delete?ID=@x.ID"
+                           onclick="return confirm('Silinsin mi?')">
+                            🗑 Sil
+                        </a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

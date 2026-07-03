@@ -1,0 +1,59 @@
+﻿@page
+@model gardrobum.Pages.Kiyafetler.CreateModel
+
+<h2 style="color:white; margin-bottom:20px;">➕ Kıyafet Ekle</h2>
+
+<div class="card-pro p-4">
+
+    <form method="post">
+
+        
+        <input class="form-control mb-3"
+               name="UrunAdi"
+               placeholder="Ürün Adı" />
+
+       
+        <select name="Tur" class="form-select mb-3">
+            <option value="">-- Kıyafet Türü Seç --</option>
+            <option value="Üst Giyim">Üst Giyim</option>
+            <option value="Alt Giyim">Alt Giyim</option>
+
+        </select>
+
+      
+        <input class="form-control mb-3"
+               name="Renk"
+               placeholder="Renk" />
+
+      
+        <input class="form-control mb-3"
+               name="Beden"
+               placeholder="Beden (S, M, L...)" />
+
+      
+        <input class="form-control mb-3"
+               name="Marka"
+               placeholder="Marka" />
+
+        
+        <input class="form-control mb-4"
+               name="EklenmeTarihi"
+               placeholder="Eklenme Tarihi" />
+
+      
+        <div class="d-flex justify-content-between">
+
+            <a href="/Kiyafetler/Index"
+               class="btn btn-light">
+                ← Geri
+            </a>
+
+            <button class="btn btn-pro">
+                💾 Kaydet
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,105 @@
+﻿@page
+@model gardrobum.Pages.IndexModel
+
+<h2 style="color:white;">Hoşgeldiniz</h2>
+<p style="color:#aaa;">Gardrop Özetiniz</p>
+
+<div class="row gx-5 gy-5">
+
+   
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">👕 Kıyafet Türleri</h5>
+
+            @foreach (var x in Model.kiyafetTur)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+   
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">🎨 Kıyafet Renkleri</h5>
+
+            @foreach (var x in Model.kiyafetRenk)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+   
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">👟 Ayakkabı Markalar</h5>
+
+            @foreach (var x in Model.ayakkabiMarka)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+   
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">📏 Ayakkabı Numara Dağılımı</h5>
+
+            @foreach (var x in Model.ayakkabiNumara)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+ 
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">💍 Takı Türleri</h5>
+
+            @foreach (var x in Model.takiTur)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+   
+    <div class="col-md-4">
+        <div class="card-pro p-4 h-100">
+
+            <h5 style="color:white; margin-bottom:15px;">💍 Takı Markaları</h5>
+
+            @foreach (var x in Model.takiMarka)
+            {
+                <div style="color:#ccc; margin-bottom:6px;">
+                    @x.Ad → @x.Adet
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

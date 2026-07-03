@@ -1,0 +1,38 @@
+﻿@page
+@model gardrobum.Pages.Ayakkabilar.EditModel
+
+<h2>✏️ Ayakkabı Güncelle</h2>
+
+<div class="card-pro p-4">
+
+    <form method="post">
+
+        <input type="hidden" name="ID" value="@Model.a.ID" />
+
+        <input class="form-control mb-2"
+               name="AyakkabiAdi"
+               value="@Model.a.AyakkabiAdi" />
+
+        <select name="Tur" class="form-select mb-2">
+            <option>Spor</option>
+            <option>Klasik</option>
+            <option>Sneaker</option>
+            <option>Bot</option>
+        </select>
+
+        <input class="form-control mb-2" name="Renk" value="@Model.a.Renk" />
+        <input class="form-control mb-2" name="Numara" value="@Model.a.Numara" />
+        <input class="form-control mb-2" name="Marka" value="@Model.a.Marka" />
+        <input class="form-control mb-2" name="EklenmeTarihi" value="@Model.a.EklenmeTarihi" />
+
+        <div class="d-flex justify-content-between">
+
+            <a href="/Ayakkabilar/Index" class="btn btn-light">← Geri</a>
+
+            <button class="btn btn-pro">Güncelle</button>
+
+        </div>
+
+    </form>
+
+</div>

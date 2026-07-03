@@ -1,0 +1,29 @@
+﻿@page
+@model gardrobum.Pages.Takilar.CreateModel
+
+<h2>💍 Takı Ekle</h2>
+
+<form method="post">
+
+    <input name="TakıAdi" class="form-control mb-2" placeholder="Takı Adı" />
+
+    <select name="Tur" class="form-select mb-3">
+        <option value="">-- Takı Türü Seç --</option>
+        <option value="Kolye">Kolye</option>
+        <option value="Bileklik">Bileklik</option>
+        <option value="Yüzük">Yüzük</option>
+        <option value="Küpe">Küpe</option>
+        <option value="Saat">Saat</option>
+    </select>
+
+    <input name="Renk" class="form-control mb-2" placeholder="Renk" />
+
+    <input name="Marka" class="form-control mb-2" placeholder="Marka" />
+
+    <input name="Fiyat" class="form-control mb-2" placeholder="Fiyat" />
+
+    <input name="EklenmeTarihi" class="form-control mb-2" placeholder="Tarih" />
+
+    <button type="submit" class="btn btn-success w-100">Kaydet</button>
+
+</form>

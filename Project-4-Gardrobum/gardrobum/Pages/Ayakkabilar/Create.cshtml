@@ -1,0 +1,59 @@
+﻿@page
+@model gardrobum.Pages.Ayakkabilar.CreateModel
+
+<h2 style="color:white; margin-bottom:20px;">👟 Ayakkabı Ekle</h2>
+
+<div class="card-pro p-4">
+
+    <form method="post">
+
+     
+        <input class="form-control mb-3"
+               name="AyakkabiAdi"
+               placeholder="Ayakkabı Adı" />
+
+    
+        <select name="Tur" class="form-select mb-3">
+            <option value="">-- Ayakkabı Türü Seç --</option>
+            <option value="Spor">Spor</option>
+            <option value="Klasik">Klasik</option>
+            <option value="Sneaker">Sneaker</option>
+            <option value="Bot">Bot</option>
+        </select>
+
+       
+        <input class="form-control mb-3"
+               name="Renk"
+               placeholder="Renk" />
+
+       
+        <input class="form-control mb-3"
+               name="Numara"
+               placeholder="Numara (42, 43...)" />
+
+     
+        <input class="form-control mb-3"
+               name="Marka"
+               placeholder="Marka" />
+
+        
+        <input class="form-control mb-4"
+               name="EklenmeTarihi"
+               placeholder="Eklenme Tarihi" />
+
+        <div class="d-flex justify-content-between">
+
+            <a href="/Ayakkabilar/Index"
+               class="btn btn-light">
+                ← Geri
+            </a>
+
+            <button class="btn btn-pro">
+                💾 Kaydet
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
