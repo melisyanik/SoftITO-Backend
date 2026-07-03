@@ -1,3 +1,4 @@
+<div align="center">
 🎬 Oyun Evreni - N-Tier Architecture & Code First (PROJECT 3)
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
@@ -6,7 +7,7 @@
 ![SQL Server](https://img.shields.io/badge/SQLServer-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 
 [Read in English](#-english-documentation) | [Türkçe Dokümantasyon](#-türkçe-dokümantasyon)
-
+</div>
 ---
 
 ## 🇺🇸 English Documentation
