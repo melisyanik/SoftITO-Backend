@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎬 BiletSinema
+# 🎬 BiletSinema - Code First (PROJECT 1)
 
 [![.NET](https://img.shields.io/badge/.NET_8.0-5C2D91?style=flat-square&logo=.net&logoColor=white)](#)
 [![Entity Framework](https://img.shields.io/badge/Entity_Framework_Core-0078D4?style=flat-square&logo=dotnet&logoColor=white)](#)
