@@ -1,5 +1,8 @@
-🎬 Oyun Evreni - Code First (PROJECT 3)
-.NET Entity Framework Bootstrap License
+🎬 Oyun Evreni - N-Tier Architecture & Code First (PROJECT 3)
+![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQLServer-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 
 🇬🇧 Read in English | 🇹🇷 Türkçe Dokümantasyon
 
@@ -8,7 +11,7 @@
 ## 🇬🇧 English Documentation
 
 ### 🎯 Project Overview
-Oyun Evreni (Game Universe) is a comprehensive, monolithic web application designed to manage the entire lifecycle of digital game sales and content. Built on the robust ASP.NET Core MVC framework, it serves as a centralized hub for administrators to oversee games, customers, orders, and their associated metadata, while providing a seamless purchasing and library management experience for users.
+Oyun Evreni (Game Universe) is a comprehensive, N-Tier (Multi-Layered) web application designed to manage the entire lifecycle of digital game sales and content. Built on the robust ASP.NET Core MVC framework with a strictly separated architecture (Data, Model, and Web layers), it serves as a centralized hub for administrators to oversee games, customers, orders, and their associated metadata, while providing a seamless purchasing and library management experience for users.
 
 ### 🚀 Scope & Capabilities
 
@@ -27,7 +30,8 @@ Oyun Evreni (Game Universe) is a comprehensive, monolithic web application desig
 * **Field-Based Combobox Search:** Advanced search functionality utilizing a combobox interface. Users can perform granular searches by selecting specific fields (e.g., Game Name, Genre) for accurate results in their library.
 ![Search Module](https://via.placeholder.com/800x450?text=Search+Module)
 
-#### 3. Admin & Content Engine
+#### 3. N-Tier Architecture & Content Engine
+* **Multi-Layered Design:** The codebase is separated into `OyunSatinAlma.DATA`, `OyunSatinAlma.MODEL`, and the main Web project, ensuring high scalability and maintainability.
 * **Unified Game Catalog:** Relational management of Games, Customers, and Orders using Entity Framework Core.
 * **Order Approval System:** Admins can view incoming orders from users and change their status (e.g., Pending, Approved, Rejected).
 ![Admin Order Management](https://via.placeholder.com/800x450?text=Admin+Order+Management)
@@ -46,7 +50,7 @@ Oyun Evreni (Game Universe) is a comprehensive, monolithic web application desig
 ## 🇹🇷 Türkçe Dokümantasyon
 
 ### 🎯 Proje Özeti
-Oyun Evreni, dijital oyun satış ve içerik süreçlerinin tüm yaşam döngüsünü yönetmek için tasarlanmış kapsamlı ve monolitik bir web uygulamasıdır. Güçlü ASP.NET Core MVC altyapısı üzerine inşa edilen bu sistem; yöneticilerin oyunları, müşterileri, siparişleri ve bunlara ait meta verileri merkezi bir noktadan yönetmesini sağlarken, müşteriler için de kesintisiz bir oyun satın alma ve kütüphane deneyimi sunar.
+Oyun Evreni, dijital oyun satış ve içerik süreçlerinin tüm yaşam döngüsünü yönetmek için tasarlanmış Çok Katmanlı (N-Tier Architecture) ve kapsamlı bir web uygulamasıdır. Güçlü ASP.NET Core MVC altyapısı üzerine katmanlı (Data, Model, Web) mimariyle inşa edilen bu sistem; yöneticilerin oyunları, müşterileri, siparişleri ve bunlara ait meta verileri merkezi bir noktadan yönetmesini sağlarken, müşteriler için de kesintisiz bir oyun satın alma ve kütüphane deneyimi sunar.
 
 ### 🚀 Proje Kapsamı ve Yetenekleri
 
@@ -65,7 +69,8 @@ Oyun Evreni, dijital oyun satış ve içerik süreçlerinin tüm yaşam döngüs
 * **Açılır Kutu (Combobox) Tabanlı Arama:** Kullanıcıların kendi kütüphanelerinde Oyun Adı ve Tür bazlı detaylı arama yapabilmesine imkan tanıyan gelişmiş arama modülü.
 ![Herkese açık anasayfa için arama modülü](https://via.placeholder.com/800x450?text=Arama+Modulu)
 
-#### 3. Yönetim ve İçerik Motoru
+#### 3. Çok Katmanlı Mimari ve İçerik Motoru
+* **Çok Katmanlı (N-Tier) Yapı:** Kod tabanı `OyunSatinAlma.DATA`, `OyunSatinAlma.MODEL` ve ana web projesi olarak katmanlara ayrılmış olup, yüksek ölçeklenebilirlik ve sürdürülebilirlik sağlar.
 * **Bütünleşik Katalog Yönetimi:** Entity Framework Core (Code-First) kullanılarak Oyunlar, Müşteriler ve Siparişlerin ilişkisel yönetimi.
 * **Sipariş Onay Sistemi:** Yöneticiler, gelen siparişleri inceleyip durumlarını (Beklemede, Onaylandı vb.) anlık olarak güncelleyebilirler.
 ![Sipariş Yönetim Ekranı](https://via.placeholder.com/800x450?text=Siparis+Yonetimi)
