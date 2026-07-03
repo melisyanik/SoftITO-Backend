@@ -33,15 +33,15 @@ Login Interface for admins:
 
 #### 2. Public User Experience
 - **Interactive Homepage:** A dynamic, user-facing homepage displaying the catalog of movies, series, and theater plays.
-- **Field-Based Combobox Search:** Advanced search functionality utilizing a combobox interface. Users can perform granular searches by selecting specific fields (e.g., Name, Category, ID) for accurate results.
 Public Homepage and Catalog:
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 094733" src="https://github.com/user-attachments/assets/87d11669-bf47-4018-a771-c6f091567b88" />
 <img width="1919" height="919" alt="Ekran görüntüsü 2026-07-03 094746" src="https://github.com/user-attachments/assets/cf424f90-0cc6-49af-b903-09007dbe2cf4" />
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-03 094753" src="https://github.com/user-attachments/assets/ffb87192-ec31-41fe-b224-56cf29775d7f" />
 
+- **Field-Based Combobox Search:** Advanced search functionality utilizing a combobox interface. Users can perform granular searches by selecting specific fields (e.g., Name, Category, ID) for accurate results.
 Search module for public homepage:
 <img width="1919" height="915" alt="Ekran görüntüsü 2026-07-03 094917" src="https://github.com/user-attachments/assets/02061b9a-b815-4078-9a7e-d73327b4837c" />
 <img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 094836" src="https://github.com/user-attachments/assets/27208893-22ed-45d4-acd3-bf1b55f785e4" />
-<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-03 094753" src="https://github.com/user-attachments/assets/ffb87192-ec31-41fe-b224-56cf29775d7f" />
 
 Field-Based Combobox Search for every table in admin page:
 <img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 095147" src="https://github.com/user-attachments/assets/7cae39d5-ef73-4921-8d2c-23e72fa98708" />
@@ -70,15 +70,14 @@ Adding new admin user:
 
 #### 4. Analytics & Export Pipeline
 - **Visual Telemetry:** Integration with `Chart.js` to provide real-time dashboard analytics.
-- **Document Generation:** 
-  - **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for all content categories.
-  - **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets (Movies, Series, Categories) into standard Excel formats.
 Reports and visuals for admins:
 <img width="1919" height="914" alt="Ekran görüntüsü 2026-07-03 095722" src="https://github.com/user-attachments/assets/a87fcd26-ebe7-43e1-ac4d-107c99b19dc6" />
 <img width="1919" height="915" alt="Ekran görüntüsü 2026-07-03 095007" src="https://github.com/user-attachments/assets/d6f4a86f-8665-4092-913f-f74a2daf2b1f" />
 <img width="1919" height="902" alt="Ekran görüntüsü 2026-07-03 095739" src="https://github.com/user-attachments/assets/1901ce35-dffb-432c-815d-630e74c0e585" />
 <img width="1919" height="914" alt="Ekran görüntüsü 2026-07-03 095730" src="https://github.com/user-attachments/assets/482566a3-f4c9-42dd-9701-19eb1119ae16" />
-
+- **Document Generation:** 
+  - **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for all content categories.
+  - **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets (Movies, Series, Categories) into standard Excel formats.
 PDF and Excel Export Interface for admins:
 <img width="1135" height="373" alt="Ekran görüntüsü 2026-07-03 114402" src="https://github.com/user-attachments/assets/149d84ec-519d-4ae6-8876-ac593142334a" />
 <img width="469" height="233" alt="Ekran görüntüsü 2026-07-03 114428" src="https://github.com/user-attachments/assets/d1a33942-c781-49a3-8d54-90170a54c54a" />
