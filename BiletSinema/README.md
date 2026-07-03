@@ -7,7 +7,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap_5-563D7C?style=flat-square&logo=bootstrap&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](#)
 
-[🇬🇧 Read in English](#-english-documentation) | [🇹🇷 Türkçe Dokümantasyon](#-türkçe-dokümantasyon)
+[us Read in English](#-english-documentation) | [🇹🇷 Türkçe Dokümantasyon](#-türkçe-dokümantasyon)
 
 </div>
 
