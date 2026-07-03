@@ -18,7 +18,7 @@ namespace BiletSinema.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Raporlar");
+            return RedirectToAction("Index", "Rapor");
         }
 
         [HttpGet]
@@ -38,7 +38,7 @@ namespace BiletSinema.Controllers
                 if (result.Succeeded)
                 {
                     TempData["SuccessMessage"] = "Yeni yönetici hesabı başarıyla oluşturuldu.";
-                    return RedirectToAction("Index", "Raporlar");
+                    return RedirectToAction("Index", "Rapor");
                 }
 
                 foreach (var error in result.Errors)
