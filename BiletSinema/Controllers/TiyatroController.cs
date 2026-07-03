@@ -165,7 +165,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("?? Tiyatro Raporu")
+                        .Text("Tiyatro Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>

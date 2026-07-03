@@ -138,7 +138,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("?? Film Raporu")
+                        .Text("Film Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>

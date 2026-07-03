@@ -158,7 +158,7 @@ namespace BiletSinema.Controllers
                     page.Margin(20);
 
                     page.Header()
-                        .Text("?? Dizi Raporu")
+                        .Text("Dizi Raporu")
                         .SemiBold().FontSize(20);
 
                     page.Content().Table(table =>
