@@ -1,0 +1,63 @@
+﻿@model List<OyunSatinAlma.MODEL.Siparis>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>📦 Sipariş Takip</h2>
+
+<form method="get" action="/User/Siparislerim" class="mb-3">
+
+    <select name="searchType" class="form-control w-25 d-inline">
+        <option value="siparisId">📦 Sipariş ID</option>
+        <option value="oyun">🎮 Oyun Adı</option>
+        <option value="oyunId">🎮 Oyun ID</option>
+        <option value="musteriId">👤 Müşteri ID</option>
+    </select>
+
+    <input type="text"
+           name="search"
+           class="form-control w-50 d-inline"
+           placeholder="Ara..." />
+
+    <button class="btn btn-primary">🔍 Ara</button>
+
+</form>
+
+<table class="table table-dark table-hover">
+
+    <tr>
+        <th>Sipariş No</th>
+        <th>Müşteri ID</th>
+        <th>Oyun</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SiparisId</td>
+            <td>@item.MusteriId</td>
+            <td>@item.Oyun.OyunAdi</td>
+            <td>@item.SiparisTarihi</td>
+            
+
+            <td>
+                @if (item.Durum == "Beklemede")
+                {
+                    <span class="text-warning">Beklemede</span>
+                }
+                else if (item.Durum == "Onaylandı")
+                {
+                    <span class="text-success">Onaylandı</span>
+                }
+                else
+                {
+                    <span class="text-danger">Reddedildi</span>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

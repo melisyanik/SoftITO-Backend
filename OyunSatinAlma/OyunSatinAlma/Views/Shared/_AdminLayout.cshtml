@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Panel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background: #0b0f1a;
+            color: white;
+            font-family: Arial;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: #111827;
+            padding: 20px;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+            .sidebar h3 {
+                color: #00ffcc;
+                margin-bottom: 20px;
+            }
+
+            .sidebar a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                margin: 6px 0;
+                text-decoration: none;
+                color: white;
+                border-radius: 6px;
+                transition: 0.2s;
+            }
+
+                .sidebar a:hover {
+                    background: #00ffcc;
+                    color: black;
+                }
+
+        /* CONTENT */
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        /* TOGGLE BUTTON */
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #00ffcc;
+            font-size: 22px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        /* COLLAPSED MODE */
+        .sidebar.collapsed {
+            width: 70px;
+        }
+
+            .sidebar.collapsed h3 {
+                display: none;
+            }
+
+            .sidebar.collapsed a span.text {
+                display: none;
+            }
+
+            .sidebar.collapsed a {
+                justify-content: center;
+            }
+
+            .sidebar.collapsed ~ .content {
+                margin-left: 90px;
+            }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+        <h3>ADMIN PANELİ</h3>
+
+        <a href="/Rapor/Index">
+            📊 <span class="text">Dashboard</span>
+        </a>
+
+        <a href="/Oyun/Index">
+            🎮 <span class="text">Oyunlar</span>
+        </a>
+
+        <a href="/Musteri/Index">
+            👤 <span class="text">Müşteriler</span>
+        </a>
+
+        <a href="/Siparis/Index">
+            📦 <span class="text">Siparişler</span>
+        </a>
+
+        <a href="/Auth/Logout">
+            🚪 <span class="text">Çıkış Yap</span>
+        </a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+        }
+    </script>
+
+</body>
+</html>

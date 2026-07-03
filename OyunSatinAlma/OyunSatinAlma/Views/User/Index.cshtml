@@ -1,0 +1,50 @@
+﻿@model List<OyunSatinAlma.MODEL.Oyun>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Oyun Mağazası</h2>
+
+<input type="text" id="search" class="form-control mb-3"
+       placeholder="Oyun ara..." onkeyup="searchGames()" />
+
+<div class="row" id="gameList">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4 game-card">
+
+            <div class="card p-2">
+
+                <img src="@item.ResimUrl"
+                     onerror="this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg'"
+                     style="height:200px; object-fit:cover;" />
+
+                <h5 class="mt-2">@item.OyunAdi</h5>
+
+                <p class="text-success">@item.Fiyat ₺</p>
+
+                <a href="/User/Create?oyunId=@item.OyunId" class="btn btn-success w-100">
+                    🛒 Sipariş Ver
+                </a>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<script>
+    function searchGames() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let cards = document.getElementsByClassName("game-card");
+
+        for (let i = 0; i < cards.length; i++) {
+            let text = cards[i].innerText.toLowerCase();
+
+            cards[i].style.display = text.includes(input) ? "" : "none";
+        }
+    }
+</script>

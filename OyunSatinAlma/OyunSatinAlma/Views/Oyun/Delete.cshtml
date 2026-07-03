@@ -1,0 +1,34 @@
+﻿@model OyunSatinAlma.MODEL.Oyun
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Silme Onayı</h2>
+
+<div class="alert alert-danger">
+    Bu oyunu silmek istediğinize emin misiniz?
+</div>
+
+<div class="card p-3 mb-3">
+
+    <p><b>@Model.OyunAdi</b></p>
+    <p>@Model.Fiyat ₺</p>
+
+    <img src="@Model.ResimUrl" style="width:200px;" />
+
+</div>
+
+<form method="post" action="/Oyun/DeleteConfirmed">
+
+    <input type="hidden" name="id" value="@Model.OyunId" />
+
+    <button class="btn btn-danger">
+       Sil
+    </button>
+
+    <a href="/Oyun/Index" class="btn btn-secondary">
+        İptal
+    </a>
+
+</form>

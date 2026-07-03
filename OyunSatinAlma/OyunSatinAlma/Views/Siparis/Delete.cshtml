@@ -1,0 +1,29 @@
+﻿@model OyunSatinAlma.MODEL.Siparis
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>🗑 Sipariş Sil</h2>
+
+<div class="card p-3 mb-3">
+
+    <p><b>Müşteri:</b> @Model.Musteri.AdSoyad</p>
+    <p><b>Oyun:</b> @Model.Oyun.OyunAdi</p>
+    <p><b>Tarih:</b> @Model.SiparisTarihi</p>
+    <p><b>Durum:</b> @Model.Durum</p>
+
+</div>
+
+<div class="alert alert-danger">
+    Silmek istediğine emin misiniz?
+</div>
+
+<form method="post" action="/Siparis/DeleteConfirmed">
+
+    <input type="hidden" name="id" value="@Model.SiparisId" />
+
+    <button class="btn btn-danger">Sil</button>
+    <a href="/Siparis/Index" class="btn btn-secondary">İptal</a>
+
+</form>

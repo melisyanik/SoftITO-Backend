@@ -1,0 +1,76 @@
+﻿@model List<OyunSatinAlma.MODEL.ViewModel.OyunRapor>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>📊 Rapor Merkezi</h2>
+<br />
+
+<select class="form-control w-50"
+        onchange="raporaGit(this.value)">
+
+    <option value="">Rapor Seçiniz</option>
+
+    <option value="/Rapor/SiparisRapor">
+        📦 Sipariş Raporu
+    </option>
+
+    <option value="/Rapor/OyunRapor">
+        🎮 Oyun Raporu
+    </option>
+
+    <option value="/Rapor/MusteriRapor">
+        👤 Müşteri Raporu
+    </option>
+
+    <option value="/Rapor/SatisRapor">
+        🔥 Satış Raporu
+    </option>
+
+    <option value="/Rapor/SonSiparisler">
+        ⏱ Son Siparişler
+    </option>
+
+</select>
+
+<script>
+    function raporaGit(url)
+    {
+        if(url !== "")
+        {
+            window.location.href = url;
+        }
+    }
+</script>
+<br />
+
+<div class="mb-3">
+    <a href="/Rapor/ExportPdf?rapor=oyun" class="btn btn-danger">
+        PDF Oluştur
+    </a>
+
+    <a href="/Rapor/ExportExcel?rapor=oyun" class="btn btn-success">
+        Excel Oluştur
+    </a>
+</div>
+
+<hr />
+
+
+<h2>🎮 Oyun Raporu</h2>
+
+<table class="table table-dark">
+    <tr>
+        <th>Oyun</th>
+        <th>Fiyat</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.OyunAdi</td>
+            <td>@x.Fiyat ₺</td>
+        </tr>
+    }
+</table>

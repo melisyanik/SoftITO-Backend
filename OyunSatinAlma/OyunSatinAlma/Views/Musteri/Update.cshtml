@@ -1,0 +1,21 @@
+﻿@model OyunSatinAlma.MODEL.Musteri
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>✏️ Müşteri Güncelle</h2>
+
+<form method="post">
+
+    <input type="hidden" name="MusteriId" value="@Model.MusteriId" />
+
+    <input name="AdSoyad" value="@Model.AdSoyad" class="form-control mb-2" />
+    <input name="Email" value="@Model.Email" class="form-control mb-2" />
+    <input name="Telefon" value="@Model.Telefon" class="form-control mb-2" />
+
+    <button class="btn btn-primary w-100">
+        Güncelle
+    </button>
+
+</form>

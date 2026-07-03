@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>📊 Rapor Merkezi</h2>
+
+<select class="form-control w-50"
+        onchange="raporaGit(this.value)">
+
+    <option value="">Rapor Seçiniz</option>
+
+    <option value="/Rapor/SiparisRapor">
+        📦 Sipariş Raporu
+    </option>
+
+    <option value="/Rapor/OyunRapor">
+        🎮 Oyun Raporu
+    </option>
+
+    <option value="/Rapor/MusteriRapor">
+        👤 Müşteri Raporu
+    </option>
+
+    <option value="/Rapor/SatisRapor">
+        🔥 Satış Raporu
+    </option>
+
+    <option value="/Rapor/SonSiparisler">
+        ⏱ Son Siparişler
+    </option>
+
+</select>
+
+<script>
+    function raporaGit(url)
+    {
+        if(url !== "")
+        {
+            window.location.href = url;
+        }
+    }
+</script>
+<br/>
+
+<div class="mb-3">
+    <a href="/Rapor/ExportPdf?rapor=siparis" class="btn btn-danger">
+        PDF Oluştur
+    </a>
+
+    <a href="/Rapor/ExportExcel?rapor=siparis" class="btn btn-success">
+        Excel Oluştur
+    </a>
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>🎮 En Çok Satılan Oyunlar</h5>
+
+            <div style="height:300px;">
+                <canvas id="chartOyun"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>📦 Sipariş Durumu</h5>
+
+            <div style="height:300px;">
+                <canvas id="chartDurum"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    new Chart(document.getElementById('chartOyun'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(ViewBag.OyunAdlari)),
+            datasets: [{
+                label: 'Satış',
+                data: @Html.Raw(Json.Serialize(ViewBag.OyunSatis)),
+                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    new Chart(document.getElementById('chartDurum'), {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Json.Serialize(ViewBag.DurumAdlari)),
+            datasets: [{
+                data: @Html.Raw(Json.Serialize(ViewBag.DurumSayilari)),
+                backgroundColor: [
+                    '#ffc107', 
+                    '#28a745', 
+                    '#dc3545' 
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>

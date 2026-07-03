@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var oyunlar = ViewBag.Oyunlar as List<OyunSatinAlma.MODEL.Oyun>;
+    int selectedId = ViewBag.SelectedOyunId != null ? (int)ViewBag.SelectedOyunId : 0;
+}
+
+<h2>🛒 Sipariş Oluştur</h2>
+
+<form method="post">
+
+    <label>Oyun Seç</label>
+
+    <select name="oyunId" class="form-control mb-2">
+
+        @foreach (var o in oyunlar)
+        {
+            <option value="@o.OyunId"
+                    selected="@(o.OyunId == selectedId ? "selected" : null)">
+                @o.OyunAdi
+            </option>
+        }
+
+    </select>
+
+    <input name="ad" class="form-control mb-2" placeholder="Ad" />
+    <input name="soyad" class="form-control mb-2" placeholder="Soyad" />
+    <input name="email" class="form-control mb-2" placeholder="Email" />
+    <input name="telefon" class="form-control mb-2" placeholder="Telefon" />
+
+    <button class="btn btn-success w-100">
+        Sipariş Ver
+    </button>
+
+</form>

@@ -1,0 +1,70 @@
+@model IEnumerable<OyunSatinAlma.MODEL.Siparis>
+
+@{
+    ViewData["Title"] = "Oyunlarım";
+}
+
+<div class="container mt-4">
+    <h2>Oyunlarım</h2>
+    
+    <form asp-action="Oyunlarim" method="get" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <input type="text" name="arama" class="form-control" placeholder="Oyun Adı ile Ara..." value="@Context.Request.Query["arama"]">
+        </div>
+        <div class="col-md-4">
+            <select name="tur" class="form-select">
+                <option value="">Tüm Türler</option>
+                @if (ViewBag.Turler != null)
+                {
+                    foreach (var tur in ViewBag.Turler)
+                    {
+                        if (!string.IsNullOrEmpty(tur))
+                        {
+                            if (Context.Request.Query["tur"] == tur)
+                            {
+                                <option value="@tur" selected>@tur</option>
+                            }
+                            else
+                            {
+                                <option value="@tur">@tur</option>
+                            }
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Ara</button>
+        </div>
+    </form>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var siparis in Model)
+            {
+                var oyun = siparis.Oyun;
+                var durumClass = siparis.Durum == "Onaylandı" ? "bg-success" : 
+                                 (siparis.Durum == "Beklemede" ? "bg-warning text-dark" : "bg-secondary");
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm position-relative">
+                        <span class="position-absolute top-0 end-0 badge @durumClass m-2 p-2">@siparis.Durum</span>
+                        <img src="@oyun.ResimUrl" class="card-img-top" alt="@oyun.OyunAdi" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">@oyun.OyunAdi</h5>
+                            <p class="card-text text-muted">Tür: @(string.IsNullOrEmpty(oyun.Tur) ? "Belirtilmemiş" : oyun.Tur)</p>
+                            <p class="card-text fw-bold text-success">@oyun.Fiyat.ToString("C")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info">Hiç oyununuz bulunmamaktadır veya eşleşen sonuç yok.</div>
+            </div>
+        }
+    </div>
+</div>

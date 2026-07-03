@@ -1,0 +1,29 @@
+﻿@model OyunSatinAlma.MODEL.Oyun
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>✏️ Oyun Güncelle</h2>
+
+<form method="post" action="/Oyun/Update">
+
+    <input type="hidden" name="OyunId" value="@Model.OyunId" />
+
+    <input name="OyunAdi"
+           value="@Model.OyunAdi"
+           class="form-control mb-2" />
+
+    <input name="Fiyat"
+           value="@Model.Fiyat"
+           class="form-control mb-2" />
+
+    <input name="ResimUrl"
+           value="@Model.ResimUrl"
+           class="form-control mb-3" />
+
+    <button class="btn btn-primary w-100">
+        🔄 Güncelle
+    </button>
+
+</form>

@@ -1,0 +1,23 @@
+﻿@model OyunSatinAlma.MODEL.Musteri
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>🗑 Müşteri Sil</h2>
+
+<div class="alert alert-danger">
+    Silmek istediğinize emin misiniz?
+</div>
+
+<p><b>@Model.AdSoyad</b></p>
+<p>@Model.Email</p>
+
+<form method="post" action="/Musteri/DeleteConfirmed">
+
+    <input type="hidden" name="id" value="@Model.MusteriId" />
+
+    <button class="btn btn-danger">Sil</button>
+    <a href="/Musteri/Index" class="btn btn-secondary">İptal</a>
+
+</form>

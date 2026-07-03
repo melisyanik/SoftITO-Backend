@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var oyunlar = ViewBag.Oyunlar as List<OyunSatinAlma.MODEL.Oyun>;
+}
+
+<h2>🛒 Güvenli Sipariş Sistemi</h2>
+
+<form method="post">
+
+    <label>Oyun Seç</label>
+    <select name="oyunId" class="form-control mb-2" required>
+        <option value="">-- Oyun seç --</option>
+
+        @foreach (var o in oyunlar)
+        {
+            <option value="@o.OyunId">
+                @o.OyunAdi - @o.Fiyat ₺
+            </option>
+        }
+    </select>
+
+    <input name="ad" class="form-control mb-2" placeholder="Ad" required />
+    <input name="soyad" class="form-control mb-2" placeholder="Soyad" required />
+    <input name="email" class="form-control mb-2" placeholder="Email (opsiyonel)" />
+    <input name="telefon" class="form-control mb-2" placeholder="Telefon (opsiyonel)" />
+
+    <button class="btn btn-success w-100">
+        🔒 Siparişi Güvenli Oluştur
+    </button>
+
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-3">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@error.ErrorMessage</div>
+        }
+    </div>
+}

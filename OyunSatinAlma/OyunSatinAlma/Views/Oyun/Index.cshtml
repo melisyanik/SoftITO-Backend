@@ -1,0 +1,86 @@
+﻿@model List<OyunSatinAlma.MODEL.Oyun>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>🎮 Oyun Yönetimi</h2>
+
+<a href="/Oyun/Create" class="btn btn-success mb-3">
+    ➕ Yeni Oyun
+</a>
+
+<div class="mb-3">
+
+    <a href="/Oyun/ExportToPdf"
+       class="btn btn-danger">
+        📄 PDF İndir
+    </a>
+
+    <a href="/Oyun/ExportToExcel"
+       class="btn btn-success">
+        📊 Excel İndir
+    </a>
+
+</div>
+
+
+<form method="get" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <select name="searchType" class="form-control">
+                <option value="id">ID</option>
+                <option value="ad">Oyun Adı</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <input type="text"
+                   name="searchText"
+                   class="form-control"
+                   placeholder="Arama..." />
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100">
+                🔍 Ara
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-dark table-hover">
+
+    <tr>
+        <th>ID</th>
+        <th>Oyun Adı</th>
+        <th>Fiyat</th>
+        <th>İşlem</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.OyunId</td>
+            <td>@item.OyunAdi</td>
+            <td>@item.Fiyat ₺</td>
+
+            <td>
+                <a href="/Oyun/Update/@item.OyunId"
+                   class="btn btn-warning btn-sm">
+                    ✏️ Güncelle
+                </a>
+
+                <a href="/Oyun/Delete/@item.OyunId"
+                   class="btn btn-danger btn-sm">
+                    Sil
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
