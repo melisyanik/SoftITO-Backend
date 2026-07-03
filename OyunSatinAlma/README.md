@@ -1,13 +1,12 @@
-<div align="center">
 🎬 Oyun Evreni - N-Tier Architecture & Code First (PROJECT 3)
-
+🎮 GameVerse - Digital Game Store & Community Platform
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![SQL Server](https://img.shields.io/badge/SQLServer-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 
 [Read in English](#-english-documentation) | [Türkçe Dokümantasyon](#-türkçe-dokümantasyon)
-</div>
+
 ---
 
 ## 🇺🇸 English Documentation
