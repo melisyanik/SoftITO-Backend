@@ -21,7 +21,7 @@
 ### 📌 Project Overview
 **Belediye Şikayet** is a comprehensive municipality complaint management web application built with **ASP.NET Core MVC**. This system allows citizens to digitally submit their complaints and requests, while providing municipality officials with a powerful backend administrative dashboard to track, update, and resolve these issues efficiently.
 
-> **Note:** This is the **second project** in this series and was developed using the **Database-First (DB First)** approach with Entity Framework Core, contrasting with the Code-First approach used in previous projects.
+> **Note:** This is the **second project** in this series and was developed using the **Database-First (DB First)** approach with Entity Framework Core, contrasting with the Code-First approach used in the first project.
 
 ### 🎯 Scope & Capabilities
 
@@ -29,33 +29,48 @@ The system is designed with distinct functional domains to streamline municipal 
 
 #### 1. Identity & Security Management
 - **Admin Authentication:** Secure admin panel access protected by ASP.NET Core Identity.
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 123636" src="https://github.com/user-attachments/assets/1af9d361-8d60-4ef6-80da-9eeec763a2de" />
+
 - **Admin Management:** Capability for existing administrators to create and manage new admin users directly from the dashboard.
+<img width="1919" height="557" alt="Ekran görüntüsü 2026-07-03 141614" src="https://github.com/user-attachments/assets/43ece1de-fc1f-402f-ad0e-f7c2e6536bd5" />
+<img width="1919" height="603" alt="Ekran görüntüsü 2026-07-03 141642" src="https://github.com/user-attachments/assets/ac079d4e-96af-4e8b-8359-3933d02a8c03" />
+<img width="1919" height="538" alt="Ekran görüntüsü 2026-07-03 141702" src="https://github.com/user-attachments/assets/a6eb7ee3-683c-4c97-b533-02badada34bd" />
+
 - **Secure Sessions:** Robust cookie-based authentication with encrypted password hashing.
-
-![Admin Login Placeholder](docs/images/admin-login.png)
-*> Screenshot placeholder: Admin Login Interface*
-
-![Admin Registration Placeholder](docs/images/admin-registration.png)
-*> Screenshot placeholder: Admin Registration Interface*
+Admin registiration interface:
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 123636" src="https://github.com/user-attachments/assets/d478525d-c566-41d9-ba2d-5944324e48b3" />
 
 #### 2. Complaint Management Engine & Admin CRUD
 - **Citizen Portal:** A public-facing interface where citizens can submit complaints.
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-03 123213" src="https://github.com/user-attachments/assets/0040973a-0677-48d4-b905-0fd6da074941" />
 - **Dynamic Filtering & Search:** Advanced search capabilities using combobox (dropdown) selections for District (İlçe) and Category, allowing rapid filtering on the Admin panel.
-- **Admin CRUD Operations:** Full Create, Read, Update, and Delete operations for managing system categories, complaint statuses, and citizen complaints.
-- **Status Tracking:** Admins can dynamically update the status of tickets (e.g., Pending, In Progress, Resolved).
-- **Communication:** Built-in mechanism for admins to append official responses (Cevap) to specific complaints.
+For admin panel:
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 123708" src="https://github.com/user-attachments/assets/5567a1fb-5ca3-4d53-ab3b-7157802b6250" />
 
-![Citizen Portal Placeholder](docs/images/citizen-portal.png)
-*> Screenshot placeholder: Citizen Portal and Complaint Submission Form*
+For public page according to cities:
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-03 123431" src="https://github.com/user-attachments/assets/d02c20ef-49eb-46a5-9ff4-728f46bd165b" />
+- **Status Tracking:** Admins can dynamically update the status of complaints (e.g., Pending, In Progress, Resolved).
+<img width="1919" height="755" alt="Ekran görüntüsü 2026-07-03 141347" src="https://github.com/user-attachments/assets/bc3539c1-710f-4903-b2f0-5802b1dbaeb4" />
+- **Admin CRUD Operations:** Full Create, Read, Update, and Delete operations for managing system categories, complaint statuses, and citizen complaints.
+For example, lets change the status of the complaint and then check from the public page:
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-03 123650" src="https://github.com/user-attachments/assets/70ac9e8d-1729-40b2-baa3-2c0a9557873e" />
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 123802" src="https://github.com/user-attachments/assets/48df0ab8-03c8-4290-a112-6e6299ebcf48" />
+<img width="1919" height="908" alt="Ekran görüntüsü 2026-07-03 123817" src="https://github.com/user-attachments/assets/8ba88e5a-83da-42f8-b63d-715cb622d245" />
+- **Communication:** Built-in mechanism for admins to append official responses (Cevap) to specific complaints.
+Answering the questions after marking the complaints as "solved" and then checking again from the public page:
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 141358" src="https://github.com/user-attachments/assets/682f8bac-efc1-43c9-bbc9-7018f526fc9f" />
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 141722" src="https://github.com/user-attachments/assets/95c1bfdc-d78a-4390-84e0-f4e89c5b9854" />
+
+Citizen Portal and Complaint Submission Form:
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 123605" src="https://github.com/user-attachments/assets/e99f6a36-a23c-48b7-bd82-7edbb1107003" />
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-03 123614" src="https://github.com/user-attachments/assets/ccb143cb-df41-43a7-be47-34e4adc3b213" />
 
 ![Category & Status CRUD Placeholder](docs/images/category-crud.png)
 *> Screenshot placeholder: Category & Status CRUD Operations*
 
-![Complaint Management Placeholder](docs/images/complaint-management.png)
-*> Screenshot placeholder: Complaint Inbox, Resolution, and Reply Interface*
 
-![Search & Filter Placeholder](docs/images/search-filter.png)
-*> Screenshot placeholder: Dynamic Search and Filtering Interface*
+Dynamic Search and Filtering Interface from admin panel:
+<img width="1918" height="548" alt="Ekran görüntüsü 2026-07-03 141955" src="https://github.com/user-attachments/assets/062081ac-2f0b-4374-a6df-01a096a85379" />
 
 #### 3. Analytics & Export Pipeline
 - **Visual Telemetry:** Interactive dashboards visualizing complaint distributions by district and category.
