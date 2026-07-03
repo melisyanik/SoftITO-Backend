@@ -1,0 +1,57 @@
+﻿@model BelediyeSikayet.Models.Sikayet
+
+@{
+    ViewData["Title"] = "Talep Oluştur";
+}
+
+<h3>📝 Talep Oluştur</h3>
+
+
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["Success"]
+    </div>
+}
+
+<form method="post" class="mt-3">
+
+    <div class="mb-2">
+        <input asp-for="AdSoyad" class="form-control" placeholder="Ad Soyad" />
+    </div>
+
+    <div class="mb-2">
+        <input asp-for="Telefon" class="form-control" placeholder="Telefon" />
+    </div>
+
+    <div class="mb-2">
+        <input asp-for="Email" class="form-control" placeholder="Email (opsiyonel)" />
+    </div>
+
+    <div class="mb-2">
+        <select asp-for="Ilce"
+                class="form-control"
+                asp-items="@(new SelectList(ViewBag.Ilceler))">
+            <option value="">-- İlçe Seçiniz --</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <select asp-for="KategoriId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Kategoriler, "KategoriId", "Ad"))">
+            <option>-- Kategori Seç --</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <input asp-for="Baslik" class="form-control" placeholder="Başlık" />
+    </div>
+
+    <div class="mb-2">
+        <textarea asp-for="Aciklama" class="form-control" placeholder="Açıklama"></textarea>
+    </div>
+
+    <button class="btn btn-success w-100">Gönder</button>
+
+</form>

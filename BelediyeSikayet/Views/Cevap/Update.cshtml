@@ -1,0 +1,21 @@
+﻿@model BelediyeSikayet.Models.Cevap
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>✏️ Cevap Düzenle</h3>
+
+<form method="post">
+
+    <input type="hidden" asp-for="CevapId" />
+
+    <textarea asp-for="Aciklama"
+              class="form-control mb-3"
+              rows="5"></textarea>
+
+    <button class="btn btn-success w-100">
+        Güncelle
+    </button>
+
+</form>

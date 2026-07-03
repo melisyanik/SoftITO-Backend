@@ -1,0 +1,19 @@
+﻿@model BelediyeSikayet.Models.Kategori
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>➕ Kategori Ekle</h3>
+
+<form method="post">
+
+    <input asp-for="Ad"
+           class="form-control mb-3"
+           placeholder="Kategori adı" />
+
+    <button class="btn btn-success">
+        Kaydet
+    </button>
+
+</form>

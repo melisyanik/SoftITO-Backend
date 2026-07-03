@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Belediye Talep Sistemi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f4f7f4;
+            font-family: Arial;
+        }
+
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: linear-gradient(180deg, #1f6f3d, #14532d);
+            color: white;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+            .sidebar.closed {
+                width: 70px;
+            }
+
+            .sidebar h4 {
+                text-align: center;
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .sidebar a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 18px;
+                color: white;
+                text-decoration: none;
+                transition: 0.2s;
+                white-space: nowrap;
+            }
+
+                .sidebar a:hover {
+                    background: rgba(255,255,255,0.12);
+                    padding-left: 25px;
+                }
+
+            .sidebar.closed a span.text {
+                display: none;
+            }
+
+            .sidebar.closed h4 {
+                display: none;
+            }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar.closed ~ .content {
+            margin-left: 80px;
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            border: none;
+            background: #1f6f3d;
+            color: white;
+            font-size: 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+            .menu-toggle:hover {
+                background: #14532d;
+                transform: scale(1.05);
+            }
+
+        .card {
+            transition: 0.2s;
+            border-radius: 10px;
+        }
+
+            .card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+            }
+
+    </style>
+</head>
+
+<body>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <div class="sidebar" id="sidebar">
+
+        <h4>İşlemler</h4>
+
+        <a href="/Home/Index">
+            🏠 <span class="text">Ana Sayfa</span>
+        </a>
+
+        <a href="/Home/Create">
+            📝 <span class="text">Şikayet Oluştur</span>
+        </a>
+
+        <a href="/Admin/Login">
+            🔐 <span class="text">Admin</span>
+        </a>
+
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("sidebar").classList.toggle("closed");
+        }
+    </script>
+
+</body>
+</html>

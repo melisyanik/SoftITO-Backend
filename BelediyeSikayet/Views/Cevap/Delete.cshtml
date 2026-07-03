@@ -1,0 +1,24 @@
+﻿@model BelediyeSikayet.Models.Cevap
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>🗑 Cevap Sil</h3>
+
+<div class="card p-3">
+
+    <p><b>Şikayet:</b> @Model.Sikayet.Baslik</p>
+    <p><b>Cevap:</b> @Model.Aciklama</p>
+    <p><b>Tarih:</b> @Model.CevapTarihi</p>
+
+    <hr />
+
+    <form method="post" asp-action="DeleteConfirmed">
+        <input type="hidden" name="id" value="@Model.CevapId" />
+
+        <button class="btn btn-danger">Sil</button>
+        <a href="/Cevap" class="btn btn-secondary">İptal</a>
+    </form>
+
+</div>

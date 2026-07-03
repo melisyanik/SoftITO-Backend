@@ -1,0 +1,26 @@
+﻿@model List<BelediyeSikayet.Models.ViewModel.RaporViewModel>
+
+<h3>❌ Cevaplanmamış Şikayetler</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>İlçe</th>
+            <th>Kategori</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Baslik</td>
+                <td>@item.Ilce</td>
+                <td>@item.KategoriAdi</td>
+                <td>@item.Tarih</td>
+            </tr>
+        }
+    </tbody>
+</table>

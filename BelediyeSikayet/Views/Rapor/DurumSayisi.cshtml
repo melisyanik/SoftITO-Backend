@@ -1,0 +1,26 @@
+﻿@model List<BelediyeSikayet.Models.ViewModel.RaporViewModel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>📊 Durum Dağılımı</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Durum</th>
+            <th>Sayı</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AdSoyad</td>
+                <td>@item.Sayi</td>
+            </tr>
+        }
+    </tbody>
+</table>

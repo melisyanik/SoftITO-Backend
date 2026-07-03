@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Yeni Yönetici Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="mb-4">
+    <h2>Yeni Yönetici Ekle</h2>
+</div>
+
+<div class="card p-4 shadow-sm" style="max-width: 500px;">
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(ViewBag.Error)
+        </div>
+    }
+
+    <form method="post" action="/Admin/AddUser">
+        <div class="mb-3">
+            <label class="form-label">Kullanıcı Adı</label>
+            <input type="text" name="username" class="form-control" required />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">E-Posta Adresi</label>
+            <input type="email" name="email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Şifre</label>
+            <input type="password" name="password" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a href="/Admin/Users" class="btn btn-secondary ms-2">İptal</a>
+    </form>
+</div>

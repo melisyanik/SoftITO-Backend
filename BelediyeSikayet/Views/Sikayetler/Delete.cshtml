@@ -1,0 +1,38 @@
+﻿@model BelediyeSikayet.Models.Sikayet
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>🗑 Şikayet Sil</h3>
+
+<div class="card p-3 shadow-sm">
+
+    <h5>📌 @Model.Baslik</h5>
+
+    <p>@Model.Aciklama</p>
+
+    <hr />
+
+    <p><b>👤</b> @Model.AdSoyad</p>
+    <p><b>📞</b> @Model.Telefon</p>
+    <p><b>📍</b> @Model.Ilce</p>
+
+    <p><b>📂</b> @Model.Kategori.Ad</p>
+    <p><b>📊</b> @Model.Durum.Ad</p>
+
+    <hr />
+
+    <form method="post" asp-action="DeleteConfirmed">
+        <input type="hidden" name="id" value="@Model.SikayetId" />
+
+        <button class="btn btn-danger">
+            EVET SİL
+        </button>
+
+        <a href="/Sikayetler" class="btn btn-secondary">
+            İptal
+        </a>
+    </form>
+
+</div>

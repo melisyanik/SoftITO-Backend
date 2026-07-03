@@ -1,0 +1,20 @@
+﻿@model BelediyeSikayet.Models.Kategori
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>✏️ Kategori Düzenle</h3>
+
+<form method="post">
+
+    <input asp-for="KategoriId" type="hidden" />
+
+    <input asp-for="Ad"
+           class="form-control mb-3" />
+
+    <button class="btn btn-success">
+        Güncelle
+    </button>
+
+</form>

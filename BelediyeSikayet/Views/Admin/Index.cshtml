@@ -1,0 +1,115 @@
+﻿@model List<BelediyeSikayet.Models.Sikayet>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="mb-3">🏛 Dashboard</h3>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning shadow-sm">
+            <div class="card-body">
+                <h5>Beklemede</h5>
+                <h2>@ViewBag.Beklemede</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-primary shadow-sm">
+            <div class="card-body">
+                <h5>İşlemde</h5>
+                <h2>@ViewBag.Islemde</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success shadow-sm">
+            <div class="card-body">
+                <h5>Çözüldü</h5>
+                <h2>@ViewBag.Cozuldu</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<form method="get" class="row mb-4">
+
+    
+    <div class="col-md-4">
+        <select name="ilce" class="form-control">
+            <option value="">İlçe Seç</option>
+            @foreach (var i in ViewBag.Ilceler)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
+
+   
+    <div class="col-md-4">
+        <select name="kategoriId" class="form-control">
+            <option value="">Konu Seç</option>
+            @foreach (var k in ViewBag.Kategoriler)
+            {
+                <option value="@k.KategoriId">@k.Ad</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <button class="btn btn-dark w-100">🔎 Filtrele</button>
+    </div>
+
+</form>
+
+
+@foreach (var item in Model)
+{
+    <div class="card mb-2 shadow-sm">
+
+        <div class="card-body">
+
+           
+            <div class="d-flex justify-content-between">
+
+                <div>
+                    <b>👤 @item.AdSoyad</b> |
+                    📍 @item.Ilce
+                    📅 @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                </div>
+
+                <div>
+                    @if (item.Durum.Ad == "Beklemede")
+                    {
+                        <span class="badge bg-warning text-dark">Beklemede</span>
+                    }
+                    else if (item.Durum.Ad == "İşlemde")
+                    {
+                        <span class="badge bg-primary">İşlemde</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Çözüldü</span>
+                    }
+                </div>
+
+            </div>
+
+          
+            <div class="mt-2">
+
+                <b>📂 Konu:</b> @item.Kategori.Ad <br />
+                <b>📌 Problem:</b> @item.Baslik <br />
+                <b>📝 Detay:</b> @item.Aciklama
+
+            </div>
+
+        </div>
+
+    </div>
+}

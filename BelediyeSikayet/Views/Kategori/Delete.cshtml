@@ -1,0 +1,32 @@
+﻿@model BelediyeSikayet.Models.Kategori
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>🗑 Kategori Sil</h3>
+
+<div class="card p-3">
+
+    <p>
+        <b>Kategori:</b> @Model.Ad
+    </p>
+
+    <form method="post" asp-action="DeleteConfirmed">
+
+        <input type="hidden"
+               name="id"
+               value="@Model.KategoriId" />
+
+        <button class="btn btn-danger">
+            Sil
+        </button>
+
+        <a href="/Kategori"
+           class="btn btn-secondary">
+            Vazgeç
+        </a>
+
+    </form>
+
+</div>

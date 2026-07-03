@@ -1,0 +1,34 @@
+﻿@model BelediyeSikayet.Models.Sikayet
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>✏️ Şikayet Düzenle</h3>
+
+<form method="post">
+
+    <input asp-for="SikayetId" type="hidden" />
+
+    <input asp-for="Baslik" class="form-control mb-2" />
+
+    <textarea asp-for="Aciklama" class="form-control mb-2"></textarea>
+
+    <input asp-for="Ilce" class="form-control mb-2" />
+
+    <select asp-for="KategoriId" class="form-control mb-2">
+        @foreach (var k in ViewBag.Kategoriler)
+        {
+            <option value="@k.KategoriId">@k.Ad</option>
+        }
+    </select>
+
+    <select asp-for="DurumId" class="form-control mb-2">
+        <option value="1">Beklemede</option>
+        <option value="2">İşlemde</option>
+        <option value="3">Çözüldü</option>
+    </select>
+
+    <button class="btn btn-success w-100">Kaydet</button>
+
+</form>

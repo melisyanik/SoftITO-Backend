@@ -1,0 +1,74 @@
+﻿@model List<BelediyeSikayet.Models.Cevap>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>💬 Cevaplar</h3>
+
+<form method="get" class="mb-3">
+    <input type="text"
+           name="search"
+           class="form-control"
+           placeholder="Cevap, şikayet, ad, ilçe ara..." />
+</form>
+
+<div class="mb-3">
+    <a href="/Cevap/ExportPdf" class="btn btn-danger">
+        📄 PDF İndir
+    </a>
+
+    <a href="/Cevap/ExportExcel" class="btn btn-success">
+        📊 Excel İndir
+    </a>
+</div>
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Şikayet</th>
+            <th>İlçe</th>
+            <th>Cevap</th>
+            <th>Tarih</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <b>@item.Sikayet.Baslik</b><br />
+                    @item.Sikayet.AdSoyad
+                </td>
+
+                <td>@item.Sikayet.Ilce</td>
+
+                <td>@item.Aciklama</td>
+
+                <td>@item.CevapTarihi</td>
+
+                <td>
+
+                    <a href="/Cevap/Update/@item.CevapId"
+                       class="btn btn-warning btn-sm">
+                        Düzenle
+                    </a>
+
+                    <a href="/Cevap/Delete/@item.CevapId"
+                       class="btn btn-danger btn-sm">
+                        Sil
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

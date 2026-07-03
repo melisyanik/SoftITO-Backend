@@ -1,0 +1,26 @@
+﻿@model List<BelediyeSikayet.Models.ViewModel.RaporViewModel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>💬 En Çok Cevaplanan İlçeler</h3>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>İlçe</th>
+            <th>Cevap Sayısı</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AdSoyad</td>
+                <td>@item.Sayi</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="login-card">
+
+    <h2>👤 Admin Giriş</h2>
+    <p>Belediye Talep Yönetim Paneli</p>
+
+    @if (ViewBag.Error != null)
+    {
+        <div style="color: red; margin-bottom: 15px;">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form method="post" action="/Admin/Login">
+
+        <input type="text" name="username" placeholder="Kullanıcı Adı" required />
+
+        <input type="password" name="password" placeholder="Şifre" required />
+
+        <button type="submit">Giriş Yap</button>
+
+    </form>
+
+    <div class="footer-text">
+        Sadece yetkili personel giriş yapabilir
+    </div>
+
+</div>

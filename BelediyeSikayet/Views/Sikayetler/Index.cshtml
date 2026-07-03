@@ -1,0 +1,88 @@
+﻿@model List<BelediyeSikayet.Models.Sikayet>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>📩 Şikayet Yönetimi</h3>
+
+<form method="get" class="row mb-3">
+
+    <div class="col-md-4">
+        <select name="field" class="form-control">
+            @foreach (var f in ViewBag.Fields)
+            {
+                <option value="@f">@f</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-6">
+        <input name="value" class="form-control" placeholder="Arama..." />
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-success w-100">Ara</button>
+    </div>
+
+</form>
+
+<div class="mb-3">
+
+    <a href="/Sikayetler/ExportPdf" class="btn btn-danger">
+        📄 PDF İndir
+    </a>
+
+    <a href="/Sikayetler/ExportExcel" class="btn btn-success">
+        📊 Excel İndir
+    </a>
+
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="card p-3 mb-3 shadow-sm">
+
+        <h5>@item.Baslik</h5>
+        <p>@item.Aciklama</p>
+
+        <p>
+            👤 @item.AdSoyad |
+            📞 @item.Telefon |
+            📍 @item.Ilce
+            📅 @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+        </p>
+
+        <p>
+            📂 @item.Kategori.Ad |
+            <span class="badge bg-primary">@item.Durum.Ad</span>
+        </p>
+
+        @if (item.Cevaps != null && item.Cevaps.Any())
+        {
+            <div class="alert alert-info">
+                💬 @item.Cevaps.First().Aciklama
+            </div>
+        }
+
+        <div class="mt-2">
+
+            <a href="/Sikayetler/DurumDegistir/@item.SikayetId?durumId=2"
+               class="btn btn-warning btn-sm">İşlemde</a>
+
+            <a href="/Sikayetler/DurumDegistir/@item.SikayetId?durumId=3"
+               class="btn btn-success btn-sm">Çöz</a>
+
+            <a href="/Cevap/Create?sikayetId=@item.SikayetId"
+               class="btn btn-info btn-sm">Cevapla</a>
+
+            <a href="/Sikayetler/Update/@item.SikayetId"
+               class="btn btn-primary btn-sm">Düzenle</a>
+
+            <a href="/Sikayetler/Delete/@item.SikayetId"
+               class="btn btn-danger btn-sm">Sil</a>
+
+        </div>
+
+    </div>
+}

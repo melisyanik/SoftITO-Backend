@@ -1,0 +1,112 @@
+﻿@model List<BelediyeSikayet.Models.Sikayet>
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+
+    var beklemede = Model.Where(x => x.DurumId == 1).ToList();
+    var islemde = Model.Where(x => x.DurumId == 2).ToList();
+    var cozuldu = Model.Where(x => x.DurumId == 3).ToList();
+}
+
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h1>🏛 Belediye Talep Portalına Hoşgeldiniz</h1>
+
+    <form method="get" class="d-flex gap-2">
+
+        <select name="ilce" class="form-control" style="width:200px;">
+            <option value="">İlçeye Göre Arayın</option>
+
+            @foreach (var i in ViewBag.Ilceler)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+
+        <button class="btn btn-success">Ara</button>
+    </form>
+
+</div>
+
+<div id="belediyeCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+
+    <div class="carousel-inner rounded">
+
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716"
+                 class="d-block w-100" style="height:300px; object-fit:cover;">
+        </div>
+
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc"
+                 class="d-block w-100" style="height:300px; object-fit:cover;">
+        </div>
+
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1597009828067-3b7a8d6c8f6c"
+                 class="d-block w-100" style="height:300px; object-fit:cover;">
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#belediyeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#belediyeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-4">
+        <h5>🟡 Beklemede</h5>
+
+        @foreach (var item in beklemede)
+        {
+            <div class="card p-2 mb-2">
+                <b>@item.Baslik</b>
+                <div>@item.Ilce</div>
+                <div>📅 @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</div>
+                <span class="badge bg-warning text-dark">@item.Durum.Ad</span>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <h5>🔵 İşlemde</h5>
+
+        @foreach (var item in islemde)
+        {
+            <div class="card p-2 mb-2">
+                <b>@item.Baslik</b>
+                <div>@item.Ilce</div>
+                <div>📅 @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</div>
+                <span class="badge bg-primary">@item.Durum.Ad</span>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <h5>🟢 Çözüldü</h5>
+
+        @foreach (var item in cozuldu)
+        {
+            <div class="card p-2 mb-2">
+                <b>@item.Baslik</b>
+                <div>@item.Ilce</div>
+                <div>📅 @item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</div>
+                <span class="badge bg-success">@item.Durum.Ad</span>
+                @if (item.Cevaps != null && item.Cevaps.Count > 0)
+                {
+                    <hr />
+                    <small>🏛 @item.Cevaps.FirstOrDefault()?.Aciklama</small>
+                }
+            </div>
+        }
+    </div>
+
+</div>
