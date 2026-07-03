@@ -85,7 +85,7 @@ namespace OyunSatinAlma.Controllers
             return View(siparisler);
         }
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public IActionResult Oyunlarim(string arama, string tur)
+        public IActionResult Oyunlarim(string searchType, string arama)
         {
             var userEmail = User.Identity.Name;
             if (string.IsNullOrEmpty(userEmail)) return RedirectToAction("Login", "Auth");
@@ -103,15 +103,18 @@ namespace OyunSatinAlma.Controllers
 
             if (!string.IsNullOrEmpty(arama))
             {
-                query = query.Where(x => x.Oyun.OyunAdi.Contains(arama));
+                if (searchType == "tur")
+                {
+                    query = query.Where(x => x.Oyun.Tur.Contains(arama));
+                }
+                else
+                {
+                    query = query.Where(x => x.Oyun.OyunAdi.Contains(arama));
+                }
             }
 
-            if (!string.IsNullOrEmpty(tur))
-            {
-                query = query.Where(x => x.Oyun.Tur == tur);
-            }
-
-            ViewBag.Turler = db.Oyunlar.Select(x => x.Tur).Distinct().ToList();
+            ViewBag.SearchType = searchType ?? "oyunAdi";
+            ViewBag.Arama = arama;
 
             var resultList = query.ToList()
                                   .GroupBy(x => x.OyunId)

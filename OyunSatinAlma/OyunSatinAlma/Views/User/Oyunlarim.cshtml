@@ -9,29 +9,21 @@
     
     <form asp-action="Oyunlarim" method="get" class="row g-3 mb-4">
         <div class="col-md-4">
-            <input type="text" name="arama" class="form-control" placeholder="Oyun Adı ile Ara..." value="@Context.Request.Query["arama"]">
-        </div>
-        <div class="col-md-4">
-            <select name="tur" class="form-select">
-                <option value="">Tüm Türler</option>
-                @if (ViewBag.Turler != null)
+            <select name="searchType" class="form-select">
+                @if (ViewBag.SearchType == "tur")
                 {
-                    foreach (var tur in ViewBag.Turler)
-                    {
-                        if (!string.IsNullOrEmpty(tur))
-                        {
-                            if (Context.Request.Query["tur"] == tur)
-                            {
-                                <option value="@tur" selected>@tur</option>
-                            }
-                            else
-                            {
-                                <option value="@tur">@tur</option>
-                            }
-                        }
-                    }
+                    <option value="oyunAdi">Oyun Adı</option>
+                    <option value="tur" selected>Tür</option>
+                }
+                else
+                {
+                    <option value="oyunAdi" selected>Oyun Adı</option>
+                    <option value="tur">Tür</option>
                 }
             </select>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="arama" class="form-control" placeholder="Aranacak metin..." value="@ViewBag.Arama">
         </div>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">Ara</button>
@@ -50,7 +42,7 @@
                 <div class="col">
                     <div class="card h-100 shadow-sm position-relative">
                         <span class="position-absolute top-0 end-0 badge @durumClass m-2 p-2">@siparis.Durum</span>
-                        <img src="@oyun.ResimUrl" class="card-img-top" alt="@oyun.OyunAdi" style="height: 200px; object-fit: cover;">
+                        <img src="@oyun.ResimUrl" onerror="this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg'" class="card-img-top" alt="@oyun.OyunAdi" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">@oyun.OyunAdi</h5>
                             <p class="card-text text-muted">Tür: @(string.IsNullOrEmpty(oyun.Tur) ? "Belirtilmemiş" : oyun.Tur)</p>
