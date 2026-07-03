@@ -25,15 +25,12 @@ Oyun Evreni (Game Universe) is a comprehensive, N-Tier (Multi-Layered) web appli
 * **Role-Based Routing:** Smart routing powered by ASP.NET Core Identity. Admins are redirected to the management dashboard upon login, while regular users are routed to their personal game library or the public homepage.
 * **Account Administration:** Full lifecycle management of user accounts, enabling users to register, log in, and track their game orders.
 * **Admin Management:** Secure backend access specifically for Administrator accounts.
-User interface:
-<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 011457" src="https://github.com/user-attachments/assets/30d99da5-07ff-40f3-b76f-a6f84fd1d41e" />
-
 Admin interface:
 <img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 012920" src="https://github.com/user-attachments/assets/df137767-2fa7-4480-b044-0522f5a578c3" />
 
 #### 2. Public User Experience
 * **Interactive Homepage:** A dynamic, user-facing homepage displaying the catalog of available video games, complete with high-quality imagery and pricing.
-<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 010951" src="https://github.com/user-attachments/assets/0d887195-ec39-4a12-9050-0d17b90a38a1" />
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 011457" src="https://github.com/user-attachments/assets/30d99da5-07ff-40f3-b76f-a6f84fd1d41e" />
 
 * **My Games (Oyunlarım) & Order Tracking:** Users can easily buy games. Once approved by an admin, the game appears in their personal digital library. Order statuses are visible via color-coded badges.
 First, ordering game for the user:
