@@ -27,35 +27,61 @@
 - **Role-Based Routing:** Smart routing powered by ASP.NET Core Identity. Admins are redirected to the management dashboard upon login, while regular users are routed to the public homepage.
 - **Account Administration:** Full lifecycle management of user accounts.
 - **Admin Management:** Dedicated interface within the dashboard to securely create and onboard new administrator accounts.
+Login Interface for admins:
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 094939" src="https://github.com/user-attachments/assets/d130c85b-afe5-46ed-8bbc-b168627c7a14" />
 
-![Login Screen](docs/images/login-placeholder.png)
-*> Screenshot placeholder: Secure Login and Registration Interface*
 
 #### 2. Public User Experience
 - **Interactive Homepage:** A dynamic, user-facing homepage displaying the catalog of movies, series, and theater plays.
 - **Field-Based Combobox Search:** Advanced search functionality utilizing a combobox interface. Users can perform granular searches by selecting specific fields (e.g., Name, Category, ID) for accurate results.
+Public Homepage and Catalog:
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 094733" src="https://github.com/user-attachments/assets/87d11669-bf47-4018-a771-c6f091567b88" />
+<img width="1919" height="919" alt="Ekran görüntüsü 2026-07-03 094746" src="https://github.com/user-attachments/assets/cf424f90-0cc6-49af-b903-09007dbe2cf4" />
 
-![Public Homepage](docs/images/homepage-placeholder.png)
-*> Screenshot placeholder: Public Homepage and Catalog*
+Search module for public homepage:
+<img width="1919" height="915" alt="Ekran görüntüsü 2026-07-03 094917" src="https://github.com/user-attachments/assets/02061b9a-b815-4078-9a7e-d73327b4837c" />
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 094836" src="https://github.com/user-attachments/assets/27208893-22ed-45d4-acd3-bf1b55f785e4" />
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-03 094753" src="https://github.com/user-attachments/assets/ffb87192-ec31-41fe-b224-56cf29775d7f" />
 
-![Search Module](docs/images/search-module-placeholder.png)
-*> Screenshot placeholder: Field-Based Combobox Search Interface*
+Field-Based Combobox Search for every table in admin page:
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 095147" src="https://github.com/user-attachments/assets/7cae39d5-ef73-4921-8d2c-23e72fa98708" />
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 120004" src="https://github.com/user-attachments/assets/84269733-f1df-4e24-bd38-4fec193b5dd4" />
+
+Adding new data:
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 095237" src="https://github.com/user-attachments/assets/c0f4790d-0411-4f89-bf98-839a94535216" />
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-03 095259" src="https://github.com/user-attachments/assets/719e7e66-c1a0-4940-8c66-3addbf3b8808" />
+
+Updating data:
+<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-03 095316" src="https://github.com/user-attachments/assets/26f03b41-2396-456b-9d07-e7017a1beee2" />
+<img width="1919" height="908" alt="Ekran görüntüsü 2026-07-03 095323" src="https://github.com/user-attachments/assets/639ac258-93aa-43cc-92f1-ded0883b4e95" />
+Another options in admin panel:
+<img width="1919" height="904" alt="Ekran görüntüsü 2026-07-03 095518" src="https://github.com/user-attachments/assets/ab40252b-19e4-4db4-b090-8250d5a60b99" />
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-03 114349" src="https://github.com/user-attachments/assets/58aae41d-c62b-43c9-88c4-506bc07856a1" />
+
+Adding new admin user:
+<img width="1919" height="908" alt="Ekran görüntüsü 2026-07-03 101512" src="https://github.com/user-attachments/assets/bbf263f6-8690-4e60-b197-ede723587979" />
+
 
 #### 3. Media Content Engine
 - **Unified Media Catalog:** Relational management of Movies, TV Series, and Theater Plays.
 - **QR Code Integration:** A dedicated QR Code module for generating scannable codes for tickets, events, or content sharing.
-
-![QR Code Module](docs/images/qrcode-module-placeholder.png)
-*> Screenshot placeholder: QR Code Generation and Scanning Module*
+ QR Code Generation and Scanning Module:
+<img width="890" height="502" alt="Ekran görüntüsü 2026-07-03 115129" src="https://github.com/user-attachments/assets/c1baad55-89f4-457e-a9e0-83c7c27c619f" />
 
 #### 4. Analytics & Export Pipeline
 - **Visual Telemetry:** Integration with `Chart.js` to provide real-time dashboard analytics.
 - **Document Generation:** 
   - **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for all content categories.
   - **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets (Movies, Series, Categories) into standard Excel formats.
+Reports and visuals for admins:
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-03 095722" src="https://github.com/user-attachments/assets/a87fcd26-ebe7-43e1-ac4d-107c99b19dc6" />
+<img width="1919" height="915" alt="Ekran görüntüsü 2026-07-03 095007" src="https://github.com/user-attachments/assets/d6f4a86f-8665-4092-913f-f74a2daf2b1f" />
+<img width="1919" height="902" alt="Ekran görüntüsü 2026-07-03 095739" src="https://github.com/user-attachments/assets/1901ce35-dffb-432c-815d-630e74c0e585" />
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-03 095730" src="https://github.com/user-attachments/assets/482566a3-f4c9-42dd-9701-19eb1119ae16" />
 
-![Analytics & Reports](docs/images/reporting-charts-placeholder.png)
-*> Screenshot placeholder: PDF and Excel Export Interface*
+PDF and Excel Export Interface for admins:
+<img width="1135" height="373" alt="Ekran görüntüsü 2026-07-03 114402" src="https://github.com/user-attachments/assets/149d84ec-519d-4ae6-8876-ac593142334a" />
+<img width="469" height="233" alt="Ekran görüntüsü 2026-07-03 114428" src="https://github.com/user-attachments/assets/d1a33942-c781-49a3-8d54-90170a54c54a" />
 
 ---
 
