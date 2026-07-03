@@ -10,7 +10,7 @@
 
 ---
 
-## English Documentation
+## 🇺🇸 English Documentation
 
 ### 🎯 Project Overview
 Oyun Evreni (Game Universe) is a comprehensive, N-Tier (Multi-Layered) web application designed to manage the entire lifecycle of digital game sales and content. Built on the robust ASP.NET Core MVC framework with a strictly separated architecture (Data, Model, and Web layers), it serves as a centralized hub for administrators to oversee games, customers, orders, and their associated metadata, while providing a seamless purchasing and library management experience for users.
