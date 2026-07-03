@@ -15,7 +15,7 @@
 
 <br>
 
-## 🇬🇧 English Documentation
+## 🇺🇸 English Documentation
 
 ### 🎯 Project Overview
 **BiletSinema** is a comprehensive, monolithic web application designed to manage the entire lifecycle of cinema and entertainment content. Built on the robust **ASP.NET Core MVC** framework, it serves as a centralized hub for administrators to oversee movies, TV series, theaters, and their associated metadata, while providing a seamless user experience for customers.
