@@ -1,4 +1,4 @@
 ﻿# SoftITO Backend Repository
 This repository contains multiple backend projects:
-- [Proje 1 - BiletSinema](./BiletSinema/README.md)
-- [Proje 2 - BelediyeSikayet](./BelediyeSikayet/README.md)
+- [Project 1 - BiletSinema](./BiletSinema/README.md)
+- [Project 2 - BelediyeSikayet](./BelediyeSikayet/README.md)
