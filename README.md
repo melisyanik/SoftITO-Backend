@@ -1,143 +1,161 @@
-# BiletSinema
-
 <div align="center">
-  <!-- You can add a project logo or banner here -->
-  <img src="docs/images/project-banner.png" alt="BiletSinema Banner" width="100%">
-  
-  <p align="center">
-    <strong>A Content Management System for Movies, TV Series, and Theaters.</strong>
-  </p>
+
+# 🎬 BiletSinema CMS
+**Enterprise-Grade Cinema & Entertainment Content Management System**
+
+[![.NET](https://img.shields.io/badge/.NET_8.0-5C2D91?style=flat-square&logo=.net&logoColor=white)](#)
+[![Entity Framework](https://img.shields.io/badge/Entity_Framework_Core-0078D4?style=flat-square&logo=dotnet&logoColor=white)](#)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap_5-563D7C?style=flat-square&logo=bootstrap&logoColor=white)](#)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](#)
+
+[🇺🇸 Read in English](#-english-documentation) | [🇹🇷 Türkçe Okuyun](#-türkçe-dokümantasyon)
+
 </div>
 
-## About The Project
-
-BiletSinema is a web-based content management system (CMS) developed using ASP.NET Core MVC and Entity Framework Core. It is designed to handle relational data between entertainment media and provides an administration panel for managing movies, TV series, theaters, and their associated categories.
-
-The project includes reporting screens, statistical data visualization, data exporting (PDF/Excel), and a secure authentication system for administrators.
-
-![Dashboard Preview](docs/images/dashboard-preview.png)
-> *Preview of the main administration dashboard and reporting charts.*
-
 ---
 
-## Key Features
+<br>
 
-### Authentication & Authorization
-* **Secure Login System:** Integrated with ASP.NET Core Identity for robust security.
-* **Role Management:** Admin panel to manage users, assign roles, and restrict access to critical operations.
-* **User Management:** Create, update, and manage administrative accounts.
+## 🇺🇸 English Documentation
 
-![Admin & Identity Management](docs/images/admin-users.png)
+### 📌 Project Overview
+**BiletSinema** is a comprehensive, monolithic web application designed to manage the entire lifecycle of cinema and entertainment content. Built on the robust **ASP.NET Core MVC** framework, it serves as a centralized hub for administrators to oversee movies, TV series, theaters, and their associated metadata. 
 
-### Content Management
-* **Movie Management:** Complete control over movie listings. Add metadata, update details, and assign categories.
-* **TV Series Management:** Track and manage TV series data efficiently.
-* **Theater Management:** Keep track of theater plays, schedules, and details.
-* **Dynamic Categorization:** Many-to-many relationship handling between content and categories.
+Unlike standard CRUD applications, BiletSinema incorporates advanced reporting, dynamic role-based access control (RBAC), and complex relational data mapping to provide a scalable administration experience.
 
-![Content Management Screen](docs/images/content-management.png)
+### 🎯 Scope & Capabilities
 
-### Advanced Reporting & Analytics
-* **Visual Dashboards:** Chart.js integration for visual data representation of categories and content distribution.
-* **Complex LINQ Queries:** Utilizes Entity Framework Core capabilities (Join, Group By) to generate insights.
-* **Export Capabilities:** 
-  * Generate PDF reports using QuestPDF.
-  * Export data tables to Excel format using EPPlus.
+The system is strictly divided into functional domains to ensure high cohesion:
 
-![Reporting & Analytics](docs/images/reporting-charts.png)
+#### 1. Identity & Security Management
+- **Role-Based Access Control (RBAC):** Strict isolation between `Admin`, `Manager`, and `User` roles using ASP.NET Core Identity.
+- **Account Administration:** Full lifecycle management of user accounts (creation, suspension, password resets) directly from the dashboard.
+- **Secure Authentication:** Implementation of secure cookie-based authentication with anti-forgery token validations.
 
----
+#### 2. Media Content Engine
+- **Unified Media Catalog:** Relational management of Movies, TV Series, and Theater Plays.
+- **Dynamic Categorization:** Many-to-many relationship mapping allowing a single media entity to belong to multiple genres or categories.
+- **Metadata Management:** Handling of directors, cast, release dates, durations, and poster imagery.
 
-## Built With
+![Media Content Engine](docs/images/content-management.png)
+*> Screenshot placeholder: Film, TV Series, and Category Management Interface*
 
-This project leverages modern .NET technologies and popular frontend libraries:
+#### 3. Analytics & Export Pipeline
+- **Visual Telemetry:** Integration with `Chart.js` to provide real-time dashboard analytics regarding content distribution and category density.
+- **Document Generation:** 
+  - **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports.
+  - **Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets into standard Excel formats for external data analysis.
 
-### Backend
-* ASP.NET Core MVC
-* Entity Framework Core (Code-First approach)
-* ASP.NET Core Identity
-* C# / LINQ
+![Analytics & Reports](docs/images/reporting-charts.png)
+*> Screenshot placeholder: Advanced Reporting & Analytics Dashboard*
 
-### Frontend
-* Bootstrap 5
-* Chart.js
-* Razor Views (.cshtml)
+### 🏗️ Technical Architecture
 
-### Libraries & Tools
-* QuestPDF
-* EPPlus
-* SQL Server
+- **Pattern:** Model-View-Controller (MVC)
+- **ORM:** Entity Framework Core (Code-First Approach)
+- **Database:** Microsoft SQL Server
+- **Frontend Stack:** HTML5, CSS3, Bootstrap 5, JavaScript (Vanilla), jQuery (for AJAX operations)
+- **Dependency Injection:** Built-in .NET IoC Container for loosely coupled services.
 
----
+### ⚙️ Local Development Setup
 
-## Getting Started
+To run this project locally, ensure you have the **.NET SDK** installed.
 
-Follow these instructions to get a copy of the project up and running on your local machine.
-
-### Prerequisites
-* .NET SDK
-* SQL Server (LocalDB or a full instance)
-
-### Installation
-
-1. Clone the repository:
-   ```sh
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/your-username/BiletSinema.git
-   ```
-
-2. Navigate to the project directory:
-   ```sh
    cd BiletSinema
    ```
 
-3. Configure the Database Connection:
-   Open `appsettings.json` and update the `DefaultConnection` string to point to your SQL Server instance.
+2. **Database Configuration:**
+   Update the `DefaultConnection` string in your `appsettings.json` file to target your local SQL Server instance.
    ```json
    "ConnectionStrings": {
-     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=BiletSinemaDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+     "DefaultConnection": "Server=localhost;Database=BiletSinema;Trusted_Connection=True;MultipleActiveResultSets=true"
    }
    ```
 
-4. Run Entity Framework Migrations:
-   
-   Using .NET CLI:
-   ```sh
+3. **Execute Migrations:**
+   Apply the EF Core code-first migrations to provision your database schema.
+   ```bash
    dotnet ef database update
    ```
-   Or using Package Manager Console:
-   ```powershell
-   Update-Database
-   ```
 
-5. Run the Application:
-   ```sh
+4. **Launch the Application:**
+   ```bash
    dotnet run
    ```
 
 ---
 
-## Screenshots
-
-<details>
-<summary><b>Click to expand screenshots</b></summary>
 <br>
 
-**1. Movie List and Data Table**  
-![Movie List](docs/images/movie-list.png)
+## 🇹🇷 Türkçe Dokümantasyon
 
-**2. Add / Edit Content Form**  
-![Add Content Form](docs/images/edit-form.png)
+### 📌 Proje Özeti
+**BiletSinema**, sinema ve eğlence içeriklerinin tüm yaşam döngüsünü yönetmek için tasarlanmış kapsamlı, monolitik bir web uygulamasıdır. Güçlü **ASP.NET Core MVC** altyapısı üzerine inşa edilen bu sistem; yöneticilerin filmleri, dizileri, tiyatroları ve bu içeriklere ait üst verileri (metadata) merkezi bir noktadan yönetmesini sağlar.
 
-**3. PDF Export Output Example**  
-![PDF Export](docs/images/pdf-export-example.png)
+Standart CRUD (Oluştur, Oku, Güncelle, Sil) uygulamalarından farklı olarak BiletSinema; gelişmiş raporlama, dinamik rol tabanlı erişim kontrolü (RBAC) ve karmaşık ilişkisel veri haritalaması sunarak ölçeklenebilir bir yönetim paneli deneyimi sağlar.
 
-**4. Excel Data Export Example**  
-![Excel Export](docs/images/excel-export-example.png)
+### 🎯 Proje Kapsamı ve Yetenekleri
 
-</details>
+Sistem, yüksek uyumluluk sağlamak amacıyla işlevsel alanlara (domain) bölünmüştür:
 
----
+#### 1. Kimlik ve Güvenlik Yönetimi
+- **Rol Tabanlı Erişim Kontrolü (RBAC):** ASP.NET Core Identity kullanılarak `Admin`, `Yönetici` ve `Kullanıcı` rolleri arasında kesin bir izolasyon sağlanmıştır.
+- **Hesap Yönetimi:** Kullanıcı hesaplarının (oluşturma, askıya alma, şifre sıfırlama) doğrudan panel üzerinden tam yaşam döngüsü yönetimi.
+- **Güvenli Kimlik Doğrulama:** Anti-forgery (sahtecilik önleme) token doğrulamaları ile desteklenen, çerez (cookie) tabanlı güvenli oturum yönetimi.
 
-## Purpose
+#### 2. Medya İçerik Motoru
+- **Bütünleşik Medya Kataloğu:** Filmler, Diziler ve Tiyatro Oyunlarının ilişkisel bir veritabanı yapısıyla yönetilmesi.
+- **Dinamik Kategorizasyon:** Tek bir medya içeriğinin birden fazla türe veya kategoriye ait olabilmesini sağlayan çoktan-çoğa (many-to-many) ilişki yapısı.
+- **Meta Veri Yönetimi:** Yönetmenler, oyuncu kadrosu, vizyon tarihleri, süreler ve afiş görsellerinin yönetimi.
 
-This project was developed primarily for educational purposes to demonstrate proficiency in structuring an ASP.NET Core MVC application, implementing relational databases using EF Core, and integrating third-party libraries for reporting and visualization.
+![Medya İçerik Motoru](docs/images/content-management.png)
+*> Ekran görüntüsü (Placeholder): Film, Dizi ve Kategori Yönetim Arayüzü*
+
+#### 3. Analitik ve Veri Dışa Aktarımı
+- **Görsel Telemetri:** İçerik dağılımı ve kategori yoğunluğu hakkında gerçek zamanlı panel analitiği sunmak için `Chart.js` entegrasyonu.
+- **Doküman Üretimi:** 
+  - **PDF Raporlar:** Piksel mükemmelliğinde, yazdırılabilir yönetimsel raporlar oluşturmak için `QuestPDF` kullanımı.
+  - **Tablo Formatları:** Ham veri setlerini harici analizler için standart Excel formatında dışa aktarmak amacıyla `EPPlus` kullanımı.
+
+![Analitik ve Raporlar](docs/images/reporting-charts.png)
+*> Ekran görüntüsü (Placeholder): Gelişmiş Raporlama ve Analitik Paneli*
+
+### 🏗️ Teknik Mimari
+
+- **Tasarım Deseni:** Model-View-Controller (MVC)
+- **ORM:** Entity Framework Core (Code-First Yaklaşımı)
+- **Veritabanı:** Microsoft SQL Server
+- **Ön Yüz (Frontend):** HTML5, CSS3, Bootstrap 5, JavaScript (Vanilla), jQuery (AJAX işlemleri için)
+- **Bağımlılık Enjeksiyonu (DI):** Gevşek bağlı (loosely coupled) servisler için yerleşik .NET IoC Container.
+
+### ⚙️ Geliştirme Ortamı Kurulumu
+
+Projeyi yerel ortamınızda çalıştırmak için **.NET SDK**'nın kurulu olduğundan emin olun.
+
+1. **Repoyu Klonlayın:**
+   ```bash
+   git clone https://github.com/kullanici-adiniz/BiletSinema.git
+   cd BiletSinema
+   ```
+
+2. **Veritabanı Yapılandırması:**
+   `appsettings.json` dosyasındaki `DefaultConnection` bağlantı dizesini kendi SQL Server sunucunuza (veya LocalDB) göre güncelleyin.
+   ```json
+   "ConnectionStrings": {
+     "DefaultConnection": "Server=localhost;Database=BiletSinema;Trusted_Connection=True;MultipleActiveResultSets=true"
+   }
+   ```
+
+3. **Migration'ları Uygulayın:**
+   Veritabanı şemasını oluşturmak için EF Core code-first migration'larını çalıştırın.
+   ```bash
+   dotnet ef database update
+   ```
+
+4. **Uygulamayı Başlatın:**
+   ```bash
+   dotnet run
+   ```
