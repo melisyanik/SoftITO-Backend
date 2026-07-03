@@ -43,7 +43,7 @@ When the user checks if it is approved or not, they can see the difference:
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 012816" src="https://github.com/user-attachments/assets/0ba1a56b-abae-414b-8156-9be8427d66bc" />
 <img width="1919" height="907" alt="Ekran görüntüsü 2026-07-04 012834" src="https://github.com/user-attachments/assets/647760fe-cc5e-4a5a-aafa-1503cb65f877" />
 
-#### 3. N-Tier Architecture & Content Engine
+#### 3. N-Tier Architecture & Content Engine - CRUD and Search
 * **Multi-Layered Design:** The codebase is separated into `OyunSatinAlma.DATA`, `OyunSatinAlma.MODEL`, and the main Web project, ensuring high scalability and maintainability.
 * **Unified Game Catalog:** Relational management of Games, Customers, and Orders using Entity Framework Core.
 * **Order Approval System:** Admins can view incoming orders from users and change their status (e.g., Pending, Approved, Rejected).
@@ -109,7 +109,7 @@ Kullanıcı onaylanıp onaylanmadığını kontrol ettiğinde, farkı görebilir
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 012816" src="https://github.com/user-attachments/assets/0ba1a56b-abae-414b-8156-9be8427d66bc" />
 <img width="1919" height="907" alt="Ekran görüntüsü 2026-07-04 012834" src="https://github.com/user-attachments/assets/647760fe-cc5e-4a5a-aafa-1503cb65f877" />
 
-#### 3. Çok Katmanlı Mimari ve İçerik Motoru
+#### 3. Çok Katmanlı Mimari ve İçerik Motoru - CRUD ve Arama
 * **Çok Katmanlı (N-Tier) Yapı:** Kod tabanı `OyunSatinAlma.DATA`, `OyunSatinAlma.MODEL` ve ana Web projesi olarak katmanlara ayrılmış olup, yüksek ölçeklenebilirlik ve sürdürülebilirlik sağlar.
 * **Bütünleşik Katalog Yönetimi:** Entity Framework Core kullanılarak Oyunlar, Müşteriler ve Siparişlerin ilişkisel yönetimi.
 * **Sipariş Onay Sistemi:** Yöneticiler, kullanıcılardan gelen siparişleri görüntüleyebilir ve durumlarını (örn. Beklemede, Onaylandı, Reddedildi) değiştirebilirler.
