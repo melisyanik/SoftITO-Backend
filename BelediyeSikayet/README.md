@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Belediye Şikayet (Municipality Complaint CMS) (Proje 2)
+# 🏛️ Belediye Şikayet (Municipality Complaint CMS) (PROJECT 2)
 **Citizen-Centric Complaint Management & Resolution System**
 
 [![.NET](https://img.shields.io/badge/.NET_9.0-5C2D91?style=flat-square&logo=.net&logoColor=white)](#)
