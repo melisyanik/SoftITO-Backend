@@ -15,12 +15,23 @@
 ### 🎯 Project Overview
 Pet Care Tracker is a comprehensive web application designed to manage the entire lifecycle of veterinary clinics and pet owners. Built on the robust ASP.NET Core MVC framework with a strictly separated architecture (API, Repository, and UI layers), it serves as a centralized hub for managing pets, tracking vaccination schedules, and booking appointments, while providing a seamless tracking experience for users.
 
+API Interface:
+<img width="1919" height="629" alt="Ekran görüntüsü 2026-07-05 010428" src="https://github.com/user-attachments/assets/cd1d996e-975a-4a1f-b00b-89c032b2152c" />
+<img width="1919" height="847" alt="Ekran görüntüsü 2026-07-05 010439" src="https://github.com/user-attachments/assets/5967e1a8-2cf5-4c26-87ee-7c8f7eb4d8a2" />
+<img width="1919" height="493" alt="Ekran görüntüsü 2026-07-05 010455" src="https://github.com/user-attachments/assets/87eab7ea-de0a-461b-abd1-d49b63ac169f" />
+
 ### 🚀 Scope & Capabilities
 
 #### 1. Identity & Routing Management
 * **Secure Authentication & Login and Sign Up Screen:** A dedicated, fully functional login and registration interface ensuring robust session management, completely integrated with Cookie Authentication.
-<img width="1919" height="910" alt="Login Screen" src="URL_HERE" />
-<img width="1919" height="907" alt="Register Screen" src="URL_HERE" />
+
+Opening page:
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-05 010729" src="https://github.com/user-attachments/assets/46f80d2b-b279-4534-866c-6a8a931accf4" />
+
+Admin Login and register for users:
+<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-05 011007" src="https://github.com/user-attachments/assets/951a478b-a3fe-448c-87ce-76f913bb46a1" />
+
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-05 011027" src="https://github.com/user-attachments/assets/72063335-d735-4017-b37d-33184d061157" />
 
 * **Role-Based Routing:** Smart routing where users and admins are directed to their respective dashboards based on their privileges.
 * **Account Administration:** Full lifecycle management of user accounts, enabling users to register, log in, and track their pets.
