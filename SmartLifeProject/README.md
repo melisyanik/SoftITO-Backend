@@ -87,11 +87,11 @@ Analytics Page:
 <img width="1919" height="728" alt="Ekran görüntüsü 2026-07-04 174714" src="https://github.com/user-attachments/assets/98f1c738-1721-4fd2-9fd0-e4bcae635951" />
 <img width="1919" height="823" alt="Ekran görüntüsü 2026-07-04 174725" src="https://github.com/user-attachments/assets/828ea942-c43f-4606-b0c2-1c250b430a89" />
 
-**PDF Generation of reports:**
+PDF Generation of reports:
 
 ![PDF Report Screenshot](https://github.com/user-attachments/assets/353fb607-9735-4700-8a6b-6791b81c2915)
 
-**Excel generation:**
+Excel generation:
 
 ![Excel Report Screenshot](https://github.com/user-attachments/assets/1f3b0a7f-cbfb-4fec-bd56-fd30ea4b9a1a)
 
@@ -174,10 +174,10 @@ Analitik Sayfası:
 <img width="1919" height="728" alt="Ekran görüntüsü 2026-07-04 174714" src="https://github.com/user-attachments/assets/98f1c738-1721-4fd2-9fd0-e4bcae635951" />
 <img width="1919" height="823" alt="Ekran görüntüsü 2026-07-04 174725" src="https://github.com/user-attachments/assets/828ea942-c43f-4606-b0c2-1c250b430a89" />
 
-**PDF Raporu Oluşturma:**
+PDF Raporu Oluşturma:
 
 ![PDF Report Screenshot](https://github.com/user-attachments/assets/353fb607-9735-4700-8a6b-6791b81c2915)
 
-**Excel Tablosu Oluşturma:**
+Excel Tablosu Oluşturma:
 
 ![Excel Report Screenshot](https://github.com/user-attachments/assets/1f3b0a7f-cbfb-4fec-bd56-fd30ea4b9a1a)
