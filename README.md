@@ -7,7 +7,7 @@ This repository contains multiple backend projects:
 - [Project 5 - PostManagement](./PostManagement/README.md)
 - [Project 6 - LifeTrackerApi](./LifeTrackerApi/README.md)
 - [Project 7 - SmartLifeProject](./SmartLifeProject/README.md)
-
+- [Project 8 - AstroComment](./AstroComment/README.md)
 
 
 
