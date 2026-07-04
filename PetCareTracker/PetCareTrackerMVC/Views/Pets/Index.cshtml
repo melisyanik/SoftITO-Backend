@@ -1,11 +1,15 @@
-﻿@model IEnumerable<PetCareTrackerMVC.Models.PetDto>
+@model IEnumerable<PetCareTrackerMVC.Models.PetDto>
 @{ ViewData["Title"] = "Hastalar"; }
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-heart-pulse text-danger"></i> Kayıtlı Hastalar</h2>
-    <div>
-        <a asp-action="Create" class="btn btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Yeni Hasta Ekle</a>
-        <a asp-action="ExportPdf" class="btn btn-outline-danger shadow-sm ms-2"><i class="bi bi-file-pdf"></i> PDF İndir</a>
-        <a asp-action="ExportExcel" class="btn btn-outline-success shadow-sm ms-2"><i class="bi bi-file-excel"></i> Excel İndir</a>
+    <div class="d-flex gap-2">
+        <form asp-action="Index" method="get" class="d-flex">
+            <input type="text" name="searchKeyword" value="@ViewBag.SearchKeyword" class="form-control form-control-sm" placeholder="İsim, Tür veya Irk ara..." />
+            <button type="submit" class="btn btn-sm btn-outline-primary ms-1"><i class="bi bi-search"></i></button>
+        </form>
+        <a asp-action="Create" class="btn btn-primary btn-sm shadow-sm"><i class="bi bi-plus-circle"></i> Yeni Hasta</a>
+        <a asp-action="ExportPdf" class="btn btn-outline-danger btn-sm shadow-sm"><i class="bi bi-file-pdf"></i> PDF</a>
+        <a asp-action="ExportExcel" class="btn btn-outline-success btn-sm shadow-sm"><i class="bi bi-file-excel"></i> Excel</a>
     </div>
 </div>
 <div class="card border-0 shadow-sm">

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetCareTrackerMVC.Models;
 using PetCareTrackerMVC.Repositories;
@@ -17,9 +17,18 @@ namespace PetCareTrackerMVC.Controllers
         public PetsController(BaseRepository repo) { _repo = repo; }
         private int GetUserId() => int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchKeyword = "")
         {
-            var pets = await _repo.Query<PetDto>("sp_Pet_List", new { UserId = GetUserId() });
+            IEnumerable<PetDto> pets;
+            if (string.IsNullOrWhiteSpace(searchKeyword))
+            {
+                pets = await _repo.Query<PetDto>("sp_Pet_List", new { UserId = GetUserId() });
+            }
+            else
+            {
+                pets = await _repo.Query<PetDto>("sp_Pet_Search", new { Keyword = searchKeyword, UserId = GetUserId() });
+            }
+            ViewBag.SearchKeyword = searchKeyword;
             return View(pets);
         }
 
