@@ -20,14 +20,17 @@ Gardrobum (My Wardrobe) is a web application designed to help users digitally or
 * **Clothes, Shoes, and Jewelry Management:** Add new items to the system, update details (color, brand, size, etc.) of existing items, or delete them (CRUD).
 * **Field-Based Dynamic Search:** Users can perform granular searches by selecting specific fields via a combobox (e.g., search for "Nike" only within "Brand", or "Black" only within "Color").
 * **Fast Results:** Thanks to the secure and fast dynamic filtering structure on the SQL side, the searched item is listed in seconds, synchronized with the CRUD operations.
-AAdding new clothes:
+
+Adding new clothes:
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023815" src="https://github.com/user-attachments/assets/55ee217f-98a4-437a-a0fc-d7147dd0ae81" />
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023905" src="https://github.com/user-attachments/assets/3c7e595d-0034-4ef4-8468-46bccf2dfbdd" />
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023913" src="https://github.com/user-attachments/assets/2ab23577-8ccb-416d-a6ba-1baacbf45d71" />
+
 Searching for shoes:
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023926" src="https://github.com/user-attachments/assets/23033b0a-9525-42ae-b669-c86a8845d2ad" />
 <img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 023944" src="https://github.com/user-attachments/assets/3523a979-3545-4903-a826-9aeee879e83b" />
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 024052" src="https://github.com/user-attachments/assets/befc7613-4ca4-4767-a839-615bbdf41d85" />
+
 Updating accessory:
 <img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 024118" src="https://github.com/user-attachments/assets/f836f2d9-6ea6-4714-ab96-ca13e2fedd1f" />
 <img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 024147" src="https://github.com/user-attachments/assets/0f62f45d-bb0c-4e94-9047-d464102f10ac" />
