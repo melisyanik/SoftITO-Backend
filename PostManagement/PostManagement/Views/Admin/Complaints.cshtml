@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Complaints</h3>
+
+
+<div class="card p-3 mb-3">
+    <div class="row g-2">
+
+        <div class="col-md-3">
+            <input id="postId" class="form-control" placeholder="Post ID" />
+        </div>
+
+        <div class="col-md-4">
+            <input id="reason" class="form-control" placeholder="Reason" />
+        </div>
+
+        <div class="col-md-3">
+            <input id="reporterName" class="form-control" placeholder="Reporter" />
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-success w-100" onclick="addComplaint()">Add</button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="card p-3 mb-3">
+    <div class="row g-2">
+
+        <div class="col-md-3">
+            <select id="searchField" class="form-select">
+                <option value="Id">ID</option>
+                <option value="Reason">Reason</option>
+                <option value="Reporter">Reporter</option>
+                <option value="PostId">Post ID</option>
+                <option value="Status">Status</option>
+            </select>
+        </div>
+
+        <div class="col-md-7">
+            <input id="searchValue" class="form-control" placeholder="Search..." />
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100" onclick="searchComplaint()">Search</button>
+        </div>
+
+    </div>
+</div>
+<div class="mb-3">
+    <a href="/Admin/ExportComplaintsPdf" class="btn btn-danger">
+        Export PDF
+    </a>
+
+    <a href="/Admin/ExportComplaintsExcel" class="btn btn-success">
+        Export Excel
+    </a>
+</div>
+
+<div class="card p-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PostId</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Reporter</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="complaintTable"></tbody>
+    </table>
+</div>
+
+<script src="~/js/admin-complaints.js"></script>

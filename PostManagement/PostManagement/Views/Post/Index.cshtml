@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Feed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Feed</h4>
+    <button class="btn btn-primary btn-sm" id="btnAddPost">+ Share Post</button>
+</div>
+
+<div id="post_container" class="row"></div>
+
+
+<div class="modal fade" id="PostModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+
+            <div class="modal-header">
+                <h5>New Post</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="text" id="Title" class="form-control mb-2" placeholder="Title" />
+                <input type="text" id="Content" class="form-control mb-2" placeholder="What's on your mind?" />
+                <input type="text" id="ImageUrl" class="form-control mb-2" placeholder="Image URL" />
+                <input type="text" id="Tag" class="form-control mb-2" placeholder="#tag" />
+                <input type="text" id="AuthorName" class="form-control mb-2" placeholder="Your name" />
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success w-100" onclick="AddPost()">Share</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/post.js"></script>

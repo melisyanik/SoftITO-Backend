@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card p-3 mb-3">
+    <h4>Posts Management</h4>
+
+    <div class="row g-2">
+        <div class="col-md-2">
+            <input id="title" class="form-control" placeholder="Title" />
+        </div>
+
+        <div class="col-md-2">
+            <input type="text" id="postContent" class="form-control" placeholder="Content" />
+        </div>
+
+        <div class="col-md-2">
+            <input id="imageUrl" class="form-control" placeholder="Image URL" />
+        </div>
+
+        <div class="col-md-2">
+            <input id="tag" class="form-control" placeholder="Tag" />
+        </div>
+
+        <div class="col-md-2">
+            <input id="authorName" class="form-control" placeholder="Author" />
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-success" onclick="addPost()">
+                Add Post
+            </button>
+        </div>
+    </div>
+</div>
+
+<a href="/Admin/ExportPostsPdf" class="btn btn-danger">
+    Export PDF
+</a>
+
+<a href="/Admin/ExportPostsExcel" class="btn btn-success">
+    Export Excel
+</a>
+
+<div class="card p-3 mb-3">
+    <div class="row">
+        <div class="col-md-3">
+            <select id="searchField" class="form-select">
+                <option value="Id">ID</option>
+                <option value="Title">Title</option>
+                <option value="Content">Content</option>
+                <option value="AuthorName">Author</option>
+                <option value="Tag">Tag</option>
+            </select>
+        </div>
+
+        <div class="col-md-7">
+            <input id="searchValue" class="form-control" placeholder="Search..." />
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100" onclick="searchPost()">Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="card p-3">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Tag</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="postTable"></tbody>
+    </table>
+</div>
+
+<script src="~/js/admin-posts.js"></script>

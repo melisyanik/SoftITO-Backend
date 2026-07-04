@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Activity Logs</h3>
+
+
+<div class="row mb-3">
+    <div class="col-md-3">
+        <select id="searchField" class="form-control">
+            <option value="Id">Id</option>
+            <option value="Action">Action</option>
+            <option value="Detail">Detail</option>
+        </select>
+    </div>
+
+    <div class="col-md-6">
+        <input id="searchText" class="form-control" placeholder="Search..." />
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-dark w-100" onclick="searchLog()">Search</button>
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <input id="action" class="form-control" placeholder="Action" />
+    </div>
+
+    <div class="col-md-6">
+        <input id="detail" class="form-control" placeholder="Detail" />
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-success w-100" onclick="addLog()">Add</button>
+    </div>
+</div>
+
+<div class="mb-3">
+    <a href="/Admin/ExportLogsPdf" class="btn btn-danger">
+        Export PDF
+    </a>
+
+    <a href="/Admin/ExportLogsExcel" class="btn btn-success">
+        Export Excel
+    </a>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Created Date</th>
+            <th>Action</th>
+            <th>Detail</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody id="logTable"></tbody>
+</table>
+
+<script src="~/js/admin-logs.js"></script>

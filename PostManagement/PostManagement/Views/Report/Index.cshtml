@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Report Center</h3>
+
+<div class="card p-3">
+
+    <select id="type" class="form-control mb-2">
+        <option value="Post">Post</option>
+        <option value="User">User</option>
+        <option value="System">System</option>
+    </select>
+
+    <input id="reason" class="form-control mb-2" placeholder="Reason" />
+    <input id="postId" class="form-control mb-2" placeholder="Post ID (optional)" />
+
+    <button class="btn btn-danger w-100" onclick="sendReport()">
+        Send Report
+    </button>
+
+</div>
+
+<script src="~/js/report.js"></script>
