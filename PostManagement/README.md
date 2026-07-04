@@ -4,6 +4,7 @@
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![SQL Server](https://img.shields.io/badge/SQLServer-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 
 [us Read in English](#-english-documentation) | [🇹🇷 Türkçe Dokümantasyon](#-türkçe-dokümantasyon)
@@ -13,7 +14,7 @@
 ## 🇺🇸 English Documentation
 
 ### 🎯 Project Overview
-Post Management is a comprehensive web application built with ASP.NET Core MVC and Entity Framework Core. It is designed to manage posts, handle user complaints, and track system activities. The platform offers a centralized hub for administrators to oversee the entire content ecosystem while providing an interactive and seamless experience for users to share and report content.
+Post Management is a comprehensive web application built with ASP.NET Core MVC, Entity Framework Core, and JavaScript. It utilizes a robust Controller + JavaScript architecture to manage posts, handle user complaints, and track system activities efficiently. The platform offers a centralized hub for administrators to oversee the entire content ecosystem while providing an interactive and seamless experience for users to share and report content.
 
 ### 🚀 Scope & Capabilities
 
@@ -57,7 +58,7 @@ Post Management is a comprehensive web application built with ASP.NET Core MVC a
 ## 🇹🇷 Türkçe Dokümantasyon
 
 ### 🎯 Proje Özeti
-Post Yönetim Sistemi (Post Management), ASP.NET Core MVC ve Entity Framework Core ile geliştirilmiş kapsamlı bir web uygulamasıdır. Gönderileri yönetmek, kullanıcı şikayetlerini incelemek ve sistem aktivitelerini takip etmek amacıyla tasarlanmıştır. Platform, yöneticilerin tüm içerik ekosistemini denetlemesi için merkezi bir yönetim alanı sunarken; kullanıcılara da içerik paylaşmak ve şikayet bildirmek için etkileşimli ve kesintisiz bir deneyim sağlar.
+Post Yönetim Sistemi (Post Management), ASP.NET Core MVC, Entity Framework Core ve JavaScript ile geliştirilmiş kapsamlı bir web uygulamasıdır. Gönderileri yönetmek, kullanıcı şikayetlerini incelemek ve sistem aktivitelerini takip etmek amacıyla güçlü bir Controller + JavaScript mimarisi kullanır. Platform, yöneticilerin tüm içerik ekosistemini denetlemesi için merkezi bir yönetim alanı sunarken; kullanıcılara da içerik paylaşmak ve şikayet bildirmek için etkileşimli ve kesintisiz bir deneyim sağlar.
 
 ### 🚀 Kapsam ve Yetenekler
 
