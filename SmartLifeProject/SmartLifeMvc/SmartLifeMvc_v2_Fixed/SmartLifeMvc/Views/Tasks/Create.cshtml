@@ -1,0 +1,35 @@
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@using SmartLifeMvc.ViewModels.Api
+@model TaskDto
+@{ ViewData["Title"] = "New Task"; }
+
+<div class="form-page">
+    <a asp-action="Index" class="back-link">← Tasks</a>
+    <div class="form-card">
+        <h4 class="form-title">New Task</h4>
+        <form asp-action="Create" method="post">
+            <div class="field">
+                <label>Title</label>
+                <input asp-for="Title" class="f-input" placeholder="What needs to be done?" />
+                <span asp-validation-for="Title" class="f-err"></span>
+            </div>
+            <div class="field">
+                <label>Priority</label>
+                <select asp-for="Priority" class="f-input">
+                    <option value="">Select priority</option>
+                    <option value="High">🔴 High</option>
+                    <option value="Medium">🟡 Medium</option>
+                    <option value="Low">🟢 Low</option>
+                </select>
+            </div>
+            <div class="field field-check">
+                <input asp-for="IsCompleted" type="checkbox" id="isComp" />
+                <label for="isComp" style="margin:0;">Mark as completed</label>
+            </div>
+            <div class="form-btns">
+                <button type="submit" class="btn-action">Save Task</button>
+                <a asp-action="Index" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+@model SmartLifeMvc.ViewModels.RegisterViewModel
+@{ Layout = "~/Views/Shared/_AccountLayout.cshtml"; }
+
+<h2 class="auth-form-title">Create account</h2>
+<p class="auth-form-sub">Start tracking your goals today</p>
+
+<div asp-validation-summary="ModelOnly" class="auth-error"></div>
+
+<form asp-action="Register" method="post">
+
+    <div class="auth-field">
+        <label>Full name</label>
+        <input asp-for="FullName" class="auth-input" placeholder="Jane Doe" />
+        <span asp-validation-for="FullName" class="error-text"></span>
+    </div>
+
+    <div class="auth-field">
+        <label>Email address</label>
+        <input asp-for="Email" class="auth-input" placeholder="you@example.com" autocomplete="email" />
+        <span asp-validation-for="Email" class="error-text"></span>
+    </div>
+
+    <div class="auth-field">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="auth-input" placeholder="Min. 8 characters" autocomplete="new-password" />
+        <span asp-validation-for="Password" class="error-text"></span>
+    </div>
+
+    <div class="auth-field" style="margin-bottom:24px;">
+        <label>Confirm password</label>
+        <input asp-for="ConfirmPassword" type="password" class="auth-input" placeholder="••••••••" autocomplete="new-password" />
+        <span asp-validation-for="ConfirmPassword" class="error-text"></span>
+    </div>
+
+    <button class="auth-btn">Create account</button>
+
+    <div class="auth-switch">
+        Already have an account? <a asp-action="Login">Sign in</a>
+    </div>
+
+</form>
+
+@section Scripts { @await Html.PartialAsync("_ValidationScriptsPartial") }

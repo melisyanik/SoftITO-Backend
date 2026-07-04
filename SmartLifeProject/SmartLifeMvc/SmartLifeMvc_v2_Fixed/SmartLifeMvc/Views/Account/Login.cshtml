@@ -1,0 +1,36 @@
+@model SmartLifeMvc.ViewModels.LoginViewModel
+@{ Layout = "~/Views/Shared/_AccountLayout.cshtml"; }
+
+<h2 class="auth-form-title">Welcome back</h2>
+<p class="auth-form-sub">Sign in to continue to SmartLife</p>
+
+<div asp-validation-summary="ModelOnly" class="auth-error"></div>
+
+<form asp-action="Login" method="post">
+
+    <div class="auth-field">
+        <label>Email address</label>
+        <input asp-for="Email" class="auth-input" placeholder="you@example.com" autocomplete="email" />
+        <span asp-validation-for="Email" class="error-text"></span>
+    </div>
+
+    <div class="auth-field">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="auth-input" placeholder="••••••••" autocomplete="current-password" />
+        <span asp-validation-for="Password" class="error-text"></span>
+    </div>
+
+    <div class="remember-row">
+        <input asp-for="RememberMe" type="checkbox" id="rem" />
+        <label for="rem">Keep me signed in</label>
+    </div>
+
+    <button class="auth-btn">Sign in</button>
+
+    <div class="auth-switch">
+        Don't have an account? <a asp-action="Register">Create one</a>
+    </div>
+
+</form>
+
+@section Scripts { @await Html.PartialAsync("_ValidationScriptsPartial") }

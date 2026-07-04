@@ -1,0 +1,48 @@
+@using SmartLifeMvc.ViewModels.Api
+@model List<NoteDto>
+@{ ViewData["Title"] = "Notes"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="page-title">Notes</h3>
+        <p class="page-sub">@Model.Count note@(Model.Count != 1 ? "s" : "")</p>
+    </div>
+    <a asp-action="Create" class="btn-action">+ New Note</a>
+</div>
+
+<form method="get" class="search-row mb-4">
+    <input type="text" name="search" class="s-input" placeholder="Search notes..." value="@ViewBag.Search" />
+    <button class="btn-search">Search</button>
+    @if (!string.IsNullOrEmpty(ViewBag.Search as string))
+    {
+        <a asp-action="Index" class="btn-clear">✕ Clear</a>
+    }
+</form>
+
+@if (!Model.Any())
+{
+    <div class="empty-box">
+        <div class="empty-icon">📝</div>
+        <p>No notes yet. Create your first one!</p>
+        <a asp-action="Create" class="btn-action mt-2">+ New Note</a>
+    </div>
+}
+else
+{
+    <div class="grid-3">
+        @foreach (var item in Model)
+        {
+            <div class="item-card note-card">
+                <div class="card-top">
+                    <h5 class="card-title">@item.Title</h5>
+                    <span class="card-date">@item.CreatedDate.ToString("dd MMM")</span>
+                </div>
+                <p class="card-body">@(item.Content?.Length > 120 ? item.Content[..120] + "…" : item.Content)</p>
+                <div class="card-actions">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-edit">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-del" onclick="return confirm('Delete this note?')">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+}

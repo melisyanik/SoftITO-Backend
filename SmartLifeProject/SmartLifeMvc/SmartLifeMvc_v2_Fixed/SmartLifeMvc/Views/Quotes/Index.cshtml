@@ -1,0 +1,48 @@
+@using SmartLifeMvc.ViewModels.Api
+@model List<QuoteDto>
+@{ ViewData["Title"] = "Quotes"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="page-title">Quotes</h3>
+        <p class="page-sub">@Model.Count quote@(Model.Count != 1 ? "s" : "") saved</p>
+    </div>
+    <a asp-action="Create" class="btn-action">+ Add Quote</a>
+</div>
+
+<form method="get" class="search-row mb-4">
+    <input type="text" name="search" class="s-input" placeholder="Search by text or author..." value="@ViewBag.Search" />
+    <button class="btn-search">Search</button>
+    @if (!string.IsNullOrEmpty(ViewBag.Search as string))
+    {
+        <a asp-action="Index" class="btn-clear">✕ Clear</a>
+    }
+</form>
+
+@if (!Model.Any())
+{
+    <div class="empty-box">
+        <div class="empty-icon">💬</div>
+        <p>No quotes yet. Add something inspiring!</p>
+        <a asp-action="Create" class="btn-action mt-2">+ Add Quote</a>
+    </div>
+}
+else
+{
+    <div class="grid-2">
+        @foreach (var item in Model)
+        {
+            <div class="quote-card">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">@item.Text</p>
+                <div class="quote-footer">
+                    <span class="quote-author">— @item.Author</span>
+                    <div class="card-actions">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-edit">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-del" onclick="return confirm('Delete?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

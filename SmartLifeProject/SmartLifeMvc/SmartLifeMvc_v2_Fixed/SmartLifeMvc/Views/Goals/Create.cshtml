@@ -1,0 +1,24 @@
+@model Goal
+@{ ViewData["Title"] = "New Goal"; }
+
+<div class="form-page">
+    <a asp-action="Index" class="back-link">← Back to Goals</a>
+    <div class="form-card">
+        <h4 class="form-title">New Goal</h4>
+        <form method="post">
+            <div asp-validation-summary="All" class="auth-error" style="background:#FEF2F2; border:1px solid #FECACA; border-radius:10px; padding:10px 14px; font-size:13px; color:#B91C1C; margin-bottom:18px;"></div>
+            <div class="field"><label>Title</label>
+                <input asp-for="Title" class="f-input" placeholder="e.g. Run a 5K" />
+                <span asp-validation-for="Title" class="f-err"></span></div>
+            <div class="field"><label>Description</label>
+                <textarea asp-for="Description" class="f-input f-textarea" placeholder="Describe your goal..."></textarea></div>
+            <div class="field"><label>Start Date</label>
+                <input asp-for="StartDate" type="date" class="f-input" /></div>
+            <div class="form-btns">
+                <button type="submit" class="btn-action">Save Goal</button>
+                <a asp-action="Index" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts { @await Html.PartialAsync("_ValidationScriptsPartial") }

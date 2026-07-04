@@ -1,0 +1,58 @@
+@using SmartLifeMvc.ViewModels
+@model GoalDetailsVM
+@{ ViewData["Title"] = Model.Goal.Title; }
+
+<a asp-action="Index" class="back-link">← Back to Goals</a>
+
+<div class="card-soft mb-3">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h3 style="font-weight:700; font-size:20px; margin:0 0 6px;">@Model.Goal.Title</h3>
+            <p style="color:#6B7280; font-size:14px; margin:0 0 8px;">@Model.Goal.Description</p>
+            <small style="color:#9CA3AF; font-size:12px;">Started @Model.Goal.StartDate.ToShortDateString()</small>
+        </div>
+        @if (Model.Status == "Done")      { <span class="r-badge badge-done">Done</span> }
+        else if (Model.Status == "In Progress") { <span class="r-badge badge-prog">In Progress</span> }
+        else                              { <span class="r-badge badge-active">Active</span> }
+    </div>
+</div>
+
+<div class="card-soft mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 style="font-weight:600; margin:0;">Progress</h5>
+        <span style="font-size:26px; font-weight:700; color:#6C4FF6;">@Model.LatestProgress%</span>
+    </div>
+    <div class="progress" style="height:10px; margin-bottom:6px;">
+        <div class="progress-bar" style="width:@Model.LatestProgress%"></div>
+    </div>
+    <small style="color:#9CA3AF; font-size:12px;">@Model.LatestProgress% completed</small>
+    <div class="mt-3">
+        <a asp-controller="GoalProgress" asp-action="Create" asp-route-goalId="@Model.Goal.GoalId" class="btn-action">+ Add Progress</a>
+    </div>
+</div>
+
+<div class="card-soft">
+    <h5 style="font-weight:600; margin:0 0 16px;">History</h5>
+    @if (Model.ProgressList != null && Model.ProgressList.Any())
+    {
+        @foreach (var p in Model.ProgressList)
+        {
+            <div style="border-bottom:1px solid #F3F4F6; padding:12px 0; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <span style="font-weight:600; font-size:14px;">@p.ProgressDate.ToString("dd MMM yyyy")</span>
+                    <span style="color:#6C4FF6; font-weight:700; margin-left:8px;">@p.Percentage%</span>
+                    @if (!string.IsNullOrEmpty(p.Note))
+                    {
+                        <div style="font-size:13px; color:#6B7280; margin-top:2px;">@p.Note</div>
+                    }
+                </div>
+                <a asp-controller="GoalProgress" asp-action="Delete" asp-route-id="@p.GoalProgressId"
+                   class="btn-del" onclick="return confirm('Delete this entry?')">Delete</a>
+            </div>
+        }
+    }
+    else
+    {
+        <p style="color:#9CA3AF; font-size:14px; margin:0;">No progress yet.</p>
+    }
+</div>

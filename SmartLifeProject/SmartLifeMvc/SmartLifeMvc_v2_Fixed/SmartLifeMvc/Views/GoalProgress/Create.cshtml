@@ -1,0 +1,24 @@
+@model GoalProgress
+@{ ViewData["Title"] = "Add Progress"; }
+
+<div class="form-page">
+    <a asp-controller="Goals" asp-action="Details" asp-route-id="@Model.GoalId" class="back-link">← Back to Goal</a>
+    <div class="form-card">
+        <h4 class="form-title">Add Progress</h4>
+        <form asp-action="Create" method="post">
+            <input type="hidden" asp-for="GoalId" />
+            <div class="field">
+                <label>Progress — <span id="pctLabel" style="color:#6C4FF6; font-weight:700;">@Model.Percentage%</span></label>
+                <input type="range" asp-for="Percentage" min="0" max="100" step="5" style="width:100%; accent-color:#6C4FF6; margin-top:6px;"
+                       oninput="document.getElementById('pctLabel').innerText=this.value+'%'" />
+                <div style="display:flex; justify-content:space-between; font-size:11px; color:#9CA3AF; margin-top:2px;"><span>0%</span><span>50%</span><span>100%</span></div>
+            </div>
+            <div class="field"><label>Note <span style="color:#9CA3AF; font-weight:400;">(optional)</span></label>
+                <textarea asp-for="Note" class="f-input f-textarea" placeholder="What did you accomplish?"></textarea></div>
+            <div class="form-btns">
+                <button type="submit" class="btn-action">Save</button>
+                <a asp-controller="Goals" asp-action="Details" asp-route-id="@Model.GoalId" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

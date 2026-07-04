@@ -1,0 +1,18 @@
+﻿@model List<GoalProgress>
+
+@foreach (var item in Model)
+{
+
+    <a asp-controller="GoalProgress"
+       asp-action="Create"
+       asp-route-goalId="@item.GoalId"
+       class="btn btn-info btn-sm">
+        Progress
+    </a>
+
+    <a asp-action="Details"
+       asp-route-id="@item.GoalId"
+       class="btn btn-primary btn-sm">
+        Details
+    </a>
+}

@@ -1,0 +1,27 @@
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@using SmartLifeMvc.ViewModels.Api
+@model NoteDto
+@{ ViewData["Title"] = "Edit Note"; }
+
+<div class="form-page">
+    <a asp-action="Index" class="back-link">← Notes</a>
+    <div class="form-card">
+        <h4 class="form-title">Edit Note</h4>
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="field">
+                <label>Title</label>
+                <input asp-for="Title" class="f-input" />
+                <span asp-validation-for="Title" class="f-err"></span>
+            </div>
+            <div class="field">
+                <label>Content</label>
+                <textarea asp-for="Content" class="f-input f-textarea"></textarea>
+            </div>
+            <div class="form-btns">
+                <button type="submit" class="btn-action">Update</button>
+                <a asp-action="Index" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

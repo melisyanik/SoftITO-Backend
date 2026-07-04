@@ -1,0 +1,58 @@
+@using SmartLifeMvc.ViewModels.Api
+@model List<TaskDto>
+@{ ViewData["Title"] = "Tasks"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="page-title">Tasks</h3>
+        <p class="page-sub">@Model.Count(t=>!t.IsCompleted) active · @Model.Count(t=>t.IsCompleted) done</p>
+    </div>
+    <a asp-action="Create" class="btn-action">+ New Task</a>
+</div>
+
+<form method="get" class="search-row mb-4">
+    <input type="text" name="search" class="s-input" placeholder="Search tasks..." value="@ViewBag.Search" />
+    <select name="priority" class="s-select" onchange="this.form.submit()">
+        <option value="">All priorities</option>
+        <option value="High" selected="@(ViewBag.Priority=="High")">🔴 High</option>
+        <option value="Medium" selected="@(ViewBag.Priority=="Medium")">🟡 Medium</option>
+        <option value="Low" selected="@(ViewBag.Priority=="Low")">🟢 Low</option>
+    </select>
+    <select name="status" class="s-select" onchange="this.form.submit()">
+        <option value="">All statuses</option>
+        <option value="active" selected="@(ViewBag.Status=="active")">Active</option>
+        <option value="done" selected="@(ViewBag.Status=="done")">Done</option>
+    </select>
+    <button class="btn-search">Search</button>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="empty-box">
+        <div class="empty-icon">✅</div>
+        <p>No tasks found.</p>
+        <a asp-action="Create" class="btn-action mt-2">+ New Task</a>
+    </div>
+}
+else
+{
+    <div class="task-list">
+        @foreach (var item in Model)
+        {
+            <div class="task-row @(item.IsCompleted ? "task-done" : "")">
+                <a asp-action="Toggle" asp-route-id="@item.Id" class="task-check @(item.IsCompleted ? "checked" : "")">
+                    @(item.IsCompleted ? "✓" : "")
+                </a>
+                <div class="task-info">
+                    <span class="task-title @(item.IsCompleted ? "striked" : "")">@item.Title</span>
+                    <span class="task-date">@item.CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+                <span class="priority-badge priority-@item.Priority?.ToLower()">@item.Priority</span>
+                <div class="task-btns">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-edit">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-del" onclick="return confirm('Delete?')">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+}

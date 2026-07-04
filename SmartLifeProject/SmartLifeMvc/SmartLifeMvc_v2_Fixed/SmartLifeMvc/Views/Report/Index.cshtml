@@ -1,0 +1,136 @@
+@using SmartLifeMvc.ViewModels.Api
+@using SmartLifeMvc.Models
+@{
+    ViewData["Title"] = "Report";
+    var gs = ViewBag.GoalStats;
+    var ts = ViewBag.TaskStats;
+    int noteCount = ViewBag.NoteCount;
+    int quoteCount = ViewBag.QuoteCount;
+    var goals = ViewBag.Goals as List<Goal> ?? new();
+    var tasks = ViewBag.Tasks as List<TaskDto> ?? new();
+    var notes = ViewBag.Notes as List<NoteDto> ?? new();
+    var quotes = ViewBag.Quotes as List<QuoteDto> ?? new();
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="page-title">Report</h3>
+        <p class="page-sub">Overview of all your data</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/Report/ExportExcel" class="btn-export-excel">⬇ Excel</a>
+        <a href="/Report/ExportPdf" class="btn-export-pdf">⬇ PDF</a>
+    </div>
+</div>
+
+<!-- STAT CARDS -->
+<div class="stat-grid mb-4">
+    <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-val">@gs.Total</div>
+        <div class="stat-lbl">Goals</div>
+        <div class="stat-sub">@gs.Done done · @gs.InProgress in progress</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-val">@ts.Total</div>
+        <div class="stat-lbl">Tasks</div>
+        <div class="stat-sub">@ts.Done done · @ts.Active active</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-val">@noteCount</div>
+        <div class="stat-lbl">Notes</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">💬</div>
+        <div class="stat-val">@quoteCount</div>
+        <div class="stat-lbl">Quotes</div>
+    </div>
+</div>
+
+<!-- GOALS TABLE -->
+<div class="report-section">
+    <h5 class="section-title">Goals</h5>
+    <table class="r-table">
+        <thead>
+            <tr><th>Title</th><th>Started</th><th>Progress</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var g in goals)
+            {
+                var pct = g.GoalProgresses?.OrderByDescending(p => p.ProgressDate).FirstOrDefault()?.Percentage ?? 0;
+                var status = pct >= 100 ? "Done" : pct > 0 ? "In Progress" : "Active";
+                var statusClass = pct >= 100 ? "badge-done" : pct > 0 ? "badge-prog" : "badge-active";
+                <tr>
+                    <td>@g.Title</td>
+                    <td>@g.StartDate.ToShortDateString()</td>
+                    <td>
+                        <div class="mini-progress">
+                            <div class="mini-bar" style="width:@pct%"></div>
+                        </div>
+                        <small>@pct%</small>
+                    </td>
+                    <td><span class="r-badge @statusClass">@status</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- TASKS TABLE -->
+<div class="report-section">
+    <h5 class="section-title">Tasks</h5>
+    <table class="r-table">
+        <thead>
+            <tr><th>Title</th><th>Priority</th><th>Created</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var t in tasks)
+            {
+                <tr>
+                    <td class="@(t.IsCompleted ? "striked" : "")">@t.Title</td>
+                    <td><span class="priority-badge priority-@t.Priority?.ToLower()">@t.Priority</span></td>
+                    <td>@t.CreatedDate.ToShortDateString()</td>
+                    <td><span class="r-badge @(t.IsCompleted ? "badge-done" : "badge-active")">@(t.IsCompleted ? "Done" : "Active")</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- NOTES TABLE -->
+<div class="report-section">
+    <h5 class="section-title">Notes</h5>
+    <table class="r-table">
+        <thead><tr><th>Title</th><th>Content</th><th>Created</th></tr></thead>
+        <tbody>
+            @foreach (var n in notes)
+            {
+                <tr>
+                    <td>@n.Title</td>
+                    <td class="text-muted" style="font-size:13px;">@(n.Content?.Length > 80 ? n.Content[..80] + "…" : n.Content)</td>
+                    <td>@n.CreatedDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- QUOTES TABLE -->
+<div class="report-section">
+    <h5 class="section-title">Quotes</h5>
+    <table class="r-table">
+        <thead><tr><th>Quote</th><th>Author</th><th>Added</th></tr></thead>
+        <tbody>
+            @foreach (var q in quotes)
+            {
+                <tr>
+                    <td style="font-style:italic;">"@(q.Text?.Length > 80 ? q.Text[..80] + "…" : q.Text)"</td>
+                    <td>@q.Author</td>
+                    <td>@q.CreatedDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
