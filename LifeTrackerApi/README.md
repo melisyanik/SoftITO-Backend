@@ -1,5 +1,4 @@
-🎬 Life Tracker API - RESTful Web API & Code First
-.NET Entity Framework Swagger License
+# 🎬 Life Tracker API - RESTful Web API & Code First (PROJECT 6)
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
@@ -29,7 +28,9 @@ LifeTrackerApi is a comprehensive RESTful Web API built using ASP.NET Core and E
 * **SQL Server:** Reliable relational database for storing all user logs safely.
 * **Swagger Integration:** Interactive API documentation and testing interface out-of-the-box.
 
-<img width="1919" height="910" alt="Swagger UI Example" src="https://github.com/user-attachments/assets/d7129792-392a-4f43-a28d-17c0fa6e8f07" />
+<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/3ac5bf1b-2325-4f45-bc1c-5eeae22cdf01" />
+<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/581ec616-6172-4565-8928-38fa207b4383" />
+
 
 ---
 
@@ -51,3 +52,6 @@ LifeTrackerApi, ASP.NET Core ve Entity Framework Core kullanılarak geliştirilm
 * **Entity Framework Core (Code First):** C# modelleri kullanılarak sorunsuz veritabanı yönetimi ve migration (göç) işlemleri.
 * **SQL Server:** Tüm kullanıcı günlüklerini güvenle saklamak için güvenilir ilişkisel veritabanı.
 * **Swagger Entegrasyonu:** Kurulum gerektirmeyen etkileşimli API dokümantasyonu ve test arayüzü.
+
+<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/3ac5bf1b-2325-4f45-bc1c-5eeae22cdf01" />
+<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/581ec616-6172-4565-8928-38fa207b4383" />
