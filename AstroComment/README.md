@@ -54,11 +54,12 @@ Adding a comment to a horoscope:
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 225042" src="https://github.com/user-attachments/assets/58522083-e017-47d7-a08c-b28eebc2467d" />
 
 Adding a zodiac sign from admin:
-<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-04 225106" src="https://github.com/user-attachments/assets/a9dc8256-3246-4ef7-b14d-fec48e06230a" />
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-04 231422" src="https://github.com/user-attachments/assets/f4945e91-2c13-4cc1-b8f9-01b29aacf9f9" />
+<img width="1919" height="903" alt="Ekran görüntüsü 2026-07-04 231430" src="https://github.com/user-attachments/assets/0c276494-d38d-4937-b01b-895458c35798" />
 
 Also admin can view the users and change their status:
-<img width="1918" height="911" alt="Ekran görüntüsü 2026-07-04 231041" src="https://github.com/user-attachments/assets/368bcf2e-0e45-48f5-b25e-c7aff0d5bd3b" />
 <img width="1919" height="909" alt="Ekran görüntüsü 2026-07-04 231032" src="https://github.com/user-attachments/assets/05384fc9-8d0b-4636-9240-dabd75920810" />
+<img width="1918" height="911" alt="Ekran görüntüsü 2026-07-04 231041" src="https://github.com/user-attachments/assets/368bcf2e-0e45-48f5-b25e-c7aff0d5bd3b" />
 
 
 Search users according to the features:
@@ -79,9 +80,7 @@ View of user for the comments after admin gives an answer:
 * **Document Generation:**
   * **PDF Reports (`QuestPDF`):** Generate pixel-perfect, printable reports showcasing user activity, comment history, and system statistics.
   * **Excel Spreadsheets (`EPPlus`):** Export raw data for Zodiacs, Users, and Comments directly into standard Excel formats for external analysis.
-<img width="1919" height="900" alt="Excel Export Placeholder" src="https://via.placeholder.com/1919x900?text=Excel+Export+View" />
-<img width="1919" height="900" alt="PDF Export Placeholder" src="https://via.placeholder.com/1919x900?text=PDF+Report+View" />
-
+ 
 PDF report Generation for admin:
 
 <img width="717" height="707" alt="Ekran görüntüsü 2026-07-04 225430" src="https://github.com/user-attachments/assets/9fb5bfe5-6cf7-42cb-abde-544b27a4aa17" />
