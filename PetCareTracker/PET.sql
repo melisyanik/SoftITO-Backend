@@ -91,6 +91,7 @@ VALUES
 (1, '2026-07-01 10:00', 'Dr. Mehmet', 'Kontrol', 'Bekliyor'),
 (2, '2026-07-03 14:00', 'Dr. Elif', 'AÅŸÄ± kontrolÃ¼', 'Bekliyor'),
 (3, '2026-06-20 09:30', 'Dr. Mehmet', 'Genel kontrol', 'TamamlandÄ±');
+GO
 
 CREATE PROCEDURE sp_Pet_Add
 @PetName NVARCHAR(100),
@@ -107,7 +108,7 @@ BEGIN
     VALUES
     (@PetName, @Species, @Breed, @Gender, @BirthDate, @Weight, @UserId)
 END
-
+GO
 CREATE PROCEDURE sp_Pet_List
 @UserId INT
 AS
@@ -115,6 +116,7 @@ BEGIN
     SELECT * FROM Pets
     WHERE UserId = @UserId
 END
+GO
 CREATE PROCEDURE sp_Pet_Search
 @Keyword NVARCHAR(100),
 @UserId INT
@@ -128,7 +130,7 @@ BEGIN
         OR Breed LIKE '%' + @Keyword + '%'
     )
 END
-
+GO
 CREATE PROCEDURE sp_Pet_Update
 @PetId INT,
 @PetName NVARCHAR(100),
@@ -149,15 +151,14 @@ BEGIN
         Weight = @Weight
     WHERE PetId = @PetId
 END
-
+GO
 CREATE PROCEDURE sp_Pet_Delete
 @PetId INT
 AS
 BEGIN
     DELETE FROM Pets WHERE PetId = @PetId
 END
-
-
+GO
 CREATE PROCEDURE sp_Vaccination_Add
 @PetId INT,
 @VaccineName NVARCHAR(100),
