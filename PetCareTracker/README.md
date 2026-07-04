@@ -40,14 +40,38 @@ Admin Login and register for users:
 
 <img width="1919" height="907" alt="Ekran görüntüsü 2026-07-05 013127" src="https://github.com/user-attachments/assets/b5e372ce-0e0b-4275-b824-3ffee4345cb4" />
 
+Admin can change the status of the appointment:
+<img width="1919" height="915" alt="Ekran görüntüsü 2026-07-05 013155" src="https://github.com/user-attachments/assets/4c1281d8-78b4-4b0f-9784-2e180e0bfa3c" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-05 013207" src="https://github.com/user-attachments/assets/e9ab98bb-e555-43e3-be61-c5315eeffed9" />
+
+Adding new patient:
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-05 013253" src="https://github.com/user-attachments/assets/1eb76526-a504-4a6f-8a33-f225a240b909" />
+<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-05 013301" src="https://github.com/user-attachments/assets/07a71c76-63ac-44c2-810b-e0ab9ef0d326" />
+
+
+
+* **Search & Filtering:** Advanced search functionality allowing admin to perform granular searches by selecting specific fields (e.g., Pet Name, Species) for accurate results in their library.
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-05 021115" src="https://github.com/user-attachments/assets/6b3ee11a-6efe-4bbf-9050-ab7c90396f9a" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-05 021127" src="https://github.com/user-attachments/assets/c96bf06e-c412-4cfc-83e9-facb65914a79" />
+
+
 #### 2. User Experience & Pet Management
 
-* **Search & Filtering:** Advanced search functionality allowing users to perform granular searches by selecting specific fields (e.g., Pet Name, Species) for accurate results in their library.
-<img width="1919" height="912" alt="Search Interface" src="URL_HERE" />
-
 * **Vaccination & Appointment Management:** Users can easily schedule new appointments, add vaccination records for their pets, and seamlessly track upcoming dates and medical history.
-<img width="1919" height="911" alt="Appointments List" src="URL_HERE" />
-<img width="1919" height="907" alt="Vaccinations List" src="URL_HERE" />
+
+Arranging an appointment:
+<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-05 011059" src="https://github.com/user-attachments/assets/b76a67cb-7980-4858-b541-6c628ac5ebe6" />
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-05 011232" src="https://github.com/user-attachments/assets/3b5e68a3-29bf-4056-b9b7-a8fb17eb5826" />
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-05 011242" src="https://github.com/user-attachments/assets/56eda092-a61e-4ed6-b3e8-96de7e5bd624" />
+
+Arranging vaccination recod:
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-05 011254" src="https://github.com/user-attachments/assets/6f853c16-58fb-421c-9f36-08813a840e39" />
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-05 011337" src="https://github.com/user-attachments/assets/5ad3822f-6633-495f-9851-3d0f8eb77589" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-05 011346" src="https://github.com/user-attachments/assets/6cbcc3af-67a0-4e3d-af45-7f11efcecbc7" />
+
+Following the status of appointments:
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-05 013613" src="https://github.com/user-attachments/assets/1f2be0b3-d1e3-4f31-8236-49c6b401a639" />
+
 
 #### 3. Architecture & Data Engine
 * **API & Stored Procedure Design:** The codebase is heavily reliant on a Dapper-based Repository pattern communicating with MS SQL Server through highly optimized Stored Procedures.
@@ -55,14 +79,17 @@ Admin Login and register for users:
 * **Unified Healthcare Catalog:** Relational management of Users, Pets, Vaccinations, and Appointments.
 
 #### 4. Analytics & Export Pipeline
-* **Visual Telemetry:** Real-time dashboard providing administrators with key metrics such as Total Pets, Total Vaccinations, and Upcoming Appointments.
-<img width="1919" height="910" alt="Analytics Dashboard" src="URL_HERE" />
-
 * **Document Generation:**
   * **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for pets, vaccinations, and appointments.
   * **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets (Pets, Appointments) into standard Excel formats.
-<img width="1124" height="358" alt="Excel Export" src="URL_HERE" />
-<img width="1108" height="223" alt="PDF Export" src="URL_HERE" />
+
+PDF Generation:
+<img width="1036" height="258" alt="Ekran görüntüsü 2026-07-05 013504" src="https://github.com/user-attachments/assets/461d0611-bf88-48bd-bd00-99364b93b1de" />
+
+
+Excel Generation:
+<img width="612" height="128" alt="Ekran görüntüsü 2026-07-05 013526" src="https://github.com/user-attachments/assets/d0745eb3-839a-4fd3-b1bf-6edc9d9c4a5b" />
+
 
 ---
 
