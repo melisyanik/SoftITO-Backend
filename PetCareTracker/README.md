@@ -41,12 +41,6 @@ Admin Login and register for users:
 <img width="1919" height="907" alt="Ekran görüntüsü 2026-07-05 013127" src="https://github.com/user-attachments/assets/b5e372ce-0e0b-4275-b824-3ffee4345cb4" />
 
 #### 2. User Experience & Pet Management
-* **Interactive Dashboard:** A dynamic, user-facing dashboard displaying the summary of pets, upcoming vaccinations, and appointments.
-<img width="1919" height="910" alt="User Dashboard" src="URL_HERE" />
-
-* **My Pets & CRUD Operations:** Users can easily add, update, and manage their pets. Complete CRUD functionality is provided for pet records.
-<img width="1919" height="908" alt="Pet Listing" src="URL_HERE" />
-<img width="1919" height="909" alt="Pet Add/Edit" src="URL_HERE" />
 
 * **Search & Filtering:** Advanced search functionality allowing users to perform granular searches by selecting specific fields (e.g., Pet Name, Species) for accurate results in their library.
 <img width="1919" height="912" alt="Search Interface" src="URL_HERE" />
