@@ -40,6 +40,7 @@ Pet Care Tracker is a comprehensive web application designed to manage the entir
 
 #### 3. Architecture & Data Engine
 * **API & Stored Procedure Design:** The codebase is heavily reliant on a Dapper-based Repository pattern communicating with MS SQL Server through highly optimized Stored Procedures.
+* **Database Indexing:** B-Tree Indexes on critical columns (UserId, PetId, Dates) to prevent full table scans and maximize query speeds.
 * **Unified Healthcare Catalog:** Relational management of Users, Pets, Vaccinations, and Appointments.
 * **Vaccination & Appointment System:** Users and Admins can view incoming appointments, track past vaccinations, and see upcoming scheduled tasks.
 <img width="1919" height="911" alt="Appointments List" src="URL_HERE" />
@@ -87,6 +88,7 @@ Pet Care Tracker, veteriner klinikleri ve evcil hayvan sahiplerinin tüm süreç
 
 #### 3. Mimari ve Veri Motoru
 * **API ve Stored Procedure (SP) Mimarisi:** Kod tabanı, MS SQL Server ile yüksek oranda optimize edilmiş Stored Procedure'ler aracılığıyla haberleşen Dapper tabanlı Repository desenine dayanmaktadır.
+* **Veritabanı İndeksleme (Indexing):** Tam tablo taramalarını (Table Scan) önlemek ve sorgu hızlarını maksimuma çıkarmak için kritik kolonlarda (UserId, PetId, Tarihler vb.) B-Tree İndeks yapıları kullanıldı.
 * **Bütünleşik Sağlık Kataloğu:** Kullanıcılar, Evcil Hayvanlar, Aşılar ve Randevuların ilişkisel yönetimi.
 * **Aşı ve Randevu Sistemi:** Kullanıcılar ve yöneticiler, yaklaşan randevuları görebilir, geçmiş aşıları takip edebilir ve planlanmış görevleri izleyebilirler.
 <img width="1919" height="911" alt="Randevu Listesi" src="URL_HERE" />
