@@ -59,7 +59,10 @@ namespace SmartLifeMvc.Services.Reports
                 ws.Cells[row, 5].Value = status;
             }
 
-            ws.Cells[ws.Dimension?.Address ?? "A1"].AutoFitColumns();
+            var range = ws.Cells[ws.Dimension?.Address ?? "A1"];
+            range.Style.WrapText = true;
+            range.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            range.AutoFitColumns(15, 60);
         }
 
         private static void BuildTasksSheet(ExcelPackage package, List<TaskDto> tasks)
@@ -83,7 +86,10 @@ namespace SmartLifeMvc.Services.Reports
                 ws.Cells[row, 4].Value = t.CreatedDate.ToShortDateString();
             }
 
-            ws.Cells[ws.Dimension?.Address ?? "A1"].AutoFitColumns();
+            var range = ws.Cells[ws.Dimension?.Address ?? "A1"];
+            range.Style.WrapText = true;
+            range.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            range.AutoFitColumns(15, 60);
         }
 
         private static void BuildNotesSheet(ExcelPackage package, List<NoteDto> notes)
@@ -103,7 +109,10 @@ namespace SmartLifeMvc.Services.Reports
                 ws.Cells[row, 3].Value = notes[i].CreatedDate.ToShortDateString();
             }
 
-            ws.Cells[ws.Dimension?.Address ?? "A1"].AutoFitColumns();
+            var range = ws.Cells[ws.Dimension?.Address ?? "A1"];
+            range.Style.WrapText = true;
+            range.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            range.AutoFitColumns(15, 60);
         }
 
         private static void BuildQuotesSheet(ExcelPackage package, List<QuoteDto> quotes)
@@ -123,7 +132,10 @@ namespace SmartLifeMvc.Services.Reports
                 ws.Cells[row, 3].Value = quotes[i].CreatedDate.ToShortDateString();
             }
 
-            ws.Cells[ws.Dimension?.Address ?? "A1"].AutoFitColumns();
+            var range = ws.Cells[ws.Dimension?.Address ?? "A1"];
+            range.Style.WrapText = true;
+            range.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            range.AutoFitColumns(15, 60);
         }
     }
 }
