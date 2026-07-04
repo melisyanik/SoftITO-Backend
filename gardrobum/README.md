@@ -34,6 +34,7 @@ Searching for shoes:
 Updating accessory:
 <img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 024118" src="https://github.com/user-attachments/assets/f836f2d9-6ea6-4714-ab96-ca13e2fedd1f" />
 <img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 024147" src="https://github.com/user-attachments/assets/0f62f45d-bb0c-4e94-9047-d464102f10ac" />
+
 Searching according to feature:
 <img width="1919" height="907" alt="Ekran görüntüsü 2026-07-04 024230" src="https://github.com/user-attachments/assets/a0019025-2b96-42cd-a3bc-beddf358eea9" />
 
@@ -43,7 +44,11 @@ Searching according to feature:
 
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023803" src="https://github.com/user-attachments/assets/19f51e47-d8d9-44b9-9821-cf0673dd0fd6" />
 
-#### 3. Technical Infrastructure
+#### 3. Analytics & Export Pipeline
+* **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for clothes, shoes, and jewelry.
+* **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets into standard Excel formats.
+
+#### 4. Technical Infrastructure
 * **ASP.NET Core Razor Pages:** Fast and Page-Focused web development.
 * **Native ADO.NET (SqlDataReader & SqlCommand):** Direct and high-performance communication with the database without an ORM.
 * **Responsive Design (Bootstrap 5):** A user interface that works flawlessly across all mobile and desktop devices.
@@ -55,8 +60,6 @@ Searching according to feature:
 ### 🎯 Proje Özeti
 Gardrobum (My Wardrobe), kullanıcıların kişisel kıyafet, ayakkabı ve takı koleksiyonlarını dijital ortamda düzenlemesi, takip etmesi ve raporlaması için geliştirilmiş bir web uygulamasıdır. ASP.NET Core Razor Pages **Monolitik Mimarisi** üzerinde, native **ADO.NET** ve SQL Server kullanılarak inşa edilen bu sistem; kıyafetlerin türüne, rengine veya markasına göre kategorize edilmesini ve gelişmiş arama seçenekleriyle kolayca bulunmasını sağlar.
 
-![Proje Özeti Görseli](https://via.placeholder.com/1200x600?text=Proje+Ozet+Ekrani)
-
 ### 🚀 Kapsam ve Yetenekler
 
 #### 1. Kapsamlı Yönetim ve Arama (Search + CRUD)
@@ -64,19 +67,32 @@ Gardrobum (My Wardrobe), kullanıcıların kişisel kıyafet, ayakkabı ve takı
 * **Alan Bazlı Dinamik Arama:** Kullanıcılar sadece tek bir kelime ile değil, açılır kutu (combobox) üzerinden seçtikleri belirli bir alana göre (Örn: Sadece "Marka" içerisinde "Nike" ara veya sadece "Renk" içerisinde "Siyah" ara) detaylı sorgular yapabilirler.
 * **Hızlı Sonuçlar:** SQL tarafında güvenli ve hızlı çalışan dinamik filtreleme yapısı sayesinde, CRUD işlemleriyle eşzamanlı olarak aranan ürün saniyeler içinde listelenir.
 
-![Arama ve CRUD İşlemleri Görseli](https://via.placeholder.com/1200x600?text=Arama+ve+CRUD+Islemleri+Ekrani)
+Yeni kıyafet ekleme:
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023815" src="https://github.com/user-attachments/assets/55ee217f-98a4-437a-a0fc-d7147dd0ae81" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023905" src="https://github.com/user-attachments/assets/3c7e595d-0034-4ef4-8468-46bccf2dfbdd" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023913" src="https://github.com/user-attachments/assets/2ab23577-8ccb-416d-a6ba-1baacbf45d71" />
+
+Ayakkabı arama:
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 023926" src="https://github.com/user-attachments/assets/23033b0a-9525-42ae-b669-c86a8845d2ad" />
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 023944" src="https://github.com/user-attachments/assets/3523a979-3545-4903-a826-9aeee879e83b" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 024052" src="https://github.com/user-attachments/assets/befc7613-4ca4-4767-a839-615bbdf41d85" />
+
+Takı güncelleme:
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 024118" src="https://github.com/user-attachments/assets/f836f2d9-6ea6-4714-ab96-ca13e2fedd1f" />
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 024147" src="https://github.com/user-attachments/assets/0f62f45d-bb0c-4e94-9047-d464102f10ac" />
+
+Özelliğe göre arama yapma:
+<img width="1919" height="907" alt="Ekran görüntüsü 2026-07-04 024230" src="https://github.com/user-attachments/assets/a0019025-2b96-42cd-a3bc-beddf358eea9" />
 
 #### 2. Görsel İstatistikler ve Dashboard (Raporlama)
 * **Anlık Özet Ekranı:** Ana sayfada (Dashboard) gardroptaki tüm ürünlerin detaylı bir özeti sunulur.
 * **Kategorik Dağılım:** Kıyafetlerin türüne ve rengine göre dağılımı, ayakkabıların markalarına ve numaralarına göre dağılımı gibi veriler liste halinde yöneticinin karşısına çıkar.
 
-![Dashboard Görseli](https://via.placeholder.com/1200x600?text=Dashboard+Ozet+Ekrani)
+<img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023803" src="https://github.com/user-attachments/assets/19f51e47-d8d9-44b9-9821-cf0673dd0fd6" />
 
 #### 3. Analitik ve Dışa Aktarım Süreçleri
 * **PDF Raporları:** Kıyafet, ayakkabı ve takılar için baskıya hazır idari raporlar oluşturmak amacıyla `QuestPDF` entegrasyonu.
 * **Excel Tabloları:** Tüm koleksiyon verilerini standart Excel formatlarında dışa aktarmak için `EPPlus` entegrasyonu.
-
-![PDF ve Excel Modülleri Görseli](https://via.placeholder.com/1200x600?text=PDF+ve+Excel+Modulleri+Ekrani)
 
 #### 4. Teknik Altyapı
 * **ASP.NET Core Razor Pages:** Hızlı ve sayfa odaklı (Page-Focused) web geliştirme.
