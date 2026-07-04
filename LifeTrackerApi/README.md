@@ -1,5 +1,4 @@
-🎬 Life Tracker API - RESTful Web API & Code First
-.NET Entity Framework Swagger License
+# 🎬 Life Tracker API - RESTful Web API & Code First
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
