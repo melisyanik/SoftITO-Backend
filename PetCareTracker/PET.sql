@@ -73,8 +73,9 @@ CREATE INDEX IX_Appointments_Date ON Appointments(AppointmentDate);
 
 INSERT INTO Users (FullName, Email, PasswordHash, Role)
 VALUES 
-('Ali YÄ±lmaz', 'ali@mail.com', '123', 'User'),
-('AyÅŸe Demir', 'ayse@mail.com', '123', 'User');
+('Veteriner Hekim', 'admin@mail.com', '$2a$11$/7Gc0FNZ.fZJoIkfkEYJ.eqTiF.aQW7XskKD2b11pIE9a2NAUEbOK', 'Admin'),
+('Ali Yılmaz', 'ali@mail.com', '$2a$11$/7Gc0FNZ.fZJoIkfkEYJ.eqTiF.aQW7XskKD2b11pIE9a2NAUEbOK', 'User'),
+('Ayşe Demir', 'ayse@mail.com', '$2a$11$/7Gc0FNZ.fZJoIkfkEYJ.eqTiF.aQW7XskKD2b11pIE9a2NAUEbOK', 'User');
 INSERT INTO Pets (PetName, Species, Breed, Gender, BirthDate, Weight, UserId)
 VALUES
 ('KarabaÅŸ', 'KÃ¶pek', 'Golden Retriever', 'Erkek', '2020-05-10', 28.5, 1),
