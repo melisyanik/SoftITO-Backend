@@ -1,4 +1,4 @@
-# 🌟 AstroComment - Astrology & Horoscope Platform (MVC & Dapper)
+# 🌟 AstroComment - Astrology & Horoscope Platform (MVC & Dapper) (PROJECT 8)
 .NET 9 | Dapper | SQL Server | Bootstrap
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
