@@ -1,0 +1,48 @@
+@{ ViewData["Title"] = "Ana Sayfa"; }
+
+<div class="landing-hero text-center text-light py-5 rounded-4 mb-5 shadow" style="background: linear-gradient(135deg, #0d6efd, #0dcaf0);">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-3"><i class="bi bi-heart-pulse-fill text-danger"></i> Patiler Veteriner Kliniği</h1>
+        <p class="lead mb-4 fw-semibold text-white-50">Can dostlarınızın sağlığı, bizim önceliğimiz. Randevu ve aşı takibi artık çok kolay!</p>
+        <div class="d-flex justify-content-center gap-4 mt-4">
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-light btn-lg px-5 shadow-sm text-primary fw-bold" style="border-radius: 30px; position:relative; z-index:2;">
+                <i class="bi bi-person-heart me-2"></i> Hasta Sahibi Girişi
+            </a>
+            <a asp-controller="Auth" asp-action="Login" asp-route-role="vet" class="btn btn-outline-light btn-lg px-5 fw-bold" style="border-radius: 30px; border-width: 2px; position:relative; z-index:2;">
+                <i class="bi bi-heart-pulse me-2"></i> Veteriner Girişi
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm landing-feature-card">
+                <div class="card-body py-5">
+                    <div class="display-4 text-primary mb-3"><i class="bi bi-calendar-check"></i></div>
+                    <h4 class="card-title fw-bold">Kolay Randevu</h4>
+                    <p class="card-text text-muted">İstediğiniz hekime dilediğiniz tarihte saniyeler içinde randevu oluşturun.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm landing-feature-card">
+                <div class="card-body py-5">
+                    <div class="display-4 text-info mb-3"><i class="bi bi-shield-check"></i></div>
+                    <h4 class="card-title fw-bold">Aşı Takibi</h4>
+                    <p class="card-text text-muted">Evcil hayvanınızın yaklaşan aşılarını anlık olarak sistemden takip edin ve bağışıklıklarını koruyun.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm landing-feature-card">
+                <div class="card-body py-5">
+                    <div class="display-4 text-success mb-3"><i class="bi bi-file-earmark-medical"></i></div>
+                    <h4 class="card-title fw-bold">Dijital Karne</h4>
+                    <p class="card-text text-muted">Geçmiş hastalıklar, tedavi ve tahlil sonuçları artık her an cebinizde.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

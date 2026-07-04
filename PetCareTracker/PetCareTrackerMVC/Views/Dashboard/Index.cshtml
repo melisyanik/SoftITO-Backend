@@ -1,0 +1,9 @@
+﻿@model dynamic
+@{ ViewData["Title"] = "Admin Panel"; }
+<h2>Sistem İstatistikleri (Admin)</h2>
+<div class="row mt-4">
+    <div class="col-md-3"><div class="card p-3 bg-light"><h5>Toplam Hasta</h5><h3>@Model.TotalPets</h3></div></div>
+    <div class="col-md-3"><div class="card p-3 bg-light"><h5>Toplam Randevu</h5><h3>@Model.TotalAppointments</h3></div></div>
+    <div class="col-md-3"><div class="card p-3 bg-light"><h5>Bekleyen Randevu</h5><h3>@Model.PendingAppointments</h3></div></div>
+    <div class="col-md-3"><div class="card p-3 bg-light"><h5>Yaklaşan Aşılar</h5><h3>@Model.UpcomingVaccinations</h3></div></div>
+</div>

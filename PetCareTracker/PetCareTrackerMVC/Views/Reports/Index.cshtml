@@ -1,0 +1,63 @@
+﻿@{ ViewData["Title"] = "Detaylı Raporlama"; 
+   var vacs = ViewBag.Vacs as IEnumerable<dynamic>;
+   var apps = ViewBag.Apps as IEnumerable<dynamic>;
+}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-bar-chart-fill text-primary"></i> Raporlama Ekranı</h2>
+    <div>
+        <a asp-controller="Pets" asp-action="ExportPdf" class="btn btn-outline-danger shadow-sm"><i class="bi bi-file-pdf"></i> Tüm Hastalar PDF</a>
+        <a asp-controller="Pets" asp-action="ExportExcel" class="btn btn-outline-success shadow-sm ms-2"><i class="bi bi-file-excel"></i> Tüm Hastalar Excel</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white fw-bold"><i class="bi bi-syringe text-info"></i> Yaklaşan Aşılar (30 Gün)</div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light"><tr><th>Hasta</th><th>Aşı</th><th>Tarih</th><th class="text-end pe-3">Kalan Gün</th></tr></thead>
+                    <tbody>
+                        @if(vacs != null) {
+                            foreach(var v in vacs) {
+                                <tr>
+                                    <td class="ps-3 fw-bold">@v.PetName</td><td>@v.VaccineName</td>
+                                    <td>@v.NextDueDate.ToString("dd/MM/yyyy")</td>
+                                    <td class="text-end pe-3">
+                                        @if(v.DaysLeft < 7) { <span class="badge bg-danger">@v.DaysLeft Gün</span> }
+                                        else { <span class="badge bg-warning text-dark">@v.DaysLeft Gün</span> }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white fw-bold"><i class="bi bi-calendar-check text-primary"></i> Yaklaşan Randevular (30 Gün)</div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light"><tr><th>Hasta</th><th>Hekim</th><th>Tarih</th><th class="text-end pe-3">Kalan Gün</th></tr></thead>
+                    <tbody>
+                        @if(apps != null) {
+                            foreach(var a in apps) {
+                                <tr>
+                                    <td class="ps-3 fw-bold">@a.PetName</td><td>@a.Veterinarian</td>
+                                    <td>@a.AppointmentDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-end pe-3">
+                                        @if(a.DaysLeft < 2) { <span class="badge bg-danger">@a.DaysLeft Gün</span> }
+                                        else { <span class="badge bg-warning text-dark">@a.DaysLeft Gün</span> }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

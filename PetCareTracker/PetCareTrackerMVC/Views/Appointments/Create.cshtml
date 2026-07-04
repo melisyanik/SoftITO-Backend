@@ -1,0 +1,34 @@
+@model PetCareTrackerMVC.Models.AppointmentDto
+@{ ViewData["Title"] = "Randevu Al"; var pets = ViewBag.Pets as IEnumerable<PetCareTrackerMVC.Models.PetDto>; }
+<div class="card shadow-sm border-0 mx-auto mt-4" style="max-width: 600px;">
+    <div class="card-body p-5">
+        <h3 class="mb-4 text-center">Randevu Talebi</h3>
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Hasta</label>
+                @if(User.IsInRole("Admin")) {
+                    <select asp-for="PetId" class="form-select bg-light" required>
+                        <option value="">-- Hasta Seçin --</option>
+                        @if(pets != null && pets.Any()) { 
+                            foreach(var p in pets) { 
+                                <option value="@p.PetId">@p.PetName (@p.Species)</option> 
+                            } 
+                        }
+                    </select>
+                } else {
+                    <input asp-for="PetName" class="form-control bg-light" placeholder="Hastanızın (Pet) adını yazın" required />
+                }
+            </div>
+            <div class="mb-3"><label class="form-label fw-semibold">Tarih ve Saat</label><input asp-for="AppointmentDate" type="datetime-local" class="form-control bg-light" required/></div>
+            <div class="mb-3"><label class="form-label fw-semibold">Veteriner Hekim</label>
+                <select asp-for="Veterinarian" class="form-select bg-light">
+                    <option value="Dr. Mehmet">Dr. Mehmet</option>
+                    <option value="Dr. Elif">Dr. Elif</option>
+                    <option value="Farketmez">Farketmez</option>
+                </select>
+            </div>
+            <div class="mb-3"><label class="form-label fw-semibold">Notlar (Şikayetiniz)</label><textarea asp-for="Notes" class="form-control bg-light" rows="3"></textarea></div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3 shadow-sm">Randevu Al</button>
+        </form>
+    </div>
+</div>

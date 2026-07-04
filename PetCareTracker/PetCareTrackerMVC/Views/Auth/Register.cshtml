@@ -1,0 +1,25 @@
+@model PetCareTrackerMVC.Models.RegisterDto
+@{ ViewData["Title"] = "Kayýt Ol"; }
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h2 class="text-center mb-4">Sistem Kaydý</h2>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Ad Soyad</label>
+                    <input asp-for="FullName" class="form-control" placeholder="Ad Soyad" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">E-Posta</label>
+                    <input asp-for="Email" class="form-control" placeholder="ornek@mail.com" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Þifre</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" />
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2">Kayýt Ol</button>
+                <div asp-validation-summary="All" class="text-danger mt-3"></div>
+            </form>
+        </div>
+    </div>
+</div>
