@@ -61,7 +61,7 @@ namespace SmartLife.Api.Controllers
         {
             var result = await dbcontext.Notes.FindAsync(id);
 
-            if (result == null || result.UserId != CurrentUserId)
+            if (result == null || result.UserId != GetUserId())
                 return NotFound();
 
             result.Title = notes.Title;
@@ -79,7 +79,7 @@ namespace SmartLife.Api.Controllers
 
             var result = await dbcontext.Notes.FindAsync(id);
 
-            if (result != null && result.UserId == CurrentUserId)
+            if (result != null && result.UserId == GetUserId())
             {
                 islem = true;
                 dbcontext.Remove(result);
@@ -94,7 +94,7 @@ namespace SmartLife.Api.Controllers
         public async Task<IEnumerable<Notes>> SearchNotes(string keyword)
         {
             return await dbcontext.Notes
-                .Where(x => x.UserId == CurrentUserId &&
+                .Where(x => x.UserId == GetUserId() &&
                             (x.Title.Contains(keyword) || x.Content.Contains(keyword)))
                 .ToListAsync();
         }
