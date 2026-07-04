@@ -28,8 +28,8 @@ LifeTrackerApi is a comprehensive RESTful Web API built using ASP.NET Core and E
 * **SQL Server:** Reliable relational database for storing all user logs safely.
 * **Swagger Integration:** Interactive API documentation and testing interface out-of-the-box.
 
-<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/3ac5bf1b-2325-4f45-bc1c-5eeae22cdf01" />
-<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/581ec616-6172-4565-8928-38fa207b4383" />
+<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/a7ff0593-afa1-4ed4-9e8a-2a23dad09c4f" />
+<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/07d8f354-6dee-4426-987f-9a730e5f504e" />
 
 
 ---
@@ -52,6 +52,5 @@ LifeTrackerApi, ASP.NET Core ve Entity Framework Core kullanılarak geliştirilm
 * **Entity Framework Core (Code First):** C# modelleri kullanılarak sorunsuz veritabanı yönetimi ve migration (göç) işlemleri.
 * **SQL Server:** Tüm kullanıcı günlüklerini güvenle saklamak için güvenilir ilişkisel veritabanı.
 * **Swagger Entegrasyonu:** Kurulum gerektirmeyen etkileşimli API dokümantasyonu ve test arayüzü.
-
-<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/3ac5bf1b-2325-4f45-bc1c-5eeae22cdf01" />
-<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/581ec616-6172-4565-8928-38fa207b4383" />
+<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/7bc7107a-72f2-4e7e-a987-b96b099d3c2d" />
+<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/587b85cf-2d10-4a2d-9e58-7d60a0070923" />
