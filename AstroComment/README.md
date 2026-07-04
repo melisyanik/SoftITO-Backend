@@ -57,7 +57,9 @@ Adding a zodiac sign from admin:
 <img width="1919" height="909" alt="Ekran görüntüsü 2026-07-04 225106" src="https://github.com/user-attachments/assets/a9dc8256-3246-4ef7-b14d-fec48e06230a" />
 
 Also admin can view the users and change their status:
-<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 225335" src="https://github.com/user-attachments/assets/60cf5f2e-480b-4888-81b6-9f698f72310a" />
+<img width="1918" height="911" alt="Ekran görüntüsü 2026-07-04 231041" src="https://github.com/user-attachments/assets/368bcf2e-0e45-48f5-b25e-c7aff0d5bd3b" />
+<img width="1919" height="909" alt="Ekran görüntüsü 2026-07-04 231032" src="https://github.com/user-attachments/assets/05384fc9-8d0b-4636-9240-dabd75920810" />
+
 
 Search users according to the features:
 <img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 225347" src="https://github.com/user-attachments/assets/75da4e24-ee02-4b7c-a159-44efefbb1d24" />
