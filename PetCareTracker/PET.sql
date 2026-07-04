@@ -78,19 +78,19 @@ VALUES
 ('Ayşe Demir', 'ayse@mail.com', '$2a$11$/7Gc0FNZ.fZJoIkfkEYJ.eqTiF.aQW7XskKD2b11pIE9a2NAUEbOK', 'User');
 INSERT INTO Pets (PetName, Species, Breed, Gender, BirthDate, Weight, UserId)
 VALUES
-('KarabaÅŸ', 'KÃ¶pek', 'Golden Retriever', 'Erkek', '2020-05-10', 28.5, 1),
-('Pamuk', 'Kedi', 'British Shorthair', 'DiÅŸi', '2021-08-15', 4.2, 2),
-('Zeytin', 'KÃ¶pek', 'Terrier', 'Erkek', '2019-03-20', 10.1, 1);
+('Karabaş', 'Köpek', 'Golden Retriever', 'Erkek', '2020-05-10', 28.5, 1),
+('Pamuk', 'Kedi', 'British Shorthair', 'Dişi', '2021-08-15', 4.2, 2),
+('Zeytin', 'Köpek', 'Terrier', 'Erkek', '2019-03-20', 10.1, 1);
 INSERT INTO Vaccinations (PetId, VaccineName, VaccinationDate, NextDueDate, Notes)
 VALUES
-(1, 'Kuduz', '2025-01-10', '2026-01-10', 'YÄ±llÄ±k aÅŸÄ±'),
-(1, 'Karma AÅŸÄ±', '2025-02-15', '2025-08-15', '6 aylÄ±k tekrar'),
-(2, 'Parazit', '2025-03-01', '2025-09-01', 'Damla uygulandÄ±');
+(1, 'Kuduz', '2025-01-10', '2026-01-10', 'Yıllık aşı'),
+(1, 'Karma Aşı', '2025-02-15', '2025-08-15', '6 aylık tekrar'),
+(2, 'Parazit', '2025-03-01', '2025-09-01', 'Damla uygulandı');
 INSERT INTO Appointments (PetId, AppointmentDate, Veterinarian, Notes, Status)
 VALUES
 (1, '2026-07-01 10:00', 'Dr. Mehmet', 'Kontrol', 'Bekliyor'),
-(2, '2026-07-03 14:00', 'Dr. Elif', 'AÅŸÄ± kontrolÃ¼', 'Bekliyor'),
-(3, '2026-06-20 09:30', 'Dr. Mehmet', 'Genel kontrol', 'TamamlandÄ±');
+(2, '2026-07-03 14:00', 'Dr. Elif', 'Aşı kontrolü', 'Bekliyor'),
+(3, '2026-06-20 09:30', 'Dr. Mehmet', 'Genel kontrol', 'Tamamlandı');
 GO
 
 CREATE PROCEDURE sp_Pet_Add
