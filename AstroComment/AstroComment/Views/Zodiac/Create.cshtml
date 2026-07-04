@@ -1,0 +1,54 @@
+﻿@model AstroComment.Models.ZodiacSign
+@{
+    ViewData["Title"] = "Create Zodiac";
+}
+
+<div class="zodiac-form-container fade-in">
+    <div class="glass-panel">
+        <h2 class="gradient-text text-center"><i class="fas fa-plus-circle"></i> Create New Zodiac</h2>
+        
+        <form asp-action="Create" method="post" class="premium-form mt-4">
+            <div class="form-group floating-label">
+                <input asp-for="Name" class="form-control premium-input text-dark bg-white" placeholder=" " required />
+                <label asp-for="Name">Zodiac Name</label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group floating-label col-md-6">
+                    <input asp-for="StartDate" type="date" class="form-control premium-input text-dark bg-white" placeholder=" " required />
+                    <label asp-for="StartDate">Start Date</label>
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group floating-label col-md-6">
+                    <input asp-for="EndDate" type="date" class="form-control premium-input text-dark bg-white" placeholder=" " required />
+                    <label asp-for="EndDate">End Date</label>
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group floating-label">
+                <select asp-for="Element" class="form-control premium-select text-dark bg-white" required>
+                    <option value="" disabled selected>Select Element</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Air">Air</option>
+                    <option value="Water">Water</option>
+                </select>
+                <label asp-for="Element">Element</label>
+                <span asp-validation-for="Element" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions mt-5">
+                <a asp-action="Index" class="btn btn-secondary btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-premium btn-submit">
+                    <i class="fas fa-save"></i> Save Zodiac
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

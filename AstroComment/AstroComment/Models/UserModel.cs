@@ -1,0 +1,13 @@
+namespace AstroComment.Models
+{
+    public class UserModel
+    {
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
+        public DateTime BirthDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+    }
+}

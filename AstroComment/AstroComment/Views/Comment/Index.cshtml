@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AstroComment.ViewModels.CommentVM>
+
+<h2>💬 Yorumlar</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı</th>
+            <th>Yorum</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>@item.CommentText</td>
+                <td>@item.CreatedDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="/Comment/AddComment">
+    <input type="hidden" name="horoscopeId" value="@ViewContext.RouteData.Values["id"]" />
+
+    <textarea name="commentText" class="form-control"></textarea>
+
+    <button class="btn btn-primary mt-2">Yorum Yap</button>
+</form>

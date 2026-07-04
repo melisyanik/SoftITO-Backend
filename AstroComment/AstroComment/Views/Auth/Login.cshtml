@@ -1,0 +1,49 @@
+﻿@model AstroComment.ViewModels.AuthViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="row justify-content-center py-5">
+    <div class="col-md-5 col-lg-4">
+        <div class="card card-glass p-4 border-0 shadow-lg animate-fade-in">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="fs-1 mb-2 text-glow">✨</div>
+                    <h2 class="fw-bold text-gradient">Giriş Yap</h2>
+                    <p class="text-secondary small">AstroComment dünyasına adım atın</p>
+                </div>
+
+                <form method="post">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger bg-opacity-10 text-danger border-danger border-opacity-25 rounded-3 py-2 small text-center mb-3">
+                            ⚠️ @ViewBag.Error
+                        </div>
+                    }
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small fw-semibold">Kullanıcı Adı</label>
+                        <input type="text" name="LoginUsername" placeholder="Kullanıcı adınızı girin" class="form-control" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small fw-semibold">Şifre</label>
+                        <input type="password" name="LoginPassword" placeholder="Şifrenizi girin" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-glow w-100 rounded-pill py-2 fw-semibold mb-3">
+                        Giriş Yap 🚀
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="small text-secondary mb-0">
+                        Hesabınız yok mu? 
+                        <a href="/Auth/Register" class="text-gradient fw-bold text-decoration-none">Şimdi Kayıt Ol</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

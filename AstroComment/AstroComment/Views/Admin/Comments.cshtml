@@ -1,0 +1,114 @@
+﻿@model IEnumerable<AstroComment.ViewModels.CommentVM>
+
+@{
+    ViewData["Title"] = "Yorum Yönetimi";
+}
+
+<div class="row mb-5 align-items-center">
+    <div class="col-md-8">
+        <h1 class="display-4 fw-bold text-gradient">💬 Yorum Yönetimi</h1>
+        <p class="text-secondary fs-5 mb-0">Kullanıcı yorumlarını ve verdiğiniz yönetici yanıtlarını denetleyin.</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a href="/Admin/Index" class="btn btn-outline-light btn-sm px-3 rounded-pill">
+            ⬅️ Yönetim Paneline Dön
+        </a>
+    </div>
+</div>
+
+<div class="card card-glass border-0 shadow-lg p-4">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr class="text-light">
+                    <th style="width: 15%;">Burç</th>
+                    <th style="width: 15%;">Kullanıcı</th>
+                    <th style="width: 35%;">Yorum</th>
+                    <th style="width: 35%;">Cevap / Yanıt Durumu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge bg-primary px-3 py-2 rounded-pill">@item.ZodiacName</span>
+                            </td>
+                            <td>
+                                <strong class="text-white">@@@item.Username</strong>
+                                <br />
+                                <small class="text-muted" style="font-size:0.75rem">@item.CreatedDate.ToString("g")</small>
+                            </td>
+                            <td>
+                                <p class="text-light mb-0 text-wrap-fix" style="white-space: pre-wrap;">@item.CommentText</p>
+                            </td>
+                            <td>
+                                @if (string.IsNullOrEmpty(item.ReplyText))
+                                {
+                                    <form asp-action="Reply" method="post" class="mt-2">
+                                        <input type="hidden" name="commentId" value="@item.CommentId" />
+                                        
+                                        <div class="mb-2">
+                                            <textarea class="form-control form-control-sm" name="replyText" rows="2" placeholder="Yanıtınızı buraya yazın..." required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-success btn-sm btn-glow rounded-pill px-3">
+                                            Yanıtla ✍️
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <div class="p-3 rounded-3 border-start border-warning border-3 position-relative" style="background: rgba(251, 191, 36, 0.03);">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <small class="fw-bold text-warning">👨‍💼 Yanıtınız</small>
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-link text-muted p-0 text-decoration-none dropdown-toggle-no-caret" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none; background: transparent;">
+                                                    ⚙️
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                                    <li>
+                                                        <a class="dropdown-item text-primary" href="#" onclick="document.getElementById('editForm-@item.CommentId').classList.toggle('d-none'); document.getElementById('replyText-@item.CommentId').classList.toggle('d-none'); return false;">
+                                                            ✏️ Düzenle
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <form asp-action="DeleteReply" method="post" onsubmit="return confirm('Bu yanıtı silmek istediğinize emin misiniz?');">
+                                                            <input type="hidden" name="commentId" value="@item.CommentId" />
+                                                            <button type="submit" class="dropdown-item text-danger">🗑️ Sil</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="text-secondary mb-0 small text-wrap-fix" id="replyText-@item.CommentId">@item.ReplyText</p>
+                                        
+                                        <form asp-action="EditReply" method="post" id="editForm-@item.CommentId" class="mt-2 d-none">
+                                            <input type="hidden" name="commentId" value="@item.CommentId" />
+                                            <textarea class="form-control form-control-sm mb-2" name="replyText" rows="2" required>@item.ReplyText</textarea>
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('editForm-@item.CommentId').classList.add('d-none'); document.getElementById('replyText-@item.CommentId').classList.remove('d-none');">İptal</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Kaydet</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            <div class="fs-1 mb-2">📭</div>
+                            Onaylanmış veya bekleyen yorum bulunmuyor.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

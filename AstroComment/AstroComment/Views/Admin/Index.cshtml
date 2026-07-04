@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Yönetim Paneli";
+}
+
+<div class="row mb-5 align-items-center">
+    <div class="col-12 text-center py-4">
+        <h1 class="display-4 fw-bold text-gradient mb-2">🛠️ AstroComment Yönetim Paneli</h1>
+        <p class="text-secondary fs-5">Sistem yönetimini ve raporlama araçlarını buradan kontrol edin.</p>
+    </div>
+</div>
+
+<div class="row g-4 justify-content-center">
+    
+    <div class="col-md-4">
+        <div class="card card-glass p-5 text-center h-100">
+            <div class="fs-1 mb-3 text-glow">💬</div>
+            <h3 class="fw-bold mb-3 text-white">Yorum Yönetimi</h3>
+            <p class="text-secondary mb-4">
+                Kullanıcıların burç yorumlarına yaptığı geri bildirimleri inceleyin, onaylayın veya yöneticisi olarak cevap yazın.
+            </p>
+            <a href="/Admin/Comments" class="btn btn-primary btn-glow w-100 py-3 rounded-pill fw-semibold mt-auto">
+                Yorumları Yönet ➡️
+            </a>
+        </div>
+    </div>
+
+    
+    <div class="col-md-4">
+        <div class="card card-glass p-5 text-center h-100">
+            <div class="fs-1 mb-3 text-glow">📊</div>
+            <h3 class="fw-bold mb-3 text-white">Sistem Raporları & Üyeler</h3>
+            <p class="text-secondary mb-4">
+                Toplam aktiviteleri, popüler burçları, kullanıcı istatistiklerini görün. Üye rollerini düzenleyin veya kullanıcı silin.
+            </p>
+            <a href="/Report/Index" class="btn btn-success btn-glow w-100 py-3 rounded-pill fw-semibold mt-auto" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border: none;">
+                Raporları ve Üyeleri İncele ➡️
+            </a>
+        </div>
+    </div>
+
+    
+    <div class="col-md-4">
+        <div class="card card-glass p-5 text-center h-100">
+            <div class="fs-1 mb-3 text-glow">🔮</div>
+            <h3 class="fw-bold mb-3 text-white">Burç Yorumları</h3>
+            <p class="text-secondary mb-4">
+                Sistemdeki günlük burç yorumlarını ekleyin, güncelleyin veya silin.
+            </p>
+            <a href="/Admin/Horoscopes" class="btn btn-warning btn-glow w-100 py-3 rounded-pill fw-semibold mt-auto" style="background: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%); border: none; color: #1a1a2e;">
+                Burç Yorumlarını Yönet ➡️
+            </a>
+        </div>
+    </div>
+</div>

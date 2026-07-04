@@ -1,0 +1,52 @@
+﻿@model AstroComment.ViewModels.AuthViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="row justify-content-center py-4">
+    <div class="col-md-6 col-lg-5">
+        <div class="card card-glass p-4 border-0 shadow-lg">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="fs-1 mb-2 text-glow">🌟</div>
+                    <h2 class="fw-bold text-gradient">Kayıt Ol</h2>
+                    <p class="text-secondary small">Aramıza katılın ve yıldız haritanızı yorumlayın</p>
+                </div>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small fw-semibold">Kullanıcı Adı</label>
+                        <input type="text" name="RegisterUsername" placeholder="Bir kullanıcı adı belirleyin" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small fw-semibold">E-posta Adresi</label>
+                        <input type="email" name="RegisterEmail" placeholder="E-posta adresinizi girin" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small fw-semibold">Şifre</label>
+                        <input type="password" name="RegisterPassword" placeholder="Güçlü bir şifre girin" class="form-control" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small fw-semibold">Doğum Tarihi</label>
+                        <input type="date" name="RegisterBirthDate" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-glow w-100 rounded-pill py-2 fw-semibold mb-3" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none;">
+                        Hesabımı Oluştur ✨
+                    </button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <p class="small text-secondary mb-0">
+                        Zaten üye misiniz? 
+                        <a href="/Auth/Login" class="text-gradient fw-bold text-decoration-none">Giriş Yap</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

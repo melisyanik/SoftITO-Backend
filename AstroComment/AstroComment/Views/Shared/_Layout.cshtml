@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AstroComment</title>
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AstroComment.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark py-3 header-glass">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-3 text-gradient d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    ✨ AstroComment
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Navigasyon">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 fw-semibold px-3" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 fw-semibold px-3" asp-area="" asp-controller="Zodiac" asp-action="Index">Burçlar</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center gap-3">
+                        @if (Context.Session.GetInt32("UserId") != null)
+                        {
+                            <span class="text-white-50 small me-2 d-none d-sm-inline">Merhaba, <strong class="text-light">@Context.Session.GetString("Username")</strong></span>
+                            if (Context.Session.GetString("Role") == "Admin")
+                            {
+                                <a class="btn btn-outline-warning btn-sm border-2 px-3 rounded-pill text-glow" href="/Admin">🛠️ Yönetim</a>
+                            }
+                            <a class="btn btn-outline-danger btn-sm px-3 rounded-pill" asp-controller="Auth" asp-action="Logout">Çıkış Yap</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-light btn-sm px-4 rounded-pill" asp-controller="Auth" asp-action="Login">Giriş Yap</a>
+                            <a class="btn btn-primary btn-sm px-4 rounded-pill btn-glow text-white" style="background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%); border: none;" asp-controller="Auth" asp-action="Register">Kayıt Ol</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container my-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top border-secondary-subtle footer-glass text-muted py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0 text-white-50">&copy; 2026 - ✨ AstroComment - Yıldızlar Yolunuzu Aydınlatsın. <a class="text-white ms-2 text-decoration-none fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik Politikası</a></p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

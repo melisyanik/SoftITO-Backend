@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AstroComment.Models.ZodiacSign>
+@{
+    ViewData["Title"] = "Zodiacs";
+}
+
+<div class="zodiac-container fade-in">
+    <div class="zodiac-header">
+        <h1 class="gradient-text">Zodiac Signs</h1>
+        <a asp-action="Create" class="btn btn-premium btn-create">
+            <i class="fas fa-plus"></i> Add New Zodiac
+        </a>
+    </div>
+
+    <div class="zodiac-grid">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <div class="zodiac-card">
+                    <div class="zodiac-card-content">
+                        <h3>@item.Name</h3>
+                        <span class="element-badge badge-@item.Element.ToLower()">@item.Element</span>
+                        <div class="zodiac-dates">
+                            <i class="fas fa-calendar-alt"></i> 
+                            @item.StartDate.ToString("MMM dd") - @item.EndDate.ToString("MMM dd")
+                        </div>
+                    </div>
+                    <div class="zodiac-card-actions">
+                        <a asp-action="Edit" asp-route-id="@item.ZodiacId" class="btn btn-icon btn-edit" title="Edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@item.ZodiacId" method="post" class="delete-form" style="display:inline;">
+                            <button type="submit" class="btn btn-icon btn-delete" title="Delete" onclick="return confirm('Are you sure you want to delete this zodiac?');">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-star-and-crescent"></i>
+                <p>No zodiac signs found. Add some to get started!</p>
+            </div>
+        }
+    </div>
+</div>
