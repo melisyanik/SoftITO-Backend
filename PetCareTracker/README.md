@@ -36,9 +36,10 @@ Admin Login and register for users:
 * **Role-Based Routing:** Smart routing where users and admins are directed to their respective dashboards based on their privileges.
 * **Account Administration:** Full lifecycle management of user accounts, enabling users to register, log in, and track their pets.
 * **Admin Management:** Secure backend access specifically for Administrator accounts to oversee the entire system.
+<img width="1919" height="907" alt="Ekran görüntüsü 2026-07-05 013127" src="https://github.com/user-attachments/assets/b5e372ce-0e0b-4275-b824-3ffee4345cb4" />
+
 <img width="1919" height="908" alt="Ekran görüntüsü 2026-07-05 013138" src="https://github.com/user-attachments/assets/1acd4616-d58d-40b3-b7ea-71071765725c" />
 
-<img width="1919" height="907" alt="Ekran görüntüsü 2026-07-05 013127" src="https://github.com/user-attachments/assets/b5e372ce-0e0b-4275-b824-3ffee4345cb4" />
 
 Admin can change the status of the appointment:
 <img width="1919" height="915" alt="Ekran görüntüsü 2026-07-05 013155" src="https://github.com/user-attachments/assets/4c1281d8-78b4-4b0f-9784-2e180e0bfa3c" />
