@@ -27,6 +27,7 @@ Post Management is a comprehensive web application built with ASP.NET Core MVC, 
 
 Adding a new post:
 <img width="1919" height="916" alt="Ekran görüntüsü 2026-07-04 035252" src="https://github.com/user-attachments/assets/92154f29-c668-46a9-9c87-177eb6210098" />
+
 <img width="1919" height="908" alt="Ekran görüntüsü 2026-07-04 035303" src="https://github.com/user-attachments/assets/177d8a36-4c8d-47e3-b646-e7a31c734502" />
 
 * **Search Functionality:** Users can easily search through posts using keywords (e.g., Title, Content, Tag, Author) to quickly find relevant content.
@@ -62,11 +63,10 @@ Reporting for another reasons:
 * **Document Generation:**
   * **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for Posts, Complaints, and Activity Logs.
   * **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets into standard Excel formats.
-<img width="1065" height="457" alt="Ekran görüntüsü 2026-07-04 035800" src="https://github.com/user-attachments/assets/32fd144f-69d6-4da9-b4cd-bae1bb4d4f04" />
-<img width="780" height="220" alt="Ekran görüntüsü 2026-07-04 035853" src="https://github.com/user-attachments/assets/840fc918-8ad3-46af-9844-d257a4db80ba" />
 <img width="1068" height="443" alt="Ekran görüntüsü 2026-07-04 035812" src="https://github.com/user-attachments/assets/8874df7a-90e4-42dc-bcb5-39271c12762e" />
 <img width="769" height="229" alt="Ekran görüntüsü 2026-07-04 035831" src="https://github.com/user-attachments/assets/400b477f-f54c-4baa-b188-60f2d6fa07df" />
-
+<img width="1065" height="457" alt="Ekran görüntüsü 2026-07-04 035800" src="https://github.com/user-attachments/assets/32fd144f-69d6-4da9-b4cd-bae1bb4d4f04" />
+<img width="780" height="220" alt="Ekran görüntüsü 2026-07-04 035853" src="https://github.com/user-attachments/assets/840fc918-8ad3-46af-9844-d257a4db80ba" />
 
 ---
 
