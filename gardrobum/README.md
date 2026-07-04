@@ -44,11 +44,7 @@ Searching according to feature:
 
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023803" src="https://github.com/user-attachments/assets/19f51e47-d8d9-44b9-9821-cf0673dd0fd6" />
 
-#### 3. Analytics & Export Pipeline
-* **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for clothes, shoes, and jewelry.
-* **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets into standard Excel formats.
-
-#### 4. Technical Infrastructure
+#### 3. Technical Infrastructure
 * **ASP.NET Core Razor Pages:** Fast and Page-Focused web development.
 * **Native ADO.NET (SqlDataReader & SqlCommand):** Direct and high-performance communication with the database without an ORM.
 * **Responsive Design (Bootstrap 5):** A user interface that works flawlessly across all mobile and desktop devices.
@@ -90,11 +86,7 @@ Takı güncelleme:
 
 <img width="1919" height="912" alt="Ekran görüntüsü 2026-07-04 023803" src="https://github.com/user-attachments/assets/19f51e47-d8d9-44b9-9821-cf0673dd0fd6" />
 
-#### 3. Analitik ve Dışa Aktarım Süreçleri
-* **PDF Raporları:** Kıyafet, ayakkabı ve takılar için baskıya hazır idari raporlar oluşturmak amacıyla `QuestPDF` entegrasyonu.
-* **Excel Tabloları:** Tüm koleksiyon verilerini standart Excel formatlarında dışa aktarmak için `EPPlus` entegrasyonu.
-
-#### 4. Teknik Altyapı
+#### 3. Teknik Altyapı
 * **ASP.NET Core Razor Pages:** Hızlı ve sayfa odaklı (Page-Focused) web geliştirme.
 * **Native ADO.NET (SqlDataReader & SqlCommand):** Veritabanı ile doğrudan ve yüksek performanslı iletişim (ORM kullanılmadan).
 * **Responsive Tasarım (Bootstrap 5):** Mobil ve masaüstü tüm cihazlarda kusursuz çalışan kullanıcı arayüzü.
