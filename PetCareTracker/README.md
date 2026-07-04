@@ -45,13 +45,14 @@ Admin Login and register for users:
 * **Search & Filtering:** Advanced search functionality allowing users to perform granular searches by selecting specific fields (e.g., Pet Name, Species) for accurate results in their library.
 <img width="1919" height="912" alt="Search Interface" src="URL_HERE" />
 
+* **Vaccination & Appointment Management:** Users can easily schedule new appointments, add vaccination records for their pets, and seamlessly track upcoming dates and medical history.
+<img width="1919" height="911" alt="Appointments List" src="URL_HERE" />
+<img width="1919" height="907" alt="Vaccinations List" src="URL_HERE" />
+
 #### 3. Architecture & Data Engine
 * **API & Stored Procedure Design:** The codebase is heavily reliant on a Dapper-based Repository pattern communicating with MS SQL Server through highly optimized Stored Procedures.
 * **Database Indexing:** B-Tree Indexes on critical columns (UserId, PetId, Dates) to prevent full table scans and maximize query speeds.
 * **Unified Healthcare Catalog:** Relational management of Users, Pets, Vaccinations, and Appointments.
-* **Vaccination & Appointment System:** Users and Admins can view incoming appointments, track past vaccinations, and see upcoming scheduled tasks.
-<img width="1919" height="911" alt="Appointments List" src="URL_HERE" />
-<img width="1919" height="907" alt="Vaccinations List" src="URL_HERE" />
 
 #### 4. Analytics & Export Pipeline
 * **Visual Telemetry:** Real-time dashboard providing administrators with key metrics such as Total Pets, Total Vaccinations, and Upcoming Appointments.
@@ -93,13 +94,14 @@ Pet Care Tracker, veteriner klinikleri ve evcil hayvan sahiplerinin tüm süreç
 * **Arama ve Filtreleme:** Kullanıcıların doğru sonuçlar elde etmek için belirli alanları (örn. Hayvan Adı, Türü) seçerek detaylı aramalar yapabilmesini sağlayan gelişmiş arama işlevi.
 <img width="1919" height="912" alt="Arama Arayüzü" src="URL_HERE" />
 
+* **Aşı ve Randevu Yönetimi:** Kullanıcılar kendi hayvanları için yeni aşı kayıtları oluşturabilir, veteriner randevuları ayarlayabilir ve yaklaşan aşı takvimlerini eksiksiz şekilde yönetebilirler.
+<img width="1919" height="911" alt="Randevu Listesi" src="URL_HERE" />
+<img width="1919" height="907" alt="Aşı Listesi" src="URL_HERE" />
+
 #### 3. Mimari ve Veri Motoru
 * **API ve Stored Procedure (SP) Mimarisi:** Kod tabanı, MS SQL Server ile yüksek oranda optimize edilmiş Stored Procedure'ler aracılığıyla haberleşen Dapper tabanlı Repository desenine dayanmaktadır.
 * **Veritabanı İndeksleme (Indexing):** Tam tablo taramalarını (Table Scan) önlemek ve sorgu hızlarını maksimuma çıkarmak için kritik kolonlarda (UserId, PetId, Tarihler vb.) B-Tree İndeks yapıları kullanıldı.
 * **Bütünleşik Sağlık Kataloğu:** Kullanıcılar, Evcil Hayvanlar, Aşılar ve Randevuların ilişkisel yönetimi.
-* **Aşı ve Randevu Sistemi:** Kullanıcılar ve yöneticiler, yaklaşan randevuları görebilir, geçmiş aşıları takip edebilir ve planlanmış görevleri izleyebilirler.
-<img width="1919" height="911" alt="Randevu Listesi" src="URL_HERE" />
-<img width="1919" height="907" alt="Aşı Listesi" src="URL_HERE" />
 
 #### 4. Analitik ve Dışa Aktarım Süreçleri
 * **Görsel İstatistikler (Dashboard):** Yöneticilere Toplam Hayvan, Toplam Aşı ve Yaklaşan Randevular gibi kilit metrikleri anlık sunan gösterge paneli.
