@@ -19,38 +19,54 @@ Post Management is a comprehensive web application built with ASP.NET Core MVC, 
 
 #### 1. Identity & Routing Management
 * **Admin Login & Dashboard:** A dedicated login screen for administrators. Once authenticated, admins are routed directly to the management dashboard.
-`[PLACEHOLDER FOR ADMIN LOGIN IMAGE]`
-`[PLACEHOLDER FOR ADMIN DASHBOARD IMAGE]`
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 035548" src="https://github.com/user-attachments/assets/feddf7a6-c40e-4d80-ac71-88d1f572bf97" />
 
 #### 2. Public User Experience
 * **Interactive Homepage:** A dynamic, user-facing homepage displaying a feed of available posts. Users can create new posts directly from the homepage.
-`[PLACEHOLDER FOR HOMEPAGE IMAGE]`
-`[PLACEHOLDER FOR CREATE POST IMAGE]`
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 035114" src="https://github.com/user-attachments/assets/e2cba380-81ba-4cd5-8ac0-dfef9d857bb4" />
+
+Adding a new post:
+<img width="1919" height="916" alt="Ekran görüntüsü 2026-07-04 035252" src="https://github.com/user-attachments/assets/92154f29-c668-46a9-9c87-177eb6210098" />
+<img width="1919" height="908" alt="Ekran görüntüsü 2026-07-04 035303" src="https://github.com/user-attachments/assets/177d8a36-4c8d-47e3-b646-e7a31c734502" />
 
 * **Search Functionality:** Users can easily search through posts using keywords (e.g., Title, Content, Tag, Author) to quickly find relevant content.
-`[PLACEHOLDER FOR SEARCH FUNCTIONALITY IMAGE]`
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-04 035127" src="https://github.com/user-attachments/assets/5e3a4fb8-06b7-49ad-a379-2e79b6fe4560" />
+<img width="1919" height="916" alt="Ekran görüntüsü 2026-07-04 035150" src="https://github.com/user-attachments/assets/100311de-2831-4486-b23c-08a1e493e259" />
 
 * **Content Reporting System:** Users can report inappropriate posts by submitting complaints with specific reasons, ensuring a safe community environment.
-`[PLACEHOLDER FOR REPORT POST IMAGE]`
+
+Post reporting:
+<img width="1919" height="849" alt="Ekran görüntüsü 2026-07-04 035338" src="https://github.com/user-attachments/assets/d9b7c352-a2d8-483e-b443-27bba3fd232c" />
+<img width="1919" height="724" alt="Ekran görüntüsü 2026-07-04 035350" src="https://github.com/user-attachments/assets/d0faa0cf-bcf9-4bfa-b389-8b8830c85bc1" />
+
+Reporting for another reasons:
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-04 035413" src="https://github.com/user-attachments/assets/74bfa059-789b-4ee4-afce-7ce1af3cff66" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 035428" src="https://github.com/user-attachments/assets/334dc746-d6fc-4c0f-a445-76ce80d86ca7" />
+
 
 #### 3. Content Engine & Admin Management
 * **Comprehensive CRUD Operations:** Full lifecycle management (Create, Read, Update, Delete) for Posts, Complaints, and Activity Logs.
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 035622" src="https://github.com/user-attachments/assets/0abf4ff8-4795-44f3-9b60-bb7e350af5a4" />
+
 * **Complaint Resolution System:** Admins can view incoming reports from users and toggle their resolution status (e.g., Pending, Resolved).
-`[PLACEHOLDER FOR COMPLAINTS MANAGEMENT IMAGE]`
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 035654" src="https://github.com/user-attachments/assets/087f7dea-c3ed-4ef2-8b45-9fcfaf4b3889" />
 
 * **Field-Based Combobox Search (Admin):** Advanced search filtering is provided in the admin panels to easily find specific posts, complaints, or activity logs by selecting fields such as ID, Reason, Reporter, or Status.
-`[PLACEHOLDER FOR ADMIN SEARCH IMAGE]`
-`[PLACEHOLDER FOR LOGS MANAGEMENT IMAGE]`
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-04 035710" src="https://github.com/user-attachments/assets/889c2e1f-edc1-4e38-89e3-11473326e19d" />
+<img width="1919" height="905" alt="Ekran görüntüsü 2026-07-04 035747" src="https://github.com/user-attachments/assets/df214146-6e4e-49a3-b891-4661523b0230" />
 
 #### 4. Analytics & Export Pipeline
 * **Visual Telemetry:** Real-time dashboard providing administrators with key metrics such as Total Posts, Total Complaints, and Total Logs.
-`[PLACEHOLDER FOR DASHBOARD METRICS IMAGE]`
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 035557" src="https://github.com/user-attachments/assets/ad1d28aa-7d8f-4fe4-9ddb-1527ca6535a9" />
 
 * **Document Generation:**
   * **PDF Reports:** Utilizing `QuestPDF` for generating pixel-perfect, printable administrative reports for Posts, Complaints, and Activity Logs.
   * **Excel Spreadsheets:** Utilizing `EPPlus` for exporting raw datasets into standard Excel formats.
-`[PLACEHOLDER FOR PDF EXPORT IMAGE]`
-`[PLACEHOLDER FOR EXCEL EXPORT IMAGE]`
+<img width="1065" height="457" alt="Ekran görüntüsü 2026-07-04 035800" src="https://github.com/user-attachments/assets/32fd144f-69d6-4da9-b4cd-bae1bb4d4f04" />
+<img width="780" height="220" alt="Ekran görüntüsü 2026-07-04 035853" src="https://github.com/user-attachments/assets/840fc918-8ad3-46af-9844-d257a4db80ba" />
+<img width="1068" height="443" alt="Ekran görüntüsü 2026-07-04 035812" src="https://github.com/user-attachments/assets/8874df7a-90e4-42dc-bcb5-39271c12762e" />
+<img width="769" height="229" alt="Ekran görüntüsü 2026-07-04 035831" src="https://github.com/user-attachments/assets/400b477f-f54c-4baa-b188-60f2d6fa07df" />
+
 
 ---
 
