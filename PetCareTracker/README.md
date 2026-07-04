@@ -1,4 +1,4 @@
-🐾 Pet Care Tracker - API & Stored Procedure Architecture (PROJECT 9)
+# 🐾 Pet Care Tracker - API & Stored Procedure Architecture (PROJECT 9)
 .NET Dapper Bootstrap License
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
