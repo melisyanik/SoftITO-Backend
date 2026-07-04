@@ -46,13 +46,14 @@ LifeTrackerApi, ASP.NET Core ve Entity Framework Core kullanılarak geliştirilm
 * **Harcama Yönetimi (ExpenseLog):** Günlük harcamaları kaydederek kişisel finansı takip etme.
 * **Ruh Hali Günlüğü (MoodLog):** Zaman içindeki duygusal sağlığı görselleştirmek için günlük ruh hallerini kaydetme.
 * **Uyku Takibi (SleepLog):** Daha iyi sağlık analizleri için uyku süresi ve kalitesini kaydetme.
-<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/7bc7107a-72f2-4e7e-a987-b96b099d3c2d" />
-<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/587b85cf-2d10-4a2d-9e58-7d60a0070923" />
-
-
 
 #### 2. Mimari ve Teknolojiler
 * **ASP.NET Core Web API:** Güçlü ve yüksek performanslı .NET altyapısı üzerinde inşa edilmiştir.
 * **Entity Framework Core (Code First):** C# modelleri kullanılarak sorunsuz veritabanı yönetimi ve migration (göç) işlemleri.
 * **SQL Server:** Tüm kullanıcı günlüklerini güvenle saklamak için güvenilir ilişkisel veritabanı.
 * **Swagger Entegrasyonu:** Kurulum gerektirmeyen etkileşimli API dokümantasyonu ve test arayüzü.
+<img width="1919" height="719" alt="Ekran görüntüsü 2026-07-04 042720" src="https://github.com/user-attachments/assets/7bc7107a-72f2-4e7e-a987-b96b099d3c2d" />
+<img width="1919" height="697" alt="Ekran görüntüsü 2026-07-04 042729" src="https://github.com/user-attachments/assets/587b85cf-2d10-4a2d-9e58-7d60a0070923" />
+
+
+
