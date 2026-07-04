@@ -79,35 +79,50 @@ Post Yönetim Sistemi (Post Management), ASP.NET Core MVC, Entity Framework Core
 
 #### 1. Kimlik Yönetimi ve Yönlendirme
 * **Yönetici Girişi ve Panel (Dashboard):** Yöneticiler için özel olarak tasarlanmış giriş ekranı. Başarılı bir kimlik doğrulamanın ardından yöneticiler doğrudan yönetim paneline yönlendirilir.
-`[YÖNETİCİ GİRİŞ EKRANI GÖRSELİ İÇİN YER TUTUCU]`
-`[YÖNETİCİ PANELİ GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 035548" src="https://github.com/user-attachments/assets/feddf7a6-c40e-4d80-ac71-88d1f572bf97" />
 
 #### 2. Herkese Açık Kullanıcı Deneyimi
 * **Etkileşimli Anasayfa:** Mevcut gönderilerin akışını listeleyen dinamik, kullanıcılara yönelik anasayfa. Kullanıcılar doğrudan anasayfa üzerinden yeni gönderiler oluşturabilir.
-`[ANASAYFA GÖRSELİ İÇİN YER TUTUCU]`
-`[GÖNDERİ OLUŞTURMA GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 035114" src="https://github.com/user-attachments/assets/e2cba380-81ba-4cd5-8ac0-dfef9d857bb4" />
+
+Yeni gönderi ekleme:
+<img width="1919" height="916" alt="Ekran görüntüsü 2026-07-04 035252" src="https://github.com/user-attachments/assets/92154f29-c668-46a9-9c87-177eb6210098" />
+
+<img width="1919" height="908" alt="Ekran görüntüsü 2026-07-04 035303" src="https://github.com/user-attachments/assets/177d8a36-4c8d-47e3-b646-e7a31c734502" />
 
 * **Arama İşlevi:** Kullanıcılar gönderiler arasında kelime bazlı aramalar yaparak (örn. Başlık, İçerik, Etiket, Yazar) ilgili içerikleri hızlıca bulabilir.
-`[ARAMA İŞLEVİ GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-04 035127" src="https://github.com/user-attachments/assets/5e3a4fb8-06b7-49ad-a379-2e79b6fe4560" />
+<img width="1919" height="916" alt="Ekran görüntüsü 2026-07-04 035150" src="https://github.com/user-attachments/assets/100311de-2831-4486-b23c-08a1e493e259" />
 
 * **İçerik Şikayet Sistemi:** Kullanıcılar uygunsuz buldukları gönderileri belirli bir neden belirterek şikayet edebilir ve topluluğun güvenli kalmasını sağlayabilirler.
-`[ŞİKAYET BİLDİRİMİ GÖRSELİ İÇİN YER TUTUCU]`
+
+Gönderi şikayet etme:
+<img width="1919" height="849" alt="Ekran görüntüsü 2026-07-04 035338" src="https://github.com/user-attachments/assets/d9b7c352-a2d8-483e-b443-27bba3fd232c" />
+<img width="1919" height="724" alt="Ekran görüntüsü 2026-07-04 035350" src="https://github.com/user-attachments/assets/d0faa0cf-bcf9-4bfa-b389-8b8830c85bc1" />
+
+Farklı nedenlerle şikayet etme:
+<img width="1919" height="914" alt="Ekran görüntüsü 2026-07-04 035413" src="https://github.com/user-attachments/assets/74bfa059-789b-4ee4-afce-7ce1af3cff66" />
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 035428" src="https://github.com/user-attachments/assets/334dc746-d6fc-4c0f-a445-76ce80d86ca7" />
 
 #### 3. İçerik Motoru ve Yönetim
 * **Kapsamlı CRUD İşlemleri:** Gönderiler (Posts), Şikayetler (Complaints) ve Aktivite Logları (Activity Logs) için tam yaşam döngüsü yönetimi (Oluşturma, Okuma, Güncelleme, Silme).
+<img width="1919" height="913" alt="Ekran görüntüsü 2026-07-04 035622" src="https://github.com/user-attachments/assets/0abf4ff8-4795-44f3-9b60-bb7e350af5a4" />
+
 * **Şikayet Çözüm Sistemi:** Yöneticiler, kullanıcılardan gelen şikayetleri görüntüleyebilir ve çözüm durumlarını (Bekliyor, Çözüldü) güncelleyebilir.
-`[ŞİKAYET YÖNETİMİ GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="911" alt="Ekran görüntüsü 2026-07-04 035654" src="https://github.com/user-attachments/assets/087f7dea-c3ed-4ef2-8b45-9fcfaf4b3889" />
 
 * **Alan Adı Tabanlı Açılır Kutu (Combobox) Araması (Yönetici):** Yönetim panellerinde gönderileri, şikayetleri veya log kayıtlarını ID, Sebep, Şikayet Eden veya Durum gibi belirli alanlara göre filtreleyerek kolayca bulmak için gelişmiş arama seçenekleri sunulmaktadır.
-`[YÖNETİCİ ARAMA GÖRSELİ İÇİN YER TUTUCU]`
-`[LOG YÖNETİMİ GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="906" alt="Ekran görüntüsü 2026-07-04 035710" src="https://github.com/user-attachments/assets/889c2e1f-edc1-4e38-89e3-11473326e19d" />
+<img width="1919" height="905" alt="Ekran görüntüsü 2026-07-04 035747" src="https://github.com/user-attachments/assets/df214146-6e4e-49a3-b891-4661523b0230" />
 
 #### 4. Analitik ve Dışa Aktarım Süreçleri
 * **Görsel İstatistikler (Dashboard):** Yöneticilere Toplam Gönderi, Toplam Şikayet ve Toplam Log Sayısı gibi kilit metrikleri anlık sunan gösterge paneli.
-`[İSTATİSTİK (METRİK) GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1919" height="910" alt="Ekran görüntüsü 2026-07-04 035557" src="https://github.com/user-attachments/assets/ad1d28aa-7d8f-4fe4-9ddb-1527ca6535a9" />
 
 * **Belge Oluşturma:**
   * **PDF Raporları:** Gönderiler, şikayetler ve loglar için baskıya hazır idari raporlar oluşturmak amacıyla `QuestPDF` kullanımı.
   * **Excel Tabloları:** Tüm tablo verilerini standart Excel formatlarında dışa aktarmak için `EPPlus` kullanımı.
-`[PDF ÇIKTISI GÖRSELİ İÇİN YER TUTUCU]`
-`[EXCEL ÇIKTISI GÖRSELİ İÇİN YER TUTUCU]`
+<img width="1068" height="443" alt="Ekran görüntüsü 2026-07-04 035812" src="https://github.com/user-attachments/assets/8874df7a-90e4-42dc-bcb5-39271c12762e" />
+<img width="769" height="229" alt="Ekran görüntüsü 2026-07-04 035831" src="https://github.com/user-attachments/assets/400b477f-f54c-4baa-b188-60f2d6fa07df" />
+<img width="1065" height="457" alt="Ekran görüntüsü 2026-07-04 035800" src="https://github.com/user-attachments/assets/32fd144f-69d6-4da9-b4cd-bae1bb4d4f04" />
+<img width="780" height="220" alt="Ekran görüntüsü 2026-07-04 035853" src="https://github.com/user-attachments/assets/840fc918-8ad3-46af-9844-d257a4db80ba" />
