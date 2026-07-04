@@ -1,4 +1,4 @@
-# 🌟 SmartLife - API & MVC N-Tier Architecture
+# 🌟 SmartLife - API & MVC N-Tier Architecture (PROJECT 7)
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-339933?style=for-the-badge&logo=entity-framework&logoColor=white)
