@@ -103,28 +103,44 @@ Pet Care Tracker, veteriner klinikleri ve evcil hayvan sahiplerinin tüm süreç
 
 #### 1. Kimlik Yönetimi ve Yönlendirme
 * **Güvenli Kimlik Doğrulama, Giriş ve Kayıt Ekranı:** Cookie tabanlı yetkilendirme altyapısına tam entegre, güçlü oturum yönetimi sağlayan özel ve tam işlevli giriş ve kayıt arayüzü.
-<img width="1919" height="910" alt="Giriş Ekranı" src="URL_HERE" />
-<img width="1919" height="907" alt="Kayıt Ekranı" src="URL_HERE" />
+<img width="1919" height="910" alt="Giriş Ekranı" src="https://github.com/user-attachments/assets/951a478b-a3fe-448c-87ce-76f913bb46a1" />
+
+<img width="1919" height="914" alt="Kayıt Ekranı" src="https://github.com/user-attachments/assets/72063335-d735-4017-b37d-33184d061157" />
 
 * **Rol Tabanlı Yönlendirme:** Kullanıcıların ve yöneticilerin yetkilerine göre ilgili panellere yönlendirildiği akıllı yönlendirme sistemi.
 * **Hesap Yönetimi:** Kullanıcı hesaplarının tam yaşam döngüsü yönetimi; kullanıcıların kayıt olmalarını, giriş yapmalarını ve kendi hayvanlarını takip etmelerini sağlar.
 * **Yönetici Paneli:** Tüm sistemi denetlemek için yalnızca Yönetici hesaplarına özel güvenli arka plan erişimi.
-<img width="1919" height="910" alt="Yönetici Paneli" src="URL_HERE" />
+<img width="1919" height="907" alt="Yönetici Paneli" src="https://github.com/user-attachments/assets/b5e372ce-0e0b-4275-b824-3ffee4345cb4" />
+<img width="1919" height="908" alt="Yönetici Paneli 2" src="https://github.com/user-attachments/assets/1acd4616-d58d-40b3-b7ea-71071765725c" />
+
+Yönetici randevu durumunu değiştirebilir:
+<img width="1919" height="915" alt="Randevu Durumu" src="https://github.com/user-attachments/assets/4c1281d8-78b4-4b0f-9784-2e180e0bfa3c" />
+<img width="1919" height="911" alt="Randevu Durumu 2" src="https://github.com/user-attachments/assets/e9ab98bb-e555-43e3-be61-c5315eeffed9" />
+
+Yeni hasta ekleme:
+<img width="1919" height="911" alt="Hasta Ekleme" src="https://github.com/user-attachments/assets/1eb76526-a504-4a6f-8a33-f225a240b909" />
+<img width="1919" height="909" alt="Hasta Ekleme 2" src="https://github.com/user-attachments/assets/07a71c76-63ac-44c2-810b-e0ab9ef0d326" />
+
+* **Arama ve Filtreleme:** Yöneticilerin doğru sonuçlar elde etmek için belirli alanları (örn. Hayvan Adı, Türü) seçerek detaylı aramalar yapabilmesini sağlayan gelişmiş arama işlevi.
+<img width="1919" height="912" alt="Arama Arayüzü" src="https://github.com/user-attachments/assets/6b3ee11a-6efe-4bbf-9050-ab7c90396f9a" />
+<img width="1919" height="911" alt="Arama Arayüzü 2" src="https://github.com/user-attachments/assets/c96bf06e-c412-4cfc-83e9-facb65914a79" />
 
 #### 2. Kullanıcı Deneyimi ve Evcil Hayvan Yönetimi
-* **Etkileşimli Gösterge Paneli (Dashboard):** Evcil hayvan özetlerini, yaklaşan aşıları ve randevuları listeleyen dinamik, kullanıcılara yönelik gösterge paneli.
-<img width="1919" height="910" alt="Kullanıcı Paneli" src="URL_HERE" />
-
-* **Evcil Hayvanlarım ve CRUD İşlemleri:** Kullanıcılar evcil hayvanlarını kolayca sisteme ekleyebilir, güncelleyebilir ve yönetebilirler. Tüm kayıtlar için tam kapsamlı CRUD işlevleri sunulmaktadır.
-<img width="1919" height="908" alt="Evcil Hayvan Listesi" src="URL_HERE" />
-<img width="1919" height="909" alt="Hayvan Ekle/Düzenle" src="URL_HERE" />
-
-* **Arama ve Filtreleme:** Kullanıcıların doğru sonuçlar elde etmek için belirli alanları (örn. Hayvan Adı, Türü) seçerek detaylı aramalar yapabilmesini sağlayan gelişmiş arama işlevi.
-<img width="1919" height="912" alt="Arama Arayüzü" src="URL_HERE" />
 
 * **Aşı ve Randevu Yönetimi:** Kullanıcılar kendi hayvanları için yeni aşı kayıtları oluşturabilir, veteriner randevuları ayarlayabilir ve yaklaşan aşı takvimlerini eksiksiz şekilde yönetebilirler.
-<img width="1919" height="911" alt="Randevu Listesi" src="URL_HERE" />
-<img width="1919" height="907" alt="Aşı Listesi" src="URL_HERE" />
+
+Randevu ayarlama:
+<img width="1919" height="909" alt="Randevu Ayarlama" src="https://github.com/user-attachments/assets/b76a67cb-7980-4858-b541-6c628ac5ebe6" />
+<img width="1919" height="912" alt="Randevu Ayarlama 2" src="https://github.com/user-attachments/assets/3b5e68a3-29bf-4056-b9b7-a8fb17eb5826" />
+<img width="1919" height="912" alt="Randevu Ayarlama 3" src="https://github.com/user-attachments/assets/56eda092-a61e-4ed6-b3e8-96de7e5bd624" />
+
+Aşı kaydı oluşturma:
+<img width="1919" height="911" alt="Aşı Kaydı" src="https://github.com/user-attachments/assets/6f853c16-58fb-421c-9f36-08813a840e39" />
+<img width="1919" height="906" alt="Aşı Kaydı 2" src="https://github.com/user-attachments/assets/5ad3822f-6633-495f-9851-3d0f8eb77589" />
+<img width="1919" height="911" alt="Aşı Kaydı 3" src="https://github.com/user-attachments/assets/6cbcc3af-67a0-4e3d-af45-7f11efcecbc7" />
+
+Randevu durumunu takip etme:
+<img width="1919" height="913" alt="Randevu Durum Takibi" src="https://github.com/user-attachments/assets/1f2be0b3-d1e3-4f31-8236-49c6b401a639" />
 
 #### 3. Mimari ve Veri Motoru
 * **API ve Stored Procedure (SP) Mimarisi:** Kod tabanı, MS SQL Server ile yüksek oranda optimize edilmiş Stored Procedure'ler aracılığıyla haberleşen Dapper tabanlı Repository desenine dayanmaktadır.
@@ -132,11 +148,12 @@ Pet Care Tracker, veteriner klinikleri ve evcil hayvan sahiplerinin tüm süreç
 * **Bütünleşik Sağlık Kataloğu:** Kullanıcılar, Evcil Hayvanlar, Aşılar ve Randevuların ilişkisel yönetimi.
 
 #### 4. Analitik ve Dışa Aktarım Süreçleri
-* **Görsel İstatistikler (Dashboard):** Yöneticilere Toplam Hayvan, Toplam Aşı ve Yaklaşan Randevular gibi kilit metrikleri anlık sunan gösterge paneli.
-<img width="1919" height="910" alt="Analitik Dashboard" src="URL_HERE" />
-
 * **Belge Oluşturma:**
   * **PDF Raporları:** Hayvanlar, aşılar ve randevular için baskıya hazır, piksel mükemmelliğinde raporlar oluşturmak için `QuestPDF` kullanımı.
   * **Excel Tabloları:** Ham veri setlerini (Evcil Hayvanlar, Randevular) standart Excel formatlarında dışa aktarmak için `EPPlus` kullanımı.
-<img width="1124" height="358" alt="Excel Çıktısı" src="URL_HERE" />
-<img width="1108" height="223" alt="PDF Çıktısı" src="URL_HERE" />
+
+PDF Çıktısı:
+<img width="1036" height="258" alt="PDF Çıktısı" src="https://github.com/user-attachments/assets/461d0611-bf88-48bd-bd00-99364b93b1de" />
+
+Excel Çıktısı:
+<img width="612" height="128" alt="Excel Çıktısı" src="https://github.com/user-attachments/assets/d0745eb3-839a-4fd3-b1bf-6edc9d9c4a5b" />
