@@ -1,4 +1,4 @@
-🎓 EduMaster - N-Tier Architecture & Code First (LMS Project)
+# 🎓 EduMaster - N-Tier Architecture & Code First (LMS Project)
 .NET Entity Framework Bootstrap License
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
