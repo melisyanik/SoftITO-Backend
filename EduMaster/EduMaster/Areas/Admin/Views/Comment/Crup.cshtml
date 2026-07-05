@@ -1,0 +1,38 @@
+@model EduMaster.Models.Comment
+
+<form method="post">
+
+    <input asp-for="Id" hidden />
+
+    <div class="border p-3">
+
+        <h2>Yorum Güncelle</h2>
+
+        <hr />
+
+        <div class="mb-3">
+            <label>Kullanıcı</label>
+            <input class="form-control" value="@(Model.User?.UserName ?? Model.User?.Email)" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label>Kurs</label>
+            <input class="form-control" value="@(Model.Course?.Title)" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Text">Yorum Metni</label>
+            <textarea asp-for="Text" class="form-control" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Kaydet
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Geri Dön
+        </a>
+
+    </div>
+
+</form>

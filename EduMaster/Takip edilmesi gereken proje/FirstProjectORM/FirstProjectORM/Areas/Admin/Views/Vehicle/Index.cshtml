@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FirstProjectORM.Models.Vehicle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2>Taşıt Listesi</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Vehicle" asp-action="Crup" class="btn btn-primary">
+                <span>Yeni Taşıt Ekle</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-striped my-2">
+            <thead>
+                <tr>
+                    <th>Taşıt Resmi</th>
+                    <th>Taşıt Adı</th>
+                    <th>Fiyat</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var vehicle in Model)
+                {
+                    <tr>
+                        <td><img src="@vehicle.Photo" width="80px" /></td>
+                        <td>@vehicle.VehicleName</td>
+                        <td>@vehicle.Price</td>
+                        <td>
+                            <a asp-controller="Vehicle" asp-action="Crup" asp-route-id="@vehicle.Id" class="btn btn-primary">
+                                Güncelle
+                            </a>
+                            <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@vehicle.Id" class="btn btn-danger">
+                                Sil
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+
+
+        </table>
+    </div>
+</div>

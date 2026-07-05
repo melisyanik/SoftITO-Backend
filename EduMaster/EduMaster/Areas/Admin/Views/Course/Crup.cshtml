@@ -1,0 +1,47 @@
+@model EduMaster.Models.ViewModels.CourseVM
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="Course.Id" hidden />
+
+    <div class="mb-3">
+        <label>Başlık</label>
+        <input asp-for="Course.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Açıklama</label>
+        <input asp-for="Course.Description" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Kontenjan</label>
+        <input asp-for="Course.Quota" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Kategori</label>
+        <select asp-for="Course.CategoryId"
+                asp-items="Model.CategoryList"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Eğitmen</label>
+        <select asp-for="Course.InstructorId"
+                asp-items="Model.InstructorList"
+                class="form-control">
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label>Resim</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Kaydet
+    </button>
+
+</form>

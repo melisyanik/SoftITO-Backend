@@ -1,0 +1,69 @@
+﻿@model EduMaster.Models.Instructor
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="Id" hidden />
+
+    <div class="border p-3">
+
+        <h2>
+            @(Model.Id > 0 ? "Eğitmen Güncelle" : "Eğitmen Ekle")
+        </h2>
+
+        <hr />
+
+        <div class="mb-3">
+
+            <label asp-for="FullName"></label>
+
+            <input asp-for="FullName"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label asp-for="Expertise"></label>
+
+            <input asp-for="Expertise"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Fotoğraf</label>
+
+            <input type="file"
+                   name="file"
+                   class="form-control" />
+
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <div class="mb-3">
+
+                <img src="@Model.Image"
+                     width="150" />
+
+            </div>
+        }
+
+        <button type="submit"
+                class="btn btn-success">
+
+            Kaydet
+
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            Geri Dön
+
+        </a>
+
+    </div>
+
+</form>

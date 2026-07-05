@@ -1,0 +1,51 @@
+﻿@model FirstProjectORM.Models.ViewModels.VehicleVM
+
+<h2>Ürün @(Model.Vehicle.Id <= 0 ? "Add" : "Edit")</h2>
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="Vehicle.Id" type="hidden" />
+    <input asp-for="Vehicle.Photo" type="hidden" />
+
+    @if (@Model != null)
+    {
+        <div class="col-6">
+            <img src="@Model.Vehicle.Photo" width="250px" />
+        </div>
+    }
+
+    <div class="row my-1">
+        <label asp-for="Vehicle.VehicleName"></label>
+        <input asp-for="Vehicle.VehicleName" class="form-control" />
+    </div>
+
+    <div class="row my-1">
+        <label asp-for="Vehicle.Gear"></label>
+        <input asp-for="Vehicle.Gear" class="form-control" />
+    </div>
+
+    <div class="row my-1">
+        <label asp-for="Vehicle.EnginePower"></label>
+        <input asp-for="Vehicle.EnginePower" class="form-control" />
+    </div>
+
+
+    <div class="row my-1">
+        <label asp-for="Vehicle.Price"></label>
+        <input asp-for="Vehicle.Price" class="form-control" />
+    </div>
+    <div class="row my-1">
+        <label asp-for="Vehicle.Barcode"></label>
+        <input asp-for="Vehicle.Barcode" class="form-control" />
+    </div>
+    <div class="row my-1">
+        <label asp-for="Vehicle.VehicleTypeId"></label>
+        <select asp-for="Vehicle.VehicleTypeId" asp-items="@Model.VehicleTypeList" class="form-control">
+            <option disabled selected> --Please Select a vehicle type list-- </option>
+        </select>
+    </div>
+    <div class="row my-1">
+        <label asp-for="Vehicle.Photo"></label>
+        <input type="file" id="file" name="file" accept="image/*" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">@(Model.Vehicle.Id <= 0 ? "Add" : "Edit")</button>
+</form>

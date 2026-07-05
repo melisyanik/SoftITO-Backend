@@ -1,0 +1,69 @@
+@model IEnumerable<EduMaster.Models.Course>
+
+@{
+    ViewData["Title"] = "Kurslar";
+}
+
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6">
+        <h2 style="color: #dc3545;">Kurs Yönetimi</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Crup" class="btn btn-custom me-2"><i class="bi bi-plus-circle"></i> Yeni Kurs Ekle</a>
+        <a asp-action="ExportExcel" class="btn btn-success me-2"><i class="bi bi-file-earmark-excel"></i> Excel İndir</a>
+        <a asp-action="ExportPdf" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i> PDF İndir</a>
+    </div>
+</div>
+
+<div class="card card-custom p-4">
+    <table class="table table-hover table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Kapak</th>
+                <th>Başlık</th>
+                <th>Kategori</th>
+                <th>Eğitmen</th>
+                <th>Kontenjan</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="@item.Image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;" />
+                        }
+                        else
+                        {
+                            <div class="bg-secondary rounded text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                Yok
+                            </div>
+                        }
+                    </td>
+                    <td class="fw-bold">@item.Title</td>
+                    <td>@(item.Category != null ? item.Category.Name : "Bilinmiyor")</td>
+                    <td>@(item.Instructor != null ? item.Instructor.FullName : "Bilinmiyor")</td>
+                    <td>
+                        <span class="@(item.EnrolledCount >= item.Quota ? "text-danger fw-bold" : "")">
+                            @item.EnrolledCount / @item.Quota
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="Crup" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a>
+                        <a asp-action="Enrollments" asp-route-id="@item.Id" class="btn btn-sm btn-info ms-1 text-white">Öğrenciler</a>
+                    </td>
+                </tr>
+            }
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">Sistemde henüz kurs bulunmamaktadır.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

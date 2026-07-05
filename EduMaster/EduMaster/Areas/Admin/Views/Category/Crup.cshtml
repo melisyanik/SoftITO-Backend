@@ -1,0 +1,40 @@
+@model EduMaster.Models.Category
+
+<form method="post">
+
+    <input asp-for="Id" hidden />
+
+    <div class="border p-3">
+
+        <h2>
+            @(Model.Id > 0 ? "Kategori Güncelle" : "Kategori Ekle")
+        </h2>
+
+        <hr />
+
+        <div class="mb-3">
+
+            <label asp-for="Name"></label>
+
+            <input asp-for="Name"
+                   class="form-control" />
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+
+            Kaydet
+
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            Geri Dön
+
+        </a>
+
+    </div>
+
+</form>

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EduMaster.Models.Enrollment>
+
+<h2>My Courses</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Course Id</th>
+            <th>Enroll Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.CourseId</td>
+                <td>@item.EnrollDate</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

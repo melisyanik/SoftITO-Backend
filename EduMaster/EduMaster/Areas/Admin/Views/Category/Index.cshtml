@@ -1,0 +1,81 @@
+@model IEnumerable<EduMaster.Models.Category>
+
+<div class="container">
+
+    <div class="row pt-3 pb-3">
+
+        <div class="col-6">
+            <h2>Kategoriler</h2>
+        </div>
+
+        <div class="col-6 text-end">
+            <a asp-action="Crup" class="btn btn-primary">
+                Yeni Kategori
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row pb-3">
+        <div class="col-12">
+            <form asp-action="Index" method="get">
+                <div class="input-group">
+                    <input type="text" name="search" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Kategori adı ara..." />
+                    <button class="btn btn-outline-secondary" type="submit">Ara</button>
+                    @if(ViewData["CurrentFilter"] != null)
+                    {
+                        <a asp-action="Index" class="btn btn-outline-danger">Temizle</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kategori Adı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Id</td>
+
+                    <td>@item.Name</td>
+
+                    <td>
+
+                        <a asp-action="Crup"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning">
+
+                            Düzenle
+
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger">
+
+                            Sil
+
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

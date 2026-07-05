@@ -1,0 +1,185 @@
+@model EduMaster.Models.Course
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        @TempData["Info"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+
+    <div class="col-md-8">
+        <div class="card card-custom mb-4">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="@Model.Image" class="card-img-top" alt="@Model.Title" style="max-height: 400px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;" />
+            }
+            <div class="card-body p-4">
+                <span class="badge bg-danger mb-2 fs-6">@Model.Category?.Name</span>
+                <h1 class="card-title fw-bold">@Model.Title</h1>
+                
+                <h5 class="fw-bold mt-4">Kurs Hakkında</h5>
+                <p class="text-muted" style="white-space: pre-line;">@Model.Description</p>
+                
+                <hr class="my-4" />
+                <h5 class="fw-bold">Eğitmen</h5>
+                <div class="d-flex align-items-center mt-3">
+                    @if (!string.IsNullOrEmpty(Model.Instructor?.Image))
+                    {
+                        <img src="@Model.Instructor.Image" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-3" style="width: 60px; height: 60px;">
+                            <span class="text-white fs-4">@(Model.Instructor?.FullName?.FirstOrDefault() ?? 'E')</span>
+                        </div>
+                    }
+                    <div>
+                        <h6 class="mb-0 fw-bold">@Model.Instructor?.FullName</h6>
+                        <small class="text-muted">@Model.Instructor?.Expertise</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card-custom p-4 mb-4">
+            <h4 class="fw-bold mb-4">Yorumlar (@(Model.Comments?.Count ?? 0))</h4>
+            
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                <div class="list-group list-group-flush mb-4">
+                    @{ var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); }
+                    @foreach (var comment in Model.Comments.OrderByDescending(c => c.CommentDate))
+                    {
+                        <div class="list-group-item px-0 py-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 fw-bold">@comment.User?.FullName</h6>
+                                <small class="text-muted">@comment.CommentDate.ToString("dd MMM yyyy HH:mm")</small>
+                            </div>
+                            <p class="mb-1">@comment.Text</p>
+
+                            @if (currentUserId != null && (currentUserId == comment.UserId || User.IsInRole("Admin")))
+                            {
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editCommentModal-@comment.Id">Düzenle</button>
+                                    <form asp-action="DeleteComment" method="post" class="d-inline" onsubmit="return confirm('Yorumu silmek istediğinize emin misiniz?');">
+                                        <input type="hidden" name="commentId" value="@comment.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                                    </form>
+                                </div>
+
+
+                                <div class="modal fade" id="editCommentModal-@comment.Id" tabindex="-1" aria-labelledby="editCommentModalLabel-@comment.Id" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editCommentModalLabel-@comment.Id">Yorumu Düzenle</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form asp-action="EditComment" method="post">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="commentId" value="@comment.Id" />
+                                                    <div class="form-group mb-3">
+                                                        <textarea name="text" class="form-control" rows="3" required>@comment.Text</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">Henüz yorum yapılmamış. İlk yorumu siz yapın!</p>
+            }
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <form asp-action="PostComment" method="post" class="mt-3">
+                    <input type="hidden" name="courseId" value="@Model.Id" />
+                    <div class="form-group mb-3">
+                        <textarea name="text" class="form-control" rows="3" placeholder="Kurs hakkında düşüncelerinizi paylaşın..." required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-custom">Yorum Yap</button>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-secondary">
+                    Yorum yapabilmek için <a asp-area="" asp-controller="Account" asp-action="Login" class="text-danger fw-bold">giriş yapmalısınız</a>.
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="card card-custom p-4 sticky-top" style="top: 20px;">
+            <h4 class="fw-bold border-bottom pb-2 mb-4">Kurs Kaydı</h4>
+            
+            <div class="d-flex justify-content-between mb-3">
+                <span class="text-muted">Kontenjan:</span>
+                <span class="fw-bold">@Model.Quota Kişi</span>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-4">
+                <span class="text-muted">Kayıtlı Öğrenci:</span>
+                <span class="fw-bold @(Model.EnrolledCount >= Model.Quota ? "text-danger" : "")">@Model.EnrolledCount Kişi</span>
+            </div>
+
+            @{
+                bool isFull = Model.EnrolledCount >= Model.Quota;
+            }
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <form asp-action="Enroll" method="post">
+                    <input type="hidden" name="courseId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-custom w-100 btn-lg" @(isFull ? "disabled" : "")>
+                        @(isFull ? "Kontenjan Dolu" : "Kursa Kayıt Ol")
+                    </button>
+                </form>
+            }
+            else
+            {
+                <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-custom w-100 btn-lg">Kayıt İçin Giriş Yap</a>
+            }
+            
+            <div class="mt-4 text-center">
+                <a asp-action="Index" class="text-muted text-decoration-none"><i class="bi bi-arrow-left"></i> Kurslara Dön</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@model FirstProjectORM.Models.VehicleType
+
+<form method="post">
+    <h2>Yeni Araç Listesi Oluştur</h2>
+    <div class="row">
+        <label asp-for="TypeName"></label>
+        <input asp-for="TypeName" class="form-control" />
+    </div>
+    <div class="row">
+        <label asp-for="Explanation"></label>
+        <input asp-for="Explanation" class="form-control" />
+    </div>
+    <div class="row my-2">
+        <div class="col-6"><button type="submit" class="btn btn-primary">Kaydet</button></div>
+        <div class="col-6"><a asp-controller="VehicleType" asp-action="Index" class="btn btn-primary"> Listeme Dön</a></div>
+
+    </div>
+</form>

@@ -1,0 +1,64 @@
+@model IEnumerable<EduMaster.Models.Comment>
+
+<div class="container">
+
+    <div class="row pt-3 pb-3">
+        <div class="col-6">
+            <h2>Yorumlar</h2>
+        </div>
+    </div>
+
+    <div class="row pb-3">
+        <div class="col-12">
+            <form asp-action="Index" method="get">
+                <div class="input-group">
+                    <input type="text" name="search" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Yorum metni, kurs veya kullanıcı ara..." />
+                    <button class="btn btn-outline-secondary" type="submit">Ara</button>
+                    @if(ViewData["CurrentFilter"] != null)
+                    {
+                        <a asp-action="Index" class="btn btn-outline-danger">Temizle</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı</th>
+                <th>Kurs</th>
+                <th>Tarih</th>
+                <th>Yorum</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@(item.User != null ? (item.User.UserName ?? item.User.Email) : "Bilinmiyor")</td>
+                    <td>@(item.Course != null ? item.Course.Title : "Bilinmiyor")</td>
+                    <td>@item.CommentDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@item.Text</td>
+                    <td>
+                        <a asp-action="Crup"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning">Düzenle</a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger"
+                           onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
