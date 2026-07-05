@@ -119,6 +119,35 @@ namespace EduMaster.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id <= 0)
+            {
+                return NotFound();
+            }
+
+            var course = _unitOfWork.Course.GetFirstOrDefault(x => x.Id == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            if (!string.IsNullOrEmpty(course.Image))
+            {
+                var oldPicPath = Path.Combine(_env.WebRootPath, course.Image.TrimStart('\\', '/'));
+                if (System.IO.File.Exists(oldPicPath))
+                {
+                    System.IO.File.Delete(oldPicPath);
+                }
+            }
+
+            _unitOfWork.Course.Remove(course);
+            _unitOfWork.Save();
+
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult ExportExcel()
         {

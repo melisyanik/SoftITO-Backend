@@ -61,6 +61,12 @@ namespace EduMaster.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _env.WebRootPath;
+                Instructor existingInstructor = null;
+
+                if (instructor.Id > 0)
+                {
+                    existingInstructor = _unitOfWork.Instructor.GetFirstOrDefault(x => x.Id == instructor.Id);
+                }
 
                 if (file != null)
                 {
@@ -73,29 +79,16 @@ namespace EduMaster.Areas.Admin.Controllers
                         Directory.CreateDirectory(uploadRoot);
                     }
 
-
-                    if (instructor.Id > 0)
+                    if (existingInstructor != null && !string.IsNullOrEmpty(existingInstructor.Image))
                     {
-                        var oldInstructor =
-                            _unitOfWork.Instructor.GetFirstOrDefault(x => x.Id == instructor.Id);
-
-                        if (oldInstructor != null &&
-                            !string.IsNullOrEmpty(oldInstructor.Image))
+                        var oldPicPath = Path.Combine(wwwRootPath, existingInstructor.Image.TrimStart('\\', '/'));
+                        if (System.IO.File.Exists(oldPicPath))
                         {
-                            var oldPicPath = Path.Combine(
-                                wwwRootPath,
-                                oldInstructor.Image.TrimStart('\\', '/'));
-
-                            if (System.IO.File.Exists(oldPicPath))
-                            {
-                                System.IO.File.Delete(oldPicPath);
-                            }
+                            System.IO.File.Delete(oldPicPath);
                         }
                     }
 
-                    using (var fileStream = new FileStream(
-                        Path.Combine(uploadRoot, fileName + extension),
-                        FileMode.Create))
+                    using (var fileStream = new FileStream(Path.Combine(uploadRoot, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
@@ -104,30 +97,25 @@ namespace EduMaster.Areas.Admin.Controllers
                 }
                 else
                 {
-
-                    if (instructor.Id > 0)
+                    if (existingInstructor != null)
                     {
-                        var oldInstructor =
-                            _unitOfWork.Instructor.GetFirstOrDefault(x => x.Id == instructor.Id);
-
-                        if (oldInstructor != null)
-                        {
-                            instructor.Image = oldInstructor.Image;
-                        }
+                        instructor.Image = existingInstructor.Image;
                     }
                 }
 
-                if (instructor.Id <= 0)
+                if (existingInstructor == null)
                 {
                     _unitOfWork.Instructor.Add(instructor);
                 }
                 else
                 {
-                    _unitOfWork.Instructor.Update(instructor);
+                    existingInstructor.FullName = instructor.FullName;
+                    existingInstructor.Expertise = instructor.Expertise;
+                    existingInstructor.Image = instructor.Image;
+                    _unitOfWork.Instructor.Update(existingInstructor);
                 }
 
                 _unitOfWork.Save();
-
                 return RedirectToAction("Index");
             }
             return View(instructor);
