@@ -9,7 +9,7 @@ This repository contains multiple backend projects:
 - [Project 7 - SmartLifeProject](./SmartLifeProject/README.md)
 - [Project 8 - AstroComment](./AstroComment/README.md)
 - [Project 9 - PetCareTracker](./PetCareTracker/README.md)
-
+- [Project 10 - EduMaster](./EduMaster/README.md)
 
 
 <img width="725" height="275" alt="image" src="https://github.com/user-attachments/assets/5abb2236-6a00-4d7e-ae85-4e6f76a88e4a" />
