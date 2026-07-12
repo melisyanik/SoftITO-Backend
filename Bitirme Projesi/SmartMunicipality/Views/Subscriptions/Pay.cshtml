@@ -1,0 +1,134 @@
+@model SmartMunicipality.MODEL.Bill
+@{
+    ViewData["Title"] = "Fatura Ödeme";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-credit-card-outline"></i>
+        </span> Fatura Ödeme
+    </h3>
+</div>
+
+<div class="row">
+    <!-- Sol Taraf: Ödeme Formu -->
+    <div class="col-md-7 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Kart Bilgileri</h4>
+                
+                <form asp-action="Pay" method="post" class="forms-sample">
+                    <input type="hidden" name="billId" value="@Model.Id" />
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group mb-3">
+                        <label for="cardName">Kart Üzerindeki İsim</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="Ad Soyad" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="cardNumber">Kart Numarası</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1111 2222 3333 4444" maxlength="19" required />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="expiry">Son Kullanma Tarihi</label>
+                            <input type="text" class="form-control" id="expiry" placeholder="AA/YY" maxlength="5" required />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="paymentMethod">Ödeme Yöntemi</label>
+                        <select name="paymentMethod" class="form-select">
+                            <option value="Kredi Kartı">Kredi Kartı</option>
+                            <option value="Banka Kartı">Banka Kartı</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Güvenli Ödeme Yap</button>
+                    <a asp-action="Details" asp-route-id="@Model.SubscriptionId" class="btn btn-light">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sağ Taraf: Fatura Özeti -->
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card bg-gradient-info text-white" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body p-5">
+                <h4 class="mb-4 text-white"><i class="mdi mdi-receipt"></i> Fatura Özeti</h4>
+                <hr style="border-color: rgba(255,255,255,0.2);">
+                
+                <div class="d-flex justify-content-between mb-3 mt-4">
+                    <span>Hizmet Türü:</span>
+                    <strong class="text-white">@Model.Subscription?.ServiceType?.Name</strong>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Abone No:</span>
+                    <strong class="text-white">@Model.Subscription?.SubscriberNo</strong>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Fatura No:</span>
+                    <strong class="text-white">@Model.BillNo</strong>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Dönem:</span>
+                    <strong class="text-white">@Model.BillMonth / @Model.BillYear</strong>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Son Ödeme:</span>
+                    <strong class="text-white">@Model.DueDate.ToString("dd.MM.yyyy")</strong>
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.2);" class="my-4">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="fs-5">Ödenecek Tutar:</span>
+                    <h2 class="mb-0 text-white fw-bold">@Model.Amount TL</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Formatting card number (spacing)
+            var cardInput = document.getElementById('cardNumber');
+            if (cardInput) {
+                cardInput.addEventListener('input', function (e) {
+                    var target = e.target;
+                    var position = target.selectionStart;
+                    var length = target.value.length;
+                    
+                    var value = target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    var matches = value.match(/\d{4,16}/g);
+                    var match = matches && matches[0] || '';
+                    var parts = [];
+
+                    for (var i=0, len=match.length; i<len; i+=4) {
+                        parts.push(match.substring(i, i+4));
+                    }
+
+                    if (parts.length > 0) {
+                        target.value = parts.join(' ');
+                    } else {
+                        target.value = value;
+                    }
+                });
+            }
+        });
+    </script>
+}

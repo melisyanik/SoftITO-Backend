@@ -1,0 +1,164 @@
+@model IEnumerable<SmartMunicipality.MODEL.Subscription>
+@{
+    ViewData["Title"] = "Abonelik Yönetimi";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-water-pump"></i>
+        </span> Abonelik Yönetimi
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-action="AddSubscription" class="btn btn-gradient-info btn-fw">
+                    <i class="mdi mdi-plus me-1"></i>Yeni Abonelik Aç
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Stats -->
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="card mb-3" style="border-radius:16px;border:none;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(18,77,28,0.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#124D1C;">
+                    <i class="mdi mdi-account-group-outline"></i>
+                </div>
+                <div>
+                    <h4 class="mb-0 fw-bold">@Model.Select(s => s.UserId).Distinct().Count()</h4>
+                    <p class="mb-0 text-muted small">Kullanıcılar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-3" style="border-radius:16px;border:none;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+            <div class="card-body d-flex align-items-center gap-3 py-3">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(11,24,73,0.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#0B1849;">
+                    <i class="mdi mdi-database-outline"></i>
+                </div>
+                <div>
+                    <h4 class="mb-0 fw-bold">@Model.Count()</h4>
+                    <p class="mb-0 text-muted small">Toplam Abonelik</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="card-title mb-0">Kayıtlı Abonelikler</h4>
+                    <div class="input-group" style="max-width: 300px;">
+                        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;">
+                            <i class="mdi mdi-magnify text-muted"></i>
+                        </span>
+                        <input type="text" id="subSearch" class="form-control border-start-0" placeholder="Ara..." style="border-radius: 0 12px 12px 0;" />
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover" id="subTable">
+                        <thead>
+                            <tr>
+                                <th>Abone</th>
+                                <th>Hizmet</th>
+                                <th>Abone No</th>
+                                <th>Sayaç No</th>
+                                <th>Adres</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderBy(s => s.IsActive ? 0 : 1).ThenBy(s => s.ServiceType?.Name))
+                            {
+                                <tr>
+                                    <td class="fw-bold">
+                                        @(item.User != null ? $"{item.User.Name} {item.User.Surname}" : "—")
+                                    </td>
+                                    <td>
+                                        @if (item.ServiceType?.Name == "Su")
+                                        {
+                                            <span><i class="mdi mdi-water text-info me-1"></i>Su</span>
+                                        }
+                                        else if (item.ServiceType?.Name == "Doğalgaz")
+                                        {
+                                            <span><i class="mdi mdi-fire text-warning me-1"></i>Doğalgaz</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.ServiceType?.Name</span>
+                                        }
+                                    </td>
+                                    <td><code>@item.SubscriberNo</code></td>
+                                    <td><code>@item.MeterNumber</code></td>
+                                    <td class="text-muted small">@item.Address</td>
+                                    <td>
+                                        @if (item.IsActive)
+                                        {
+                                            <span class="badge badge-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">Pasif</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-1 flex-wrap">
+                                            @if (item.IsActive)
+                                            {
+                                                <!-- Ana eylem: Sayaç Oku -->
+                                                <a asp-action="MeterReading" asp-route-subscriptionId="@item.Id"
+                                                   class="btn btn-sm btn-gradient-primary" title="Bu abone için sayaç okuma">
+                                                    <i class="mdi mdi-speedometer"></i> Sayaç Oku
+                                                </a>
+                                                <!-- Fatura Kes -->
+                                                <a asp-action="AddBill" asp-route-subscriptionId="@item.Id"
+                                                   class="btn btn-sm btn-gradient-warning" title="Bu abone için fatura kes">
+                                                    <i class="mdi mdi-receipt"></i>
+                                                </a>
+                                            }
+                                            <!-- Toggle Active -->
+                                            <form asp-action="ToggleSubscription" method="post" style="display:inline;">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                                        title="@(item.IsActive ? "Pasifleştir" : "Aktifleştir")">
+                                                    <i class="mdi @(item.IsActive ? "mdi-pause" : "mdi-play")"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">Kayıtlı abonelik bulunmuyor.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('subSearch').addEventListener('keyup', function () {
+            var q = this.value.toLowerCase();
+            document.querySelectorAll('#subTable tbody tr').forEach(function (row) {
+                row.style.display = row.textContent.toLowerCase().indexOf(q) > -1 ? '' : 'none';
+            });
+        });
+    </script>
+}

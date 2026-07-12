@@ -1,0 +1,175 @@
+@model SmartMunicipality.MODEL.Subscription
+@{
+    ViewData["Title"] = "Abonelik Detayı";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-file-document"></i>
+        </span> @Model.ServiceType.Name Abonelik Detayı
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <span class="badge badge-success fs-6">@Model.SubscriberNo</span>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row">
+    <!-- Tüketim Grafiği -->
+    <div class="col-md-7 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); border: none;">
+            <div class="card-body">
+                <div class="clearfix">
+                    <h4 class="card-title float-start">Son 6 Aylık Tüketim Geçmişi</h4>
+                </div>
+                <canvas id="consumptionChart" class="mt-4"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Abone Bilgileri -->
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body p-5 text-center">
+                <i class="mdi mdi-home-city text-primary" style="font-size: 5rem;"></i>
+                <h3 class="mt-3">@Model.ServiceType.Name</h3>
+                <p class="text-muted">Sayaç No: @Model.MeterNumber</p>
+                <hr>
+                <p class="fw-bold mt-4 text-start">Kayıtlı Adres</p>
+                <p class="text-start text-muted">@Model.Address</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title mb-2">Faturalarım</h4>
+                
+                <div class="mb-4 d-flex gap-2 flex-wrap">
+                    <div class="input-group" style="max-width: 350px;">
+                        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px; border-color: rgba(0, 103, 105, 0.15);">
+                            <i class="mdi mdi-magnify text-muted"></i>
+                        </span>
+                        <input type="text" id="billSearchInput" class="form-control border-start-0" style="border-radius: 0; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;" placeholder="Arama kelimesini yazın..." />
+                    </div>
+                    <select id="billFieldSelect" class="form-select" style="max-width: 180px; border-radius: 12px; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;">
+                        <option value="all">Tüm Alanlar</option>
+                        <option value="0">Dönem</option>
+                        <option value="1">Fatura No</option>
+                        <option value="4">Durum</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Dönem</th>
+                                <th>Fatura No</th>
+                                <th>Son Ödeme</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bill in Model.Bills.OrderByDescending(b => b.CreatedDate))
+                            {
+                                <tr>
+                                    <td class="fw-bold">@bill.BillYear / @bill.BillMonth</td>
+                                    <td>@bill.BillNo</td>
+                                    <td>@bill.DueDate.ToShortDateString()</td>
+                                    <td class="fw-bold text-primary">@bill.Amount TL</td>
+                                    <td>
+                                        @if(bill.Status == "Ödendi") {
+                                            <span class="badge badge-success">Ödendi</span>
+                                        } else {
+                                            <span class="badge badge-danger">Ödenmedi</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if(bill.Status != "Ödendi") {
+                                            <a asp-action="Pay" asp-route-billId="@bill.Id" class="btn btn-sm btn-gradient-warning"><i class="mdi mdi-credit-card"></i> Öde</a>
+                                        }
+                                        <a asp-controller="Export" asp-action="DownloadPdf" asp-route-billId="@bill.Id" class="btn btn-sm btn-gradient-info"><i class="mdi mdi-download"></i> PDF</a>
+                                        <a asp-controller="Export" asp-action="DownloadExcel" asp-route-billId="@bill.Id" class="btn btn-sm btn-gradient-success"><i class="mdi mdi-file-excel"></i> Excel</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('consumptionChart').getContext('2d');
+        var rawData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ConsumptionRecords.OrderBy(c => c.RecordDate).Select(c => new { Month = c.RecordDate.ToString("MMM yyyy"), Value = c.ConsumptionValue })));
+        
+        var labels = rawData.map(r => r.Month);
+        var values = rawData.map(r => r.Value);
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Tüketim Miktarı',
+                    data: values,
+                    backgroundColor: 'rgba(64, 165, 120, 0.2)',
+                    borderColor: 'rgba(64, 165, 120, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Real-time table search/filter
+        var searchInput = document.getElementById('billSearchInput');
+        var fieldSelect = document.getElementById('billFieldSelect');
+        
+        function filterBills() {
+            var query = searchInput.value.toLowerCase().trim();
+            var selectedField = fieldSelect.value;
+            var rows = document.querySelectorAll('.table-hover tbody tr');
+            
+            rows.forEach(function (row) {
+                var match = false;
+                if (selectedField === 'all') {
+                    match = row.textContent.toLowerCase().indexOf(query) > -1;
+                } else {
+                    var colIndex = parseInt(selectedField);
+                    if (row.cells[colIndex]) {
+                        match = row.cells[colIndex].textContent.toLowerCase().indexOf(query) > -1;
+                    }
+                }
+                row.style.display = match ? '' : 'none';
+            });
+        }
+        
+        if (searchInput && fieldSelect) {
+            searchInput.addEventListener('keyup', filterBills);
+            fieldSelect.addEventListener('change', filterBills);
+        }
+    </script>
+}

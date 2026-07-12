@@ -1,0 +1,207 @@
+@model SmartMunicipality.Models.CreateComplaintViewModel
+
+@{
+    ViewData["Title"] = "Yeni Şikayet";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-plus-circle"></i>
+        </span> Yeni Şikayet Bildir
+    </h3>
+</div>
+
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Şikayet/Talep Formu</h4>
+                <p class="card-description"> Lütfen bildirmek istediğiniz sorunu detaylıca yazın. </p>
+                <form asp-action="Create" class="forms-sample">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Title">Konu Başlığı</label>
+                        <input asp-for="Title" class="form-control" placeholder="Örn: Yol Çökmesi" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CategoryId">Kategori</label>
+                        <select asp-for="CategoryId" class="form-select" required>
+                            @if (ViewBag.Categories != null && ((IEnumerable<SmartMunicipality.MODEL.ComplaintCategory>)ViewBag.Categories).Any())
+                            {
+                                foreach (var cat in (IEnumerable<SmartMunicipality.MODEL.ComplaintCategory>)ViewBag.Categories)
+                                {
+                                    <option value="@cat.Id">@cat.Name</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="1">Altyapı ve Su</option>
+                                <option value="2">Yol ve Ulaşım</option>
+                                <option value="3">Çevre ve Temizlik</option>
+                                <option value="4">Diğer</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description">Detaylı Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Lütfen karşılaştığınız sorunu anlatın..." required></textarea>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label asp-for="Phone">İletişim Numarası</label>
+                            <input asp-for="Phone" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Address">Olayın Gerçekleştiği İlçe</label>
+                            <select asp-for="Address" id="AddressSelect" class="form-select" required>
+                                <option value="">İlçe Seçin</option>
+                                <option value="Adalar">Adalar</option>
+                                <option value="Arnavutköy">Arnavutköy</option>
+                                <option value="Ataşehir">Ataşehir</option>
+                                <option value="Avcılar">Avcılar</option>
+                                <option value="Bağcılar">Bağcılar</option>
+                                <option value="Bahçelievler">Bahçelievler</option>
+                                <option value="Bakırköy">Bakırköy</option>
+                                <option value="Başakşehir">Başakşehir</option>
+                                <option value="Bayrampaşa">Bayrampaşa</option>
+                                <option value="Beşiktaş">Beşiktaş</option>
+                                <option value="Beykoz">Beykoz</option>
+                                <option value="Beylikdüzü">Beylikdüzü</option>
+                                <option value="Beyoğlu">Beyoğlu</option>
+                                <option value="Büyükçekmece">Büyükçekmece</option>
+                                <option value="Çatalca">Çatalca</option>
+                                <option value="Çekmeköy">Çekmeköy</option>
+                                <option value="Esenler">Esenler</option>
+                                <option value="Esenyurt">Esenyurt</option>
+                                <option value="Eyüpsultan">Eyüpsultan</option>
+                                <option value="Fatih">Fatih</option>
+                                <option value="Gaziosmanpaşa">Gaziosmanpaşa</option>
+                                <option value="Güngören">Güngören</option>
+                                <option value="Kadıköy">Kadıköy</option>
+                                <option value="Kağıthane">Kağıthane</option>
+                                <option value="Kartal">Kartal</option>
+                                <option value="Küçükçekmece">Küçükçekmece</option>
+                                <option value="Maltepe">Maltepe</option>
+                                <option value="Pendik">Pendik</option>
+                                <option value="Sancaktepe">Sancaktepe</option>
+                                <option value="Sarıyer">Sarıyer</option>
+                                <option value="Silivri">Silivri</option>
+                                <option value="Sultanbeyli">Sultanbeyli</option>
+                                <option value="Sultangazi">Sultangazi</option>
+                                <option value="Şile">Şile</option>
+                                <option value="Şişli">Şişli</option>
+                                <option value="Tuzla">Tuzla</option>
+                                <option value="Ümraniye">Ümraniye</option>
+                                <option value="Üsküdar">Üsküdar</option>
+                                <option value="Zeytinburnu">Zeytinburnu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Konum Seçin (Haritada işaretleyin)</label>
+                        <input type="hidden" asp-for="Latitude" id="Latitude" value="41.0082" />
+                        <input type="hidden" asp-for="Longitude" id="Longitude" value="28.9784" />
+                        <div id="complaintMap" style="height: 350px; border-radius: 12px; border: 1px solid #ccc;" class="mb-3"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2 mt-3">Gönder</button>
+                    <a asp-action="Index" class="btn btn-light mt-3">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Istanbul coordinates default
+            var defaultLat = 41.0082;
+            var defaultLng = 28.9784;
+
+            var map = L.map('complaintMap').setView([defaultLat, defaultLng], 12);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap &copy; CARTO',
+                maxZoom: 19
+            }).addTo(map);
+
+            var marker = L.marker([defaultLat, defaultLng], { draggable: true }).addTo(map);
+
+            function updateCoords(lat, lng) {
+                document.getElementById('Latitude').value = lat;
+                document.getElementById('Longitude').value = lng;
+            }
+
+            map.on('click', function (e) {
+                marker.setLatLng(e.latlng);
+                updateCoords(e.latlng.lat, e.latlng.lng);
+            });
+
+            marker.on('dragend', function (e) {
+                var latlng = marker.getLatLng();
+                updateCoords(latlng.lat, latlng.lng);
+            });
+
+            // Focus map when district changes
+            document.getElementById('AddressSelect').addEventListener('change', function () {
+                var district = this.value;
+                var lat = defaultLat;
+                var lng = defaultLng;
+
+                switch (district) {
+                    case "Adalar": lat = 40.8744; lng = 29.1292; break;
+                    case "Arnavutköy": lat = 41.1852; lng = 28.7417; break;
+                    case "Ataşehir": lat = 40.9856; lng = 29.1080; break;
+                    case "Avcılar": lat = 40.9799; lng = 28.7217; break;
+                    case "Bağcılar": lat = 41.0344; lng = 28.8569; break;
+                    case "Bahçelievler": lat = 40.9989; lng = 28.8622; break;
+                    case "Bakırköy": lat = 40.9782; lng = 28.8744; break;
+                    case "Başakşehir": lat = 41.0980; lng = 28.8020; break;
+                    case "Bayrampaşa": lat = 41.0351; lng = 28.9125; break;
+                    case "Beşiktaş": lat = 41.0422; lng = 29.0083; break;
+                    case "Beykoz": lat = 41.1167; lng = 29.1000; break;
+                    case "Beylikdüzü": lat = 40.9904; lng = 28.6431; break;
+                    case "Beyoğlu": lat = 41.0282; lng = 28.9744; break;
+                    case "Büyükçekmece": lat = 41.0227; lng = 28.5903; break;
+                    case "Çatalca": lat = 41.1423; lng = 28.4608; break;
+                    case "Çekmeköy": lat = 41.0350; lng = 29.2060; break;
+                    case "Esenler": lat = 41.0381; lng = 28.8903; break;
+                    case "Esenyurt": lat = 41.0343; lng = 28.6801; break;
+                    case "Eyüpsultan": lat = 41.0478; lng = 28.9327; break;
+                    case "Fatih": lat = 41.0165; lng = 28.9482; break;
+                    case "Gaziosmanpaşa": lat = 41.0578; lng = 28.9144; break;
+                    case "Güngören": lat = 41.0219; lng = 28.8722; break;
+                    case "Kadıköy": lat = 40.9819; lng = 29.0270; break;
+                    case "Kağıthane": lat = 41.0814; lng = 28.9742; break;
+                    case "Kartal": lat = 40.8886; lng = 29.1857; break;
+                    case "Küçükçekmece": lat = 40.9900; lng = 28.7700; break;
+                    case "Maltepe": lat = 40.9255; lng = 29.1384; break;
+                    case "Pendik": lat = 40.8769; lng = 29.2583; break;
+                    case "Sancaktepe": lat = 41.0050; lng = 29.2430; break;
+                    case "Sarıyer": lat = 41.1685; lng = 29.0532; break;
+                    case "Silivri": lat = 41.0742; lng = 28.2481; break;
+                    case "Sultanbeyli": lat = 40.9669; lng = 29.2667; break;
+                    case "Sultangazi": lat = 41.1044; lng = 28.8606; break;
+                    case "Şile": lat = 41.1750; lng = 29.6100; break;
+                    case "Şişli": lat = 41.0610; lng = 28.9878; break;
+                    case "Tuzla": lat = 40.8164; lng = 29.3025; break;
+                    case "Ümraniye": lat = 41.0250; lng = 29.1240; break;
+                    case "Üsküdar": lat = 41.0256; lng = 29.0170; break;
+                    case "Zeytinburnu": lat = 40.9881; lng = 28.8953; break;
+                }
+
+                map.setView([lat, lng], 14);
+                marker.setLatLng([lat, lng]);
+                updateCoords(lat, lng);
+            });
+        });
+    </script>
+}

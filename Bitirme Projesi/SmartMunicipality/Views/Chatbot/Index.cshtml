@@ -1,0 +1,253 @@
+@{
+    ViewData["Title"] = "Yapay Zeka Chatbot";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+    .chat-container {
+        max-width: 800px;
+        margin: 0 auto;
+        height: 600px;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 15px 35px rgba(0, 103, 105, 0.05);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid rgba(0, 103, 105, 0.05);
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .chat-header-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        padding: 1.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background: #fdfdfd;
+    }
+
+    .message-bubble {
+        max-width: 75%;
+        padding: 1rem 1.25rem;
+        border-radius: 18px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        position: relative;
+        animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @@keyframes bubblePop {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .message-bot {
+        background-color: #f1f3f4;
+        color: #333333;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+    }
+
+    .message-user {
+        background: linear-gradient(135deg, var(--color-primary), #328b63);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+        padding: 1.25rem;
+        background: #ffffff;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        gap: 1rem;
+    }
+
+    .chat-input {
+        flex-grow: 1;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 30px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .chat-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(64, 165, 120, 0.15);
+    }
+
+    .btn-send {
+        background-color: var(--color-primary);
+        color: white;
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(64, 165, 120, 0.3);
+    }
+
+    .btn-send:hover {
+        background-color: var(--color-dark);
+        transform: scale(1.05);
+    }
+
+    /* Typing indicator */
+    .typing-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 6px 12px;
+        background: #f1f3f4;
+        border-radius: 12px;
+        align-self: flex-start;
+        margin-left: 10px;
+    }
+
+    .typing-dot {
+        width: 8px;
+        height: 8px;
+        background: #888;
+        border-radius: 50%;
+        animation: typingBounce 1.4s infinite ease-in-out both;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+    @@keyframes typingBounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+    }
+</style>
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-robot"></i>
+        </span> Yapay Zeka Asistanı
+    </h3>
+</div>
+
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="chat-header-icon">
+            <i class="mdi mdi-robot-concept"></i>
+        </div>
+        <div>
+            <h5 class="mb-0 fw-bold text-white">Akıllı Belediye Asistanı</h5>
+            <small class="text-white" style="opacity: 0.85;">7/24 Canlı Destek</small>
+        </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="message-bubble message-bot">
+            Merhaba! Ben belediyemizin yapay zeka asistanıyım. Su/doğalgaz abonelik işlemleri, fatura ödeme süreçleri, şikayet kaydı oluşturma gibi tüm konularda size yardımcı olabilirim. Nasıl yardımcı olabilirim?
+        </div>
+    </div>
+
+    <div class="chat-input-area">
+        <input type="text" id="userInput" class="chat-input" placeholder="Sorunuzu buraya yazın..." autocomplete="off" />
+        <button id="sendBtn" class="btn-send">
+            <i class="mdi mdi-send fs-5"></i>
+        </button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var chatMessages = document.getElementById('chatMessages');
+            var userInput = document.getElementById('userInput');
+            var sendBtn = document.getElementById('sendBtn');
+
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function appendMessage(text, isUser) {
+                var bubble = document.createElement('div');
+                bubble.classList.add('message-bubble');
+                bubble.classList.add(isUser ? 'message-user' : 'message-bot');
+                bubble.innerText = text;
+                chatMessages.appendChild(bubble);
+                scrollToBottom();
+            }
+
+            function showTypingIndicator() {
+                var indicator = document.createElement('div');
+                indicator.id = 'typingIndicator';
+                indicator.classList.add('typing-indicator');
+                indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                chatMessages.appendChild(indicator);
+                scrollToBottom();
+            }
+
+            function removeTypingIndicator() {
+                var indicator = document.getElementById('typingIndicator');
+                if (indicator) {
+                    indicator.remove();
+                }
+            }
+
+            function sendMessage() {
+                var text = userInput.value.trim();
+                if (text === '') return;
+
+                appendMessage(text, true);
+                userInput.value = '';
+
+                showTypingIndicator();
+
+                // Send request to controller
+                $.ajax({
+                    url: '/Chatbot/Ask',
+                    type: 'POST',
+                    data: { prompt: text },
+                    success: function (data) {
+                        removeTypingIndicator();
+                        appendMessage(data.answer, false);
+                    },
+                    error: function () {
+                        removeTypingIndicator();
+                        appendMessage("Bir hata oluştu. Lütfen tekrar deneyiniz.", false);
+                    }
+                });
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+}

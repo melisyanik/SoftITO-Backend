@@ -1,0 +1,6 @@
+@SmartMunicipality.EFCoreApi_HostAddress = http://localhost:5010
+
+GET {{SmartMunicipality.EFCoreApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,66 @@
+@model SmartMunicipality.MODEL.Subscription
+@{
+    ViewData["Title"] = "Yeni Abonelik Kaydı";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-plus-circle"></i>
+        </span> Yeni Abonelik Kaydı
+    </h3>
+</div>
+
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Abonelik Bilgileri</h4>
+                <form asp-action="AddSubscription" method="post" class="forms-sample">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="UserId">Kullanıcı (Vatandaş)</label>
+                        <select asp-for="UserId" class="form-select" required style="border-radius: 10px;">
+                            <option value="">-- Vatandaş Seçin --</option>
+                            @if (ViewBag.Citizens != null)
+                            {
+                                foreach (var citizen in (IEnumerable<SmartMunicipality.Controllers.OperatorController.CitizenUserViewModel>)ViewBag.Citizens)
+                                {
+                                    <option value="@citizen.Id">@citizen.Name @citizen.Surname (@citizen.Email)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="ServiceTypeId">Hizmet Türü</label>
+                        <select asp-for="ServiceTypeId" class="form-select" required>
+                            <option value="1">Su</option>
+                            <option value="2">Doğalgaz</option>
+                            <option value="3">Emlak Vergisi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="SubscriberNo">Abone Numarası</label>
+                        <input asp-for="SubscriberNo" class="form-control" placeholder="Örn: SU-123456" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="MeterNumber">Sayaç Seri Numarası</label>
+                        <input asp-for="MeterNumber" class="form-control" placeholder="Örn: MTR-987654" required />
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="Address">Hizmet Adresi</label>
+                        <textarea asp-for="Address" class="form-control" rows="3" placeholder="Abonelik kurulacak adres..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Aboneliği Aç</button>
+                    <a asp-action="Subscriptions" class="btn btn-light">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

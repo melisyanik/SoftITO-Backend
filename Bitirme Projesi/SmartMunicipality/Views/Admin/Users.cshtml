@@ -1,0 +1,124 @@
+@model IEnumerable<System.Text.Json.JsonElement>
+@{
+    ViewData["Title"] = "Kullanıcı Yönetimi";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-account-multiple"></i>
+        </span> Kullanıcı Yönetimi (Admin)
+    </h3>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Kayıtlı Kullanıcılar</h4>
+                
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-info">@TempData["Message"]</div>
+                }
+
+                <div class="mb-4 d-flex gap-2 flex-wrap">
+                    <div class="input-group" style="max-width: 350px;">
+                        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px; border-color: rgba(0, 103, 105, 0.15);">
+                            <i class="mdi mdi-magnify text-muted"></i>
+                        </span>
+                        <input type="text" id="userSearchInput" class="form-control border-start-0" style="border-radius: 0; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;" placeholder="Aramak istediğiniz terimi girin..." />
+                    </div>
+                    <select id="userFieldSelect" class="form-select" style="max-width: 180px; border-radius: 12px; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;">
+                        <option value="all">Tüm Alanlar</option>
+                        <option value="0">Ad Soyad</option>
+                        <option value="1">E-Posta</option>
+                        <option value="3">TC No</option>
+                        <option value="4">İlçe</option>
+                        <option value="5">Rol</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ad Soyad</th>
+                                <th>E-Posta</th>
+                                <th>Telefon</th>
+                                <th>TC No</th>
+                                <th>İlçe</th>
+                                <th>Rol</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                string userId = user.GetProperty("id").GetString() ?? "";
+                                <tr>
+                                    <td class="fw-bold">@user.GetProperty("name").GetString() @user.GetProperty("surname").GetString()</td>
+                                    <td>@user.GetProperty("email").GetString()</td>
+                                    <td>@user.GetProperty("phoneNumber").GetString()</td>
+                                    <td>@user.GetProperty("tcNo").GetString()</td>
+                                    <td>@user.GetProperty("district").GetString()</td>
+                                    <td>
+                                        @{
+                                            var role = user.GetProperty("role").GetString();
+                                            if(role == "Admin") { <span class="badge badge-warning">Admin</span> }
+                                            else if(role == "Operator") { <span class="badge badge-info">Personel</span> }
+                                            else { <span class="badge badge-success">Vatandaş</span> }
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-sm btn-gradient-info">Düzenle</a>
+                                            
+                                            <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Bu kullanıcıyı silmek istediğinize emin misiniz?');">
+                                                <input type="hidden" name="id" value="@userId" />
+                                                <button type="submit" class="btn btn-sm btn-gradient-danger">Sil</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('userSearchInput');
+            var fieldSelect = document.getElementById('userFieldSelect');
+            
+            function filterUsers() {
+                var query = searchInput.value.toLowerCase().trim();
+                var selectedField = fieldSelect.value;
+                var rows = document.querySelectorAll('table tbody tr');
+                
+                rows.forEach(function (row) {
+                    var match = false;
+                    if (selectedField === 'all') {
+                        match = row.textContent.toLowerCase().indexOf(query) > -1;
+                    } else {
+                        var colIndex = parseInt(selectedField);
+                        if (row.cells[colIndex]) {
+                            match = row.cells[colIndex].textContent.toLowerCase().indexOf(query) > -1;
+                        }
+                    }
+                    row.style.display = match ? '' : 'none';
+                });
+            }
+            
+            if (searchInput && fieldSelect) {
+                searchInput.addEventListener('keyup', filterUsers);
+                fieldSelect.addEventListener('change', filterUsers);
+            }
+        });
+    </script>
+}

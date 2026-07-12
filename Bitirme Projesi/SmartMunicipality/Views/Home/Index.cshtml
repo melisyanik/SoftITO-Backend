@@ -1,0 +1,731 @@
+@model SmartMunicipality.Models.HomeDashboardViewModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('istanbulMap', { zoomControl: false }).setView([41.0082, 28.9784], 11);
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+            // Daha premium ve koyu/açık dengeli bir harita stili
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap &copy; CARTO',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            var heatDataRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.HeatMapPoints.Select(h => new[] { h.Latitude, h.Longitude, h.Intensity })));
+            var pointsRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.HeatMapPoints));
+
+            if(typeof L.heatLayer !== 'undefined') {
+                L.heatLayer(heatDataRaw, {
+                    radius: 35,
+                    blur: 25,
+                    maxZoom: 13,
+                    gradient: {0.4: '#ff9999', 0.7: '#ff4d4d', 1: '#b30000'} // Koyu Kırmızı Heatmap
+                }).addTo(map);
+            }
+
+            // Harita üzerinde her bir şikayeti işaretleyen etkileşimli çemberler
+            if (pointsRaw && pointsRaw.length > 0) {
+                pointsRaw.forEach(function(p) {
+                    if (p.Latitude && p.Longitude) {
+                        var status = p.StatusName || "Bekliyor";
+                        var color = '#ff9900'; // Turuncu (Bekliyor)
+                        if (status === 'Çözüldü') {
+                            color = '#28a745'; // Yeşil
+                        } else if (status === 'İşlemde' || status === 'İnceleniyor') {
+                            color = '#17a2b8'; // Mavi
+                        }
+
+                        L.circleMarker([p.Latitude, p.Longitude], {
+                            radius: 9,
+                            fillColor: color,
+                            color: '#ffffff',
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }).addTo(map)
+                          .bindPopup("<div style='font-family:\"Outfit\",sans-serif; padding:5px;'><b>📍 " + p.Title + "</b><br><span style='color:#666;'>Konum: " + p.Address + "</span><br><span style='margin-top:5px; display:inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; background:" + color + "; color:#fff;'>" + status + "</span></div>");
+                    }
+                });
+            }
+
+            // Dinamik QR Kod Güncelleme
+            var qrSelect = document.getElementById('qrTargetSelect');
+            var qrImg = document.getElementById('qrCodeImage');
+            var qrBtn = document.getElementById('qrCodeButton');
+            var qrDesc = document.getElementById('qrCardDesc');
+
+            if (qrSelect && qrImg && qrBtn && qrDesc) {
+                qrSelect.addEventListener('change', function () {
+                    var selectedOption = qrSelect.options[qrSelect.selectedIndex];
+                    var url = qrSelect.value;
+                    
+                    // If relative URL, prefix with host
+                    var absoluteUrl = url;
+                    if (url.startsWith('/')) {
+                        absoluteUrl = window.location.origin + url;
+                    }
+
+                    var desc = selectedOption.getAttribute('data-desc');
+
+                    qrDesc.textContent = desc;
+                    qrBtn.href = url;
+                    
+                    // Update QR Image source
+                    qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(absoluteUrl);
+                });
+            }
+        });
+    </script>
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --color-dark: #0B1849;
+        --color-primary: #124D1C;
+        --color-secondary: #E4B028;
+        --color-accent: #EBEDE3;
+        --color-black: #111111;
+        --color-white: #ffffff;
+        --color-bg: #f5f6f3;
+    }
+
+    body {
+        font-family: 'Outfit', sans-serif;
+        background-color: var(--color-bg);
+        color: var(--color-black);
+    }
+
+    /* PREMIUM HERO SECTION */
+    .hero-premium {
+        background: var(--color-dark);
+        border-radius: 24px;
+        padding: 6rem 3rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 103, 105, 0.15);
+        margin-bottom: 3rem;
+        color: var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+    }
+
+    /* Soyut Arka Plan Şekilleri */
+    .hero-premium::after {
+        content: '';
+        position: absolute;
+        top: -10%;
+        right: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+        opacity: 0.4;
+        filter: blur(60px);
+        animation: floatShape 15s ease-in-out infinite alternate;
+        z-index: 0;
+    }
+    .hero-premium::before {
+        content: '';
+        position: absolute;
+        bottom: -20%;
+        left: 10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+        opacity: 0.2;
+        filter: blur(50px);
+        z-index: 0;
+    }
+
+    @@keyframes floatShape {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-30px, 30px) scale(1.1); }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+    }
+    .hero-title span {
+        color: var(--color-secondary);
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        font-weight: 300;
+        opacity: 0.85;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    /* PREMIUM BUTONLAR */
+    .btn-premium {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        border: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px rgba(64, 165, 120, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .btn-premium:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(64, 165, 120, 0.5);
+        background-color: #358d65;
+        color: var(--color-white);
+    }
+
+    .btn-premium-outline {
+        background-color: transparent;
+        color: var(--color-white);
+        border: 2px solid rgba(255,255,255,0.3);
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 0.9rem 2.5rem;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        backdrop-filter: blur(5px);
+    }
+    .btn-premium-outline:hover {
+        border-color: var(--color-white);
+        background: rgba(255,255,255,0.1);
+        transform: translateY(-3px);
+        color: var(--color-white);
+    }
+
+    /* STATİSTİK KARTLARI (GLASSMORPHISM) */
+    .stats-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: -6rem; /* Hero'nun üstüne bindirme */
+        position: relative;
+        z-index: 10;
+        padding: 0 2rem;
+    }
+
+    .stat-glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-glass-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 6px; height: 100%;
+        background: var(--color-primary);
+        border-radius: 20px 0 0 20px;
+    }
+    .stat-glass-card:nth-child(2)::before { background: var(--color-secondary); }
+    .stat-glass-card:nth-child(3)::before { background: var(--color-dark); }
+
+    .stat-glass-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--color-primary);
+        background: rgba(64, 165, 120, 0.15);
+    }
+
+    .stat-info h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+        color: var(--color-dark);
+        line-height: 1;
+    }
+    .stat-info p {
+        margin: 0;
+        font-weight: 500;
+        color: #666;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        margin-top: 0.5rem;
+    }
+
+    /* DUYURULAR */
+    .announcement-bar {
+        background: var(--color-white);
+        border-radius: 100px;
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0, 103, 105, 0.1);
+    }
+    .announcement-badge {
+        background: var(--color-dark);
+        color: var(--color-accent);
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-right: 1.5rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .marquee {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+    }
+    .marquee-inner {
+        display: inline-block;
+        white-space: nowrap;
+        animation: marqueeAnim 30s linear infinite;
+        font-weight: 500;
+        color: var(--color-black);
+    }
+    .marquee-inner span {
+        margin-right: 4rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    .marquee-inner span::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        margin-right: 10px;
+    }
+    @@keyframes marqueeAnim {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* HARİTA VE HABERLER */
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        margin-top: 3rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--color-dark);
+        margin: 0;
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 100%;
+        background: var(--color-primary);
+        border-radius: 10px;
+    }
+
+    .map-container {
+        background: var(--color-white);
+        border-radius: 24px;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        border: 1px solid rgba(0,0,0,0.02);
+    }
+    #istanbulMap {
+        height: 500px;
+        border-radius: 16px;
+        z-index: 1;
+    }
+    .live-badge {
+        background: rgba(64, 165, 120, 0.1);
+        color: var(--color-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .live-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        animation: pulseDot 2s infinite;
+    }
+    @@keyframes pulseDot {
+        0% { box-shadow: 0 0 0 0 rgba(64, 165, 120, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(64, 165, 120, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(64, 165, 120, 0); }
+    }
+
+    .news-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .news-item {
+        background: var(--color-white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.02);
+        display: flex;
+    }
+    .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 103, 105, 0.08);
+    }
+    .news-image {
+        width: 140px;
+        min-height: 100%;
+        object-fit: cover;
+    }
+    .news-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+    }
+    .news-tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--color-dark);
+        background: var(--color-secondary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 6px;
+        display: inline-block;
+        margin-bottom: 0.8rem;
+    }
+    .news-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--color-black);
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+    .news-desc {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger shadow-sm border-0 d-flex align-items-center gap-2" role="alert" style="border-radius: 15px; margin-bottom: 2rem; background: #ffe6e6; color: #b30000; font-weight: 500;">
+        <i class="mdi mdi-alert-circle-outline fs-4"></i>
+        <div>@ViewBag.ErrorMessage</div>
+    </div>
+}
+
+<!-- Duyurular Bandı -->
+<div class="announcement-bar">
+    <div class="announcement-badge">
+        <i class="mdi mdi-bell-ring-outline"></i> SON DAKİKA
+    </div>
+    <div class="marquee">
+        <div class="marquee-inner">
+            @if(Model.Announcements.Any())
+            {
+                @foreach (var ann in Model.Announcements)
+                {
+                    <span><strong>@ann.Title:</strong> @ann.Content</span>
+                }
+            }
+            else
+            {
+                <span>Şu an için aktif bir duyuru bulunmamaktadır.</span>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero-premium">
+    <div class="hero-content">
+        <h1 class="hero-title">Şehrini <span>Keşfet,</span><br>Geleceği Yönet.</h1>
+        <p class="hero-subtitle">
+            Akıllı Şehir Platformu ile mahallenizdeki sorunları anında bildirin, 
+            belediyemizin çözüm süreçlerini harita üzerinden şeffaf bir şekilde canlı takip edin.
+        </p>
+        <div class="d-flex gap-3">
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center" style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2);">
+                        <i class="mdi mdi-account-circle-outline fs-3 text-secondary me-2"></i>
+                        <div>
+                            <span class="d-block text-white" style="font-size: 0.8rem; opacity: 0.8;">Hoşgeldiniz</span>
+                            <strong class="text-white">@User.Identity.Name</strong>
+                        </div>
+                    </div>
+                    <a asp-controller="Profile" asp-action="Index" class="btn-premium">
+                        Detaylar <i class="mdi mdi-arrow-right"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Register" class="btn-premium">
+                    <i class="mdi mdi-account-plus-outline fs-5"></i> Hemen Katıl
+                </a>
+                <a asp-controller="Auth" asp-action="Login" class="btn-premium-outline">
+                    <i class="mdi mdi-login fs-5"></i> Giriş Yap
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- İstatistikler -->
+<div class="stats-wrapper">
+    <div class="stat-glass-card">
+        <div class="stat-icon">
+            <i class="mdi mdi-account-group-outline"></i>
+        </div>
+        <div class="stat-info">
+            <h2>@Model.TotalCitizens</h2>
+            <p>Vatandaş Ağı</p>
+        </div>
+    </div>
+    <div class="stat-glass-card">
+        <div class="stat-icon" style="background: var(--color-secondary); color: var(--color-dark);">
+            <i class="mdi mdi-check-circle-outline"></i>
+        </div>
+        <div class="stat-info">
+            <h2>@Model.ResolvedComplaints</h2>
+            <p>Çözülen Bildirim</p>
+        </div>
+    </div>
+    <div class="stat-glass-card">
+        <div class="stat-icon" style="background: var(--color-dark); color: var(--color-accent);">
+            <i class="mdi mdi-clock-outline"></i>
+        </div>
+        <div class="stat-info">
+            <h2>@Model.PendingComplaints</h2>
+            <p>İşlemdeki Süreçler</p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-5 mt-2 mb-5">
+    <!-- Harita -->
+    <div class="col-xl-8 col-lg-8">
+        <div class="section-header">
+            <h3 class="section-title">Canlı Çözüm Haritası</h3>
+            <div class="live-badge">
+                <span class="live-dot"></span> Veri Akışı Aktif
+            </div>
+        </div>
+        <div class="map-container">
+            <div id="istanbulMap"></div>
+        </div>
+    </div>
+    
+    <!-- Sağ Panel: Hızlı İşlemler & E-Devlet -->
+    <div class="col-xl-4 col-lg-4">
+        <!-- Hızlı İşlemler (sadece giriş yapmış vatandaşlara) -->
+        @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin") && !User.IsInRole("Operator"))
+        {
+            <div class="section-header">
+                <h3 class="section-title">Hızlı İşlemler</h3>
+            </div>
+            <div class="row g-3">
+                <div class="col-6">
+                    <a asp-controller="Complaints" asp-action="Create" style="text-decoration:none;">
+                        <div class="card h-100" style="border-radius:20px;border:none;box-shadow:0 10px 25px rgba(0,0,0,0.03);transition:all 0.3s ease;cursor:pointer;background:white;"
+                             onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 30px rgba(11,24,73,0.08)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 25px rgba(0,0,0,0.03)';">
+                            <div class="card-body text-center py-4">
+                                <div style="width:50px;height:50px;border-radius:15px;background:rgba(11,24,73,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem;font-size:1.5rem;color:var(--color-dark);">
+                                    <i class="mdi mdi-alert-circle-outline"></i>
+                                </div>
+                                <p class="mb-0 fw-bold small text-dark">Şikayet Bildir</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Subscriptions" asp-action="Index" style="text-decoration:none;">
+                        <div class="card h-100" style="border-radius:20px;border:none;box-shadow:0 10px 25px rgba(0,0,0,0.03);transition:all 0.3s ease;cursor:pointer;background:white;"
+                             onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 30px rgba(18,77,28,0.08)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 25px rgba(0,0,0,0.03)';">
+                            <div class="card-body text-center py-4">
+                                <div style="width:50px;height:50px;border-radius:15px;background:rgba(18,77,28,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem;font-size:1.5rem;color:var(--color-primary);">
+                                    <i class="mdi mdi-water-outline"></i>
+                                </div>
+                                <p class="mb-0 fw-bold small text-dark">Faturalarım</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Complaints" asp-action="Index" style="text-decoration:none;">
+                        <div class="card h-100" style="border-radius:20px;border:none;box-shadow:0 10px 25px rgba(0,0,0,0.03);transition:all 0.3s ease;cursor:pointer;background:white;"
+                             onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 30px rgba(228,176,40,0.08)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 25px rgba(0,0,0,0.03)';">
+                            <div class="card-body text-center py-4">
+                                <div style="width:50px;height:50px;border-radius:15px;background:rgba(228,176,40,0.08);display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem;font-size:1.5rem;color:var(--color-secondary);">
+                                    <i class="mdi mdi-clipboard-list-outline"></i>
+                                </div>
+                                <p class="mb-0 fw-bold small text-dark">Şikayetlerim</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a asp-controller="Chatbot" asp-action="Index" style="text-decoration:none;">
+                        <div class="card h-100" style="border-radius:20px;border:none;box-shadow:0 10px 25px rgba(0,0,0,0.03);transition:all 0.3s ease;cursor:pointer;background:white;border:1px solid rgba(18,77,28,0.15);"
+                             onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 30px rgba(18,77,28,0.12)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 25px rgba(0,0,0,0.03)';">
+                            <div class="card-body text-center py-4">
+                                <div style="width:50px;height:50px;border-radius:15px;background:rgba(18,77,28,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem;font-size:1.5rem;color:var(--color-primary);">
+                                    <i class="mdi mdi-robot"></i>
+                                </div>
+                                <p class="mb-0 fw-bold small text-dark">AI Asistan</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="section-header">
+                <h3 class="section-title">Hizmetlerimiz</h3>
+            </div>
+            <div class="card" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: none; background: white; padding: 1.5rem;">
+                <h5 class="fw-bold mb-3 text-dark"><i class="mdi mdi-information-outline me-2 text-primary"></i>Akıllı Şehir Portalı</h5>
+                <p class="text-muted small mb-0" style="line-height: 1.6;">
+                    Şikayet bildirmek, faturalarınızı ödemek ve kişiselleştirilmiş belediye hizmetlerinden yararlanmak için lütfen giriş yapın veya kayıt olun.
+                </p>
+            </div>
+        }
+
+        <!-- Dinamik QR Kod Kartı -->
+        <div class="card mt-4" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: none; background: white; overflow: hidden;">
+            <div class="card-body p-4 text-center">
+                <h5 class="fw-bold mb-2 text-dark"><i class="mdi mdi-qrcode me-2 text-primary"></i>Hızlı Erişim QR Kodu</h5>
+                
+                <div class="form-group mb-3">
+                    <select id="qrTargetSelect" class="form-select form-select-sm" style="border-radius: 10px; border-color: rgba(0,103,105,0.15); font-weight: 500;">
+                        <option value="https://www.turkiye.gov.tr/istanbul-belediyeleri" data-desc="Belediyelere özel işlemler yapmak için okutun">E-Devlet Kapısı</option>
+                        <option value="/Complaints/Create" data-desc="Sorunları bildirmek için şikayet sayfasına gidin">Şikayet Bildir</option>
+                        <option value="/Subscriptions/Index" data-desc="Faturalarınızı görüntülemek ve ödemek için okutun">Faturalarım &amp; Ödeme</option>
+                        <option value="/Chatbot/Index" data-desc="Belediye asistanımız ile görüşmek için okutun">AI Asistanı</option>
+                    </select>
+                </div>
+
+                <p class="text-muted mb-3" id="qrCardDesc" style="font-size: 0.85rem;">Belediyelere özel işlemler yapmak için okutun</p>
+                <div style="background: #f8f9fa; display: inline-block; padding: 1rem; border-radius: 15px;">
+                    <img id="qrCodeImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://www.turkiye.gov.tr/istanbul-belediyeleri" alt="QR Code" style="width: 110px; height: 110px;" />
+                </div>
+                <div class="mt-3">
+                    <a id="qrCodeButton" href="https://www.turkiye.gov.tr/istanbul-belediyeleri" target="_blank" class="btn btn-sm btn-gradient-primary" style="border-radius: 50px; padding: 0.4rem 1.2rem; font-size: 0.8rem; font-weight: bold; border: none; color: white;">
+                        <i class="mdi mdi-open-in-new me-1"></i> Sayfaya Git
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gündem Haberleri (Genişletilmiş Tasarım) -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="section-header d-flex justify-content-between align-items-center">
+            <h3 class="section-title">Gündem Haberleri</h3>
+            <a asp-controller="Announcements" asp-action="Index" class="btn btn-sm btn-gradient-primary" style="border-radius: 50px; padding: 0.5rem 1.5rem; font-size: 0.85rem; font-weight: 700; border: none; color: white;">
+                Tüm Haberleri Gör <i class="mdi mdi-arrow-right ms-1"></i>
+            </a>
+        </div>
+        
+        <div class="row g-4">
+            @if(Model.LatestNews.Any())
+            {
+                var newsList = Model.LatestNews.Take(3).ToList();
+                for (int i = 0; i < newsList.Count; i++)
+                {
+                    var news = newsList[i];
+                    var imageUrl = i == 0 ? "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 : i == 1 ? "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                 : "https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80";
+                                 
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100" style="border-radius:24px; border:none; box-shadow:0 10px 30px rgba(0,0,0,0.03); overflow:hidden; transition:all 0.3s ease; background: white;"
+                             onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 35px rgba(0,103,105,0.08)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.03)';">
+                            <img src="@imageUrl" class="card-img-top" alt="Haber Görseli" style="height: 200px; object-fit: cover;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="mb-2">
+                                    <span class="news-tag" style="margin-bottom:0;">Belediye</span>
+                                </div>
+                                <h4 class="card-title fw-bold text-dark" style="font-size: 1.15rem; line-height: 1.4; margin-bottom: 0.75rem;">@news.Title</h4>
+                                <p class="card-text text-muted small flex-grow-1" style="line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;">
+                                    @news.Content
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-light text-center py-4" style="border-radius: 20px;">Güncel haber bulunamadı.</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

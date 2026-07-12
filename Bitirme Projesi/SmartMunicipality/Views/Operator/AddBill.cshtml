@@ -1,0 +1,129 @@
+@{
+    ViewData["Title"] = "Yeni Fatura Oluştur";
+    var subscriptions = ViewBag.Subscriptions as List<SmartMunicipality.MODEL.Subscription> ?? new List<SmartMunicipality.MODEL.Subscription>();
+    var selectedSubId = (int)(ViewBag.SelectedSubscriptionId ?? 0);
+    var currentYear = DateTime.Now.Year;
+    var currentMonth = DateTime.Now.Month;
+    var draftBillNo = "FAT-" + DateTime.Now.ToString("yyyyMM") + "-" + new Random().Next(1000, 9999);
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-cash"></i>
+        </span> Yeni Fatura Oluştur
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Bills">Faturalar</a></li>
+            <li class="breadcrumb-item active">Yeni Fatura</li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Fatura Detayları</h4>
+                <form asp-action="AddBill" method="post" class="forms-sample">
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Abonelik Seçin</label>
+                        <select name="subscriptionId" class="form-select mt-1" required style="border-radius: 10px;">
+                            <option value="">-- Abonelik Seçin --</option>
+                            @foreach (var sub in subscriptions)
+                            {
+                                var userName = sub.User != null ? $"{sub.User.Name} {sub.User.Surname}" : "Bilinmeyen";
+                                var serviceName = sub.ServiceType?.Name ?? "Bilinmeyen";
+                                if (sub.Id == selectedSubId)
+                                {
+                                    <option value="@sub.Id" selected>@userName — @serviceName (@sub.SubscriberNo)</option>
+                                }
+                                else
+                                {
+                                    <option value="@sub.Id">@userName — @serviceName (@sub.SubscriberNo)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Fatura Seri Numarası</label>
+                        <input type="text" name="billNo" class="form-control mt-1" value="@draftBillNo" placeholder="Fatura No" required style="border-radius: 10px;" />
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label class="fw-bold">Fatura Ayı</label>
+                            <select name="billMonth" class="form-select mt-1" required style="border-radius: 10px;">
+                                @{
+                                    var monthNames2 = new[] { "", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+                                }
+                                @for (int i = 1; i <= 12; i++)
+                                {
+                                    if (i == currentMonth)
+                                    {
+                                        <option value="@i" selected>@monthNames2[i] (@i)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">@monthNames2[i] (@i)</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="fw-bold">Fatura Yılı</label>
+                            <select name="billYear" class="form-select mt-1" required style="border-radius: 10px;">
+                                <option value="@currentYear" selected>@currentYear</option>
+                                <option value="@(currentYear-1)">@(currentYear-1)</option>
+                                <option value="@(currentYear+1)">@(currentYear+1)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 form-group">
+                            <label class="fw-bold">Fatura Tutarı (TL)</label>
+                            <div class="input-group mt-1">
+                                <input type="number" step="0.01" name="amount" class="form-control" placeholder="0.00" required style="border-radius: 10px 0 0 10px;" />
+                                <span class="input-group-text" style="border-radius: 0 10px 10px 0; background:#f8f9fa; font-weight:bold;">₺</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="fw-bold">Son Ödeme Tarihi</label>
+                            <input type="date" name="dueDate" class="form-control mt-1"
+                                   value="@DateTime.Now.AddDays(15).ToString("yyyy-MM-dd")" required style="border-radius: 10px;" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-gradient-primary flex-grow-1">
+                            <i class="mdi mdi-receipt me-1"></i> Faturayı Kes
+                        </button>
+                        <a asp-action="Bills" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bilgi Kartı -->
+    <div class="col-md-4 grid-margin">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03); background: linear-gradient(135deg, #0B1849, #124D1C); color: white;">
+            <div class="card-body p-4">
+                <i class="mdi mdi-information-outline" style="font-size: 2rem; color: #E4B028;"></i>
+                <h5 class="fw-bold mt-2 text-white">Fatura Bilgisi</h5>
+                <p class="mb-2" style="opacity:0.85; font-size:0.9rem;">Fatura oluşturulduğunda vatandaşa otomatik bildirim gönderilir.</p>
+                <hr style="border-color: rgba(255,255,255,0.2);">
+                <ul class="list-unstyled mb-0" style="font-size:0.85rem; opacity:0.8;">
+                    <li class="mb-1"><i class="mdi mdi-check me-1 text-secondary"></i> Abonelik seçin</li>
+                    <li class="mb-1"><i class="mdi mdi-check me-1 text-secondary"></i> Fatura dönemi belirleyin</li>
+                    <li class="mb-1"><i class="mdi mdi-check me-1 text-secondary"></i> Tutarı ve son ödeme tarihini girin</li>
+                    <li class="mb-1"><i class="mdi mdi-check me-1 text-secondary"></i> "Faturayı Kes" ile kaydedin</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

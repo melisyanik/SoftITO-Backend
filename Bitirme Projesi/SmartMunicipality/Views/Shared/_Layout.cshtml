@@ -1,0 +1,550 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var isHome = controller == "Home" && action == "Index";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Akıllı Belediye</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-dark: #0B1849;
+            --color-primary: #124D1C;
+            --color-secondary: #E4B028;
+            --color-accent: #EBEDE3;
+            --color-bg: #f5f6f3;
+        }
+        
+        body, .container-scroller {
+            font-family: 'Outfit', sans-serif !important;
+            background-color: var(--color-bg);
+        }
+
+        /* NAVBAR STYLING */
+        .navbar.default-layout-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 103, 105, 0.05);
+            border-bottom: none;
+        }
+        .navbar .navbar-brand-wrapper {
+            background: var(--color-dark);
+            transition: all 0.3s ease;
+        }
+        .navbar .navbar-brand-wrapper .navbar-brand {
+            color: var(--color-white) !important;
+            font-weight: 900 !important;
+            letter-spacing: 1px;
+        }
+        .navbar .navbar-brand-wrapper .navbar-brand span {
+            color: var(--color-secondary) !important;
+        }
+        .navbar .navbar-brand-wrapper .brand-logo-mini {
+            color: var(--color-white) !important;
+        }
+
+        /* SIDEBAR PREMIUM STYLING */
+        .sidebar {
+            background: var(--color-dark);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.05);
+            padding-top: 1rem;
+            position: fixed;
+            height: calc(100vh - 70px);
+            top: 70px;
+            overflow-y: auto;
+            width: 260px;
+            z-index: 999;
+        }
+        .sidebar .nav .nav-item .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            border-radius: 12px;
+            margin: 0.2rem 1rem;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        .sidebar .nav .nav-item .nav-link i.menu-icon {
+            color: var(--color-secondary);
+        }
+        .sidebar .nav .nav-item.active > .nav-link, 
+        .sidebar .nav .nav-item:hover > .nav-link {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: var(--color-white) !important;
+            transform: translateX(5px);
+        }
+        .sidebar .nav .nav-item.active > .nav-link i.menu-icon,
+        .sidebar .nav .nav-item:hover > .nav-link i.menu-icon {
+            color: var(--color-secondary) !important;
+        }
+        .sidebar-section-label {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.75rem 2rem 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        /* SIDEBAR PROFILE */
+        .sidebar .nav .nav-profile .nav-profile-text {
+            color: var(--color-white);
+        }
+        .sidebar .nav .nav-profile .nav-profile-text .text-secondary {
+            color: var(--color-secondary) !important;
+        }
+        .sidebar .nav .nav-profile {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-panel {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+        }
+        .content-wrapper {
+            background: var(--color-bg);
+            padding: 2.5rem;
+        }
+        
+        .footer {
+            background: transparent;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Override template colors and gradients for unified styling */
+        .text-primary { color: var(--color-dark) !important; }
+        .text-info { color: var(--color-primary) !important; }
+        .bg-gradient-primary { background: linear-gradient(to right, var(--color-dark), var(--color-primary)) !important; }
+        .bg-gradient-info { background: linear-gradient(to right, var(--color-primary), var(--color-accent)) !important; }
+        .bg-gradient-success { background: linear-gradient(to right, var(--color-primary), var(--color-secondary)) !important; }
+        
+        .btn-gradient-primary {
+            background: linear-gradient(to right, var(--color-dark), var(--color-primary)) !important;
+            border: none !important;
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(11, 24, 73, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-primary:hover, .btn-gradient-primary:focus, .btn-gradient-primary:active {
+            background: linear-gradient(to right, var(--color-primary), var(--color-dark)) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(11, 24, 73, 0.35);
+            color: #fff !important;
+        }
+        
+        .btn-gradient-info {
+            background: linear-gradient(to right, var(--color-primary), #237a32) !important;
+            border: none !important;
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(18, 77, 28, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-info:hover {
+            background: linear-gradient(to right, #237a32, var(--color-primary)) !important;
+            transform: translateY(-2px);
+            color: #fff !important;
+        }
+        
+        .btn-gradient-success {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary)) !important;
+            border: none !important;
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(18, 77, 28, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-success:hover {
+            background: linear-gradient(to right, var(--color-secondary), var(--color-primary)) !important;
+            transform: translateY(-2px);
+            color: #fff !important;
+        }
+        
+        .btn-gradient-warning {
+            background: linear-gradient(to right, var(--color-secondary), #f5c442) !important;
+            border: none !important;
+            color: #111 !important;
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-warning:hover {
+            transform: translateY(-2px);
+            color: #111 !important;
+        }
+
+        .btn-gradient-danger {
+            background: linear-gradient(to right, #c0392b, #e74c3c) !important;
+            border: none !important;
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-danger:hover {
+            transform: translateY(-2px);
+            color: #fff !important;
+        }
+
+        /* FLOATING CHATBOT */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+        }
+        .chatbot-fab-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+            color: #fff;
+            border: none;
+            box-shadow: 0 8px 25px rgba(11,24,73,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .chatbot-fab-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 12px 30px rgba(11,24,73,0.45);
+            color: #fff;
+        }
+        .chatbot-fab-tooltip {
+            position: absolute;
+            bottom: 68px;
+            right: 0;
+            background: var(--color-dark);
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .chatbot-fab:hover .chatbot-fab-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .chatbot-speech-bubble {
+            position: absolute;
+            right: 70px;
+            bottom: 10px;
+            background: var(--color-dark);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            animation: bounceSpeech 2s infinite alternate;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chatbot-speech-bubble::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            bottom: 15px;
+            width: 12px;
+            height: 12px;
+            background: var(--color-dark);
+            transform: rotate(45deg);
+        }
+        .chatbot-speech-bubble .close-bubble {
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            font-size: 0.95rem;
+        }
+        .chatbot-speech-bubble .close-bubble:hover {
+            opacity: 1;
+        }
+        @@keyframes bounceSpeech {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo text-primary fw-bold" href="/" style="font-size: 1.5rem;">Akıllı<span>Belediye</span></a>
+                <a class="navbar-brand brand-logo-mini text-primary fw-bold" href="/">A<span>B</span></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+
+                <ul class="navbar-nav navbar-nav-right">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        @await Component.InvokeAsync("NotificationBell")
+                        <li class="nav-item nav-profile dropdown">
+                            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="nav-profile-img" style="width: 35px; height: 35px; background: rgba(0,103,105,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                                    <i class="mdi mdi-account text-primary" style="font-size: 1.5rem; margin: 0;"></i>
+                                    <span class="availability-status online" style="position: absolute; bottom: 0; right: 0;"></span>
+                                </div>
+                                <div class="nav-profile-text">
+                                    <p class="mb-1 text-black">
+                                        @User.Identity.Name
+                                        @if(User.IsInRole("Admin")) { <span class="badge badge-warning ms-1">Admin</span> }
+                                        else if(User.IsInRole("Operator")) { <span class="badge badge-info ms-1">Operatör</span> }
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
+                                    <i class="mdi mdi-account-circle me-2 text-primary"></i> Profilim
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">
+                                    <i class="mdi mdi-logout me-2 text-primary"></i> Çıkış Yap 
+                                </a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Auth" asp-action="Login">Giriş Yap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-primary" asp-controller="Auth" asp-action="Register">Kayıt Ol</a>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a asp-controller="Profile" asp-action="Index" class="nav-link" style="flex-direction: column; align-items: center; gap: 0.5rem; text-align: center;">
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold">@User.Identity.Name</span>
+                                <span class="text-secondary text-small" style="font-size: 0.8rem;">
+                                    @if(User.IsInRole("Admin")) { <span>Yönetici</span> }
+                                    else if(User.IsInRole("Operator")) { <span>Personel</span> }
+                                    else { <span>Vatandaş</span> }
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Ana Sayfa — everyone -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Ana Sayfa</span>
+                        </a>
+                    </li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <!-- ═══ ADMIN PANEL ═══ -->
+                        <li class="sidebar-section-label">Yönetim</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Index">
+                                <i class="mdi mdi-view-dashboard menu-icon"></i>
+                                <span class="menu-title">Admin Paneli</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Users">
+                                <i class="mdi mdi-account-multiple menu-icon"></i>
+                                <span class="menu-title">Kullanıcı Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Announcements">
+                                <i class="mdi mdi-bullhorn menu-icon"></i>
+                                <span class="menu-title">Duyuru Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="ComplaintCategories">
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                                <span class="menu-title">Şikayet Kategorileri</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Reports">
+                                <i class="mdi mdi-chart-bar menu-icon"></i>
+                                <span class="menu-title">Raporlar & Analitik</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="HeatMap">
+                                <i class="mdi mdi-map-marker-radius menu-icon"></i>
+                                <span class="menu-title">Yoğunluk Haritası</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-section-label">Operasyonlar</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="Complaints">
+                                <i class="mdi mdi-clipboard-text menu-icon"></i>
+                                <span class="menu-title">Şikayet Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="Subscriptions">
+                                <i class="mdi mdi-water menu-icon"></i>
+                                <span class="menu-title">Abonelik Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="MeterReading">
+                                <i class="mdi mdi-speedometer menu-icon"></i>
+                                <span class="menu-title">Sayaç Okuma</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="Bills">
+                                <i class="mdi mdi-cash-register menu-icon"></i>
+                                <span class="menu-title">Fatura Yönetimi</span>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Operator"))
+                    {
+                        <!-- ═══ OPERATOR PANEL ═══ -->
+                        <li class="sidebar-section-label">Abonelik & Sayaç</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="Subscriptions">
+                                <i class="mdi mdi-water menu-icon"></i>
+                                <span class="menu-title">Abonelik Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="MeterReading">
+                                <i class="mdi mdi-speedometer menu-icon"></i>
+                                <span class="menu-title">Sayaç Okuma</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-section-label">Fatura</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="Bills">
+                                <i class="mdi mdi-cash-register menu-icon"></i>
+                                <span class="menu-title">Fatura Yönetimi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Operator" asp-action="AddBill">
+                                <i class="mdi mdi-cash-plus menu-icon"></i>
+                                <span class="menu-title">Yeni Fatura Kes</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <!-- ═══ CITIZEN PANEL ═══ -->
+                        <li class="sidebar-section-label">Hizmetlerim</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Subscriptions" asp-action="Index">
+                                <i class="mdi mdi-water menu-icon"></i>
+                                <span class="menu-title">Aboneliklerim</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Complaints" asp-action="Index">
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                                <span class="menu-title">Şikayetlerim</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-section-label">Destek</li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Chatbot" asp-action="Index">
+                                <i class="mdi mdi-robot menu-icon"></i>
+                                <span class="menu-title">Akıllı Asistan</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            }
+            <!-- partial -->
+            <div class="main-panel" @(User.Identity != null && User.Identity.IsAuthenticated ? "" : "style=margin-left:0;width:100%;")>
+                <div class="content-wrapper">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 15px; border: none; box-shadow: 0 5px 15px rgba(64, 165, 120, 0.2);">
+                            <i class="mdi mdi-check-circle-outline fs-5 me-2 align-middle"></i>
+                            @TempData["Message"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 15px; border: none;">
+                            <i class="mdi mdi-alert-circle-outline fs-5 me-2 align-middle"></i>
+                            @TempData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @RenderBody()
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright &copy; Akıllı Belediye 2026</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    
+    @if ((User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin") && !User.IsInRole("Operator")) 
+        || (!(User.Identity != null && User.Identity.IsAuthenticated) && isHome))
+    {
+        <div class="chatbot-fab">
+            <div class="chatbot-speech-bubble" id="chatbotSpeechBubble">
+                <span>Nasıl yardımcı olabilirim? 🤖</span>
+                <i class="mdi mdi-close close-bubble" onclick="document.getElementById('chatbotSpeechBubble').style.display='none'"></i>
+            </div>
+            <span class="chatbot-fab-tooltip">Akıllı Asistan</span>
+            <a href="/Chatbot/Index" class="chatbot-fab-btn" title="Akıllı Belediye Asistanı">
+                <i class="mdi mdi-robot"></i>
+            </a>
+        </div>
+    }
+
+    <!-- plugins:js -->
+    <script src="~/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/assets/js/off-canvas.js"></script>
+    <script src="~/assets/js/hoverable-collapse.js"></script>
+    <script src="~/assets/js/misc.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

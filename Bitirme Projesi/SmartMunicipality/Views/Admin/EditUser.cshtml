@@ -1,0 +1,84 @@
+@model System.Text.Json.JsonElement
+@{
+    ViewData["Title"] = "Kullanıcı Düzenle";
+    string userId = Model.GetProperty("id").GetString() ?? "";
+    string name = Model.GetProperty("name").GetString() ?? "";
+    string surname = Model.GetProperty("surname").GetString() ?? "";
+    string email = Model.GetProperty("email").GetString() ?? "";
+    string phone = Model.GetProperty("phoneNumber").GetString() ?? "";
+    string tcNo = Model.GetProperty("tcNo").GetString() ?? "";
+    string address = Model.GetProperty("address").GetString() ?? "";
+    string district = Model.GetProperty("district").GetString() ?? "";
+    string currentRole = Model.GetProperty("role").GetString() ?? "Citizen";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-account-edit"></i>
+        </span> Kullanıcı Düzenle
+    </h3>
+</div>
+
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Kullanıcı Bilgileri</h4>
+                <form asp-action="EditUser" method="post" class="forms-sample">
+                    <input type="hidden" name="id" value="@userId" />
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="name">İsim</label>
+                            <input type="text" name="name" class="form-control" value="@name" required />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="surname">Soyisim</label>
+                            <input type="text" name="surname" class="form-control" value="@surname" required />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="email">E-Posta</label>
+                            <input type="email" name="email" class="form-control" value="@email" required />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="phoneNumber">Telefon</label>
+                            <input type="text" name="phoneNumber" class="form-control" value="@phone" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="tcNo">T.C. Kimlik No</label>
+                            <input type="text" name="tcNo" class="form-control" value="@tcNo" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="district">İlçe</label>
+                            <input type="text" name="district" class="form-control" value="@district" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="role">Sistem Rolü</label>
+                        <select name="role" class="form-select" required>
+                            <option value="Citizen" selected="@(currentRole == "Citizen")">Vatandaş (Citizen)</option>
+                            <option value="Operator" selected="@(currentRole == "Operator")">Personel (Operator)</option>
+                            <option value="Admin" selected="@(currentRole == "Admin")">Yönetici (Admin)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="address">Adres</label>
+                        <textarea name="address" class="form-control" rows="3">@address</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Kaydet</button>
+                    <a asp-action="Users" class="btn btn-light">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

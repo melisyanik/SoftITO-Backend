@@ -1,0 +1,139 @@
+@model SmartMunicipality.MODEL.Complaint
+@{
+    ViewData["Title"] = "Şikayet Detay ve Yanıt";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-reply"></i>
+        </span> Şikayeti Yanıtla
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Complaints">Şikayet Yönetimi</a></li>
+            <li class="breadcrumb-item active">Yanıtla</li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row">
+    <!-- Sol: Şikayet Bilgileri -->
+    <div class="col-md-7 grid-margin">
+        <!-- Şikayet Detayı -->
+        <div class="card mb-4" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h3 class="text-dark fw-bold mb-0">@Model.Title</h3>
+                    <div>
+                        @if(Model.StatusId == 1) { <span class="badge badge-warning fs-6">Beklemede</span> }
+                        else if(Model.StatusId == 2) { <span class="badge badge-info fs-6">İnceleniyor</span> }
+                        else if(Model.StatusId == 3) { <span class="badge badge-success fs-6">Çözüldü</span> }
+                        else { <span class="badge badge-danger fs-6">Reddedildi</span> }
+                    </div>
+                </div>
+                <p class="text-muted mb-2"><i class="mdi mdi-calendar me-1"></i> @Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")</p>
+                <p class="text-muted mb-2"><i class="mdi mdi-map-marker me-1"></i> @Model.Address</p>
+                <p class="text-muted mb-2"><i class="mdi mdi-phone me-1"></i> @Model.Phone</p>
+                <hr />
+                <h5 class="fw-bold">Açıklama</h5>
+                <p class="text-muted" style="white-space: pre-line;">@Model.Description</p>
+            </div>
+        </div>
+
+        <!-- Yanıt Formu -->
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-pencil-box me-2 text-primary"></i>İşlem Yap / Yanıtla</h4>
+                <form asp-action="RespondComplaint" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="form-group mb-3">
+                        <label for="statusId" class="fw-bold mb-2">Durum Güncelle</label>
+                        <select name="statusId" id="statusId" class="form-select form-control" style="border-radius: 12px;">
+                            <option value="1" selected="@(Model.StatusId == 1 ? "selected" : null)">Beklemede</option>
+                            <option value="2" selected="@(Model.StatusId == 2 ? "selected" : null)">İnceleniyor</option>
+                            <option value="3" selected="@(Model.StatusId == 3 ? "selected" : null)">Çözüldü</option>
+                            <option value="4" selected="@(Model.StatusId == 4 ? "selected" : null)">Reddedildi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="fw-bold">Belediye Yanıt Metni</label>
+                        <textarea name="responseText" class="form-control mt-2" rows="5"
+                                  placeholder="Vatandaşa iletilecek çözüm açıklamasını yazınız..." required
+                                  style="border-radius: 12px;"></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-gradient-primary flex-grow-1">
+                            <i class="mdi mdi-send me-1"></i> Cevabı Gönder & Kaydet
+                        </button>
+                        <a asp-action="Complaints" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Önceki Yanıtlar -->
+        @if (Model.Responses != null && Model.Responses.Any())
+        {
+            <div class="card mt-4" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="mdi mdi-comment-multiple-outline me-2"></i>Önceki Yanıtlar</h4>
+                    @foreach (var resp in Model.Responses.OrderByDescending(r => r.CreatedDate))
+                    {
+                        <div class="p-3 mb-3" style="background:#f8f9fa; border-radius:12px; border-left: 4px solid #124D1C;">
+                            <div class="d-flex justify-content-between mb-1">
+                                <strong class="text-primary"><i class="mdi mdi-account-star me-1"></i>Belediye Yetkilisi</strong>
+                                <small class="text-muted">@resp.CreatedDate.ToString("dd.MM.yyyy HH:mm")</small>
+                            </div>
+                            <p class="mb-0">@resp.ResponseText</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Sağ: Konum Haritası -->
+    <div class="col-md-5 grid-margin">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-map-marker"></i> Bildirilen Konum</h4>
+                <p class="text-muted">@Model.Address</p>
+                @if (Model.Latitude != 0 && Model.Longitude != 0)
+                {
+                    <div id="detailMap" style="height: 350px; border-radius: 12px;"></div>
+                }
+                else
+                {
+                    <div class="alert alert-light text-center py-5">Konum haritada işaretlenmemiş.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (Model.Latitude != 0 && Model.Longitude != 0)
+    {
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var lat = @Model.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var lng = @Model.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var map = L.map('detailMap', { zoomControl: false }).setView([lat, lng], 14);
+                L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; OpenStreetMap &copy; CARTO',
+                    maxZoom: 19
+                }).addTo(map);
+
+                L.marker([lat, lng]).addTo(map).bindPopup('<b>Olay Yeri</b>').openPopup();
+            });
+        </script>
+    }
+}

@@ -1,0 +1,45 @@
+@model SmartMunicipality.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Profil Detayları";
+}
+
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+        <div class="card" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: none;">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <i class="mdi mdi-account-circle text-primary" style="font-size: 5rem;"></i>
+                    <h3 class="fw-bold mt-2">@Model.Name @Model.Surname</h3>
+                    <p class="text-muted">@User.Identity.Name</p>
+                    <span class="badge bg-primary">@(User.IsInRole("Admin") ? "Sistem Yöneticisi" : (User.IsInRole("Operator") ? "Operatör" : "Vatandaş"))</span>
+                </div>
+                <hr />
+                <div class="row mb-3 mt-4">
+                    <div class="col-sm-4 text-muted fw-bold">E-Posta</div>
+                    <div class="col-sm-8">@Model.Email</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted fw-bold">Telefon</div>
+                    <div class="col-sm-8">@(string.IsNullOrEmpty(Model.Phone) ? "-" : Model.Phone)</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted fw-bold">TC No</div>
+                    <div class="col-sm-8">@(string.IsNullOrEmpty(Model.TcNo) ? "-" : Model.TcNo)</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted fw-bold">İlçe</div>
+                    <div class="col-sm-8">@(string.IsNullOrEmpty(Model.District) ? "-" : Model.District)</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted fw-bold">Adres</div>
+                    <div class="col-sm-8">@(string.IsNullOrEmpty(Model.Address) ? "-" : Model.Address)</div>
+                </div>
+                <div class="mt-4 text-end">
+                    <a asp-action="Edit" class="btn btn-gradient-primary btn-rounded fw-bold px-4">
+                        <i class="mdi mdi-pencil me-1"></i> Bilgileri Güncelle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

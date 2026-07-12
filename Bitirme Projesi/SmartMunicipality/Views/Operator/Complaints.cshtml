@@ -1,0 +1,168 @@
+@model IEnumerable<SmartMunicipality.MODEL.Complaint>
+@{
+    ViewData["Title"] = "Şikayet Yönetimi";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-clipboard-text"></i>
+        </span> Şikayet Yönetimi (Admin)
+    </h3>
+</div>
+
+<div class="row">
+    <!-- Stats -->
+    <div class="col-md-4 grid-margin">
+        <div class="card" style="border-radius:16px;border:none;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="width:50px;height:50px;border-radius:14px;background:rgba(228,176,40,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#E4B028;">
+                    <i class="mdi mdi-clock-outline"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0 fw-bold">@Model.Count(c => c.StatusId == 1)</h3>
+                    <p class="mb-0 text-muted small">Beklemede</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 grid-margin">
+        <div class="card" style="border-radius:16px;border:none;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="width:50px;height:50px;border-radius:14px;background:rgba(18,77,28,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#124D1C;">
+                    <i class="mdi mdi-eye-check-outline"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0 fw-bold">@Model.Count(c => c.StatusId == 2)</h3>
+                    <p class="mb-0 text-muted small">İnceleniyor</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 grid-margin">
+        <div class="card" style="border-radius:16px;border:none;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="width:50px;height:50px;border-radius:14px;background:rgba(40,167,69,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#28a745;">
+                    <i class="mdi mdi-check-circle-outline"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0 fw-bold">@Model.Count(c => c.StatusId == 3)</h3>
+                    <p class="mb-0 text-muted small">Çözüldü</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Gelen Şikayetler</h4>
+
+                <!-- Search -->
+                <div class="mb-4 d-flex gap-2 flex-wrap">
+                    <div class="input-group" style="max-width: 350px;">
+                        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;">
+                            <i class="mdi mdi-magnify text-muted"></i>
+                        </span>
+                        <input type="text" id="complaintSearch" class="form-control border-start-0" placeholder="Şikayet ara..." />
+                    </div>
+                    <select id="statusFilter" class="form-select" style="max-width: 160px; border-radius: 12px;">
+                        <option value="all">Tüm Durumlar</option>
+                        <option value="Beklemede">Beklemede</option>
+                        <option value="İnceleniyor">İnceleniyor</option>
+                        <option value="Çözüldü">Çözüldü</option>
+                        <option value="Reddedildi">Reddedildi</option>
+                    </select>
+                </div>
+ 
+                <div class="table-responsive">
+                    <table class="table table-hover" id="complaintsTable">
+                        <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Vatandaş Tel</th>
+                                <th>Başlık</th>
+                                <th>Adres</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderByDescending(c => c.CreatedDate))
+                            {
+                                <tr>
+                                    <td>@item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td>@item.Phone</td>
+                                    <td class="fw-bold">
+                                        @item.Title
+                                        @if (item.Responses != null && item.Responses.Any())
+                                        {
+                                            <div class="text-muted small mt-1" style="font-weight: normal; font-size: 0.75rem; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="@item.Responses.OrderByDescending(r => r.CreatedDate).First().ResponseText">
+                                                <strong>Yanıt:</strong> @item.Responses.OrderByDescending(r => r.CreatedDate).First().ResponseText
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>@item.Address</td>
+                                    <td>
+                                        @if(item.StatusId == 1) { <span class="badge badge-warning">Beklemede</span> }
+                                        else if(item.StatusId == 2) { <span class="badge badge-info">İnceleniyor</span> }
+                                        else if(item.StatusId == 3) { <span class="badge badge-success">Çözüldü</span> }
+                                        else if(item.StatusId == 4) { <span class="badge badge-danger">Reddedildi</span> }
+                                        else { <span class="badge badge-secondary">Bilinmeyen</span> }
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a asp-action="RespondComplaint" asp-route-id="@item.Id" class="btn btn-sm btn-gradient-primary">
+                                                <i class="mdi mdi-reply"></i> Yanıtla
+                                            </a>
+                                            <form asp-controller="Admin" asp-action="DeleteComplaint" method="post" onsubmit="return confirm('Bu şikayeti kalıcı olarak silmek istediğinize emin misiniz?');">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-sm btn-gradient-danger">
+                                                    <i class="mdi mdi-delete"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted">Kayıtlı şikayet bulunmuyor.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var search = document.getElementById('complaintSearch');
+            var statusFilter = document.getElementById('statusFilter');
+
+            function filterTable() {
+                var query = search.value.toLowerCase().trim();
+                var status = statusFilter.value;
+                var rows = document.querySelectorAll('#complaintsTable tbody tr');
+                rows.forEach(function (row) {
+                    if (row.cells.length === 1) return;
+                    var text = row.textContent.toLowerCase();
+                    var statusCell = row.cells[4] ? row.cells[4].textContent.trim() : '';
+                    var matchText = text.indexOf(query) > -1;
+                    var matchStatus = status === 'all' || statusCell.indexOf(status) > -1;
+                    row.style.display = (matchText && matchStatus) ? '' : 'none';
+                });
+            }
+
+            search.addEventListener('keyup', filterTable);
+            statusFilter.addEventListener('change', filterTable);
+        });
+    </script>
+}

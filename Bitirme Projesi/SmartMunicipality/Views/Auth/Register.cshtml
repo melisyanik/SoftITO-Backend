@@ -1,0 +1,260 @@
+@model SmartMunicipality.Models.RegisterViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Kayıt Ol";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kayıt Ol - SmartMunicipality</title>
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-dark: #0B1849;
+            --color-primary: #124D1C;
+            --color-secondary: #E4B028;
+            --color-accent: #EBEDE3;
+            --color-black: #111111;
+            --color-white: #ffffff;
+            --color-bg: #f5f6f3;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-black);
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-wrapper.auth {
+            background: linear-gradient(135deg, #0B1849 0%, #124D1C 100%) !important;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        /* Float Background Shapes */
+        .content-wrapper.auth::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+            top: -10%;
+            left: -15%;
+            opacity: 0.4;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+        .content-wrapper.auth::after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+            bottom: -15%;
+            right: -15%;
+            opacity: 0.3;
+            filter: blur(90px);
+            pointer-events: none;
+        }
+
+        .auth-card-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 650px;
+            padding: 15px;
+        }
+
+        .auth-form-light {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            padding: 3rem !important;
+        }
+
+        .brand-logo-muni {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--color-dark);
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-logo-muni i {
+            color: var(--color-primary);
+        }
+
+        .auth-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control-lg {
+            border-radius: 14px !important;
+            border: 1px solid rgba(0, 103, 105, 0.2) !important;
+            padding: 0.9rem 1.2rem !important;
+            font-size: 0.95rem !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            color: var(--color-black) !important;
+        }
+
+        .form-control-lg:focus {
+            border-color: var(--color-primary) !important;
+            box-shadow: 0 0 0 4px rgba(64, 165, 120, 0.15) !important;
+            background: #fff !important;
+            outline: none;
+        }
+
+        .btn-gradient-muni {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%) !important;
+            border: none !important;
+            border-radius: 50px !important;
+            color: white !important;
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            letter-spacing: 0.5px;
+            padding: 0.9rem 2rem !important;
+            box-shadow: 0 8px 20px rgba(0, 103, 105, 0.2);
+            transition: all 0.3s ease !important;
+            width: 100%;
+        }
+
+        .btn-gradient-muni:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 103, 105, 0.35);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .auth-footer a:hover {
+            color: var(--color-dark);
+            text-decoration: underline;
+        }
+
+        .alert-danger {
+            background: #ffe6e6;
+            border: none;
+            color: #b30000;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth">
+                <div class="auth-card-wrapper">
+                    <div class="auth-form-light text-left">
+                        <div class="brand-logo-muni">
+                            <i class="mdi mdi-city-variant-outline"></i> Akıllı Belediye
+                        </div>
+                        <h4 class="auth-title">Yeni Hesap Oluşturun</h4>
+                        <h6 class="auth-subtitle">Sistemi kullanmaya başlamak için kayıt olun.</h6>
+                        
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger shadow-sm">
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                        }
+
+                        <form class="pt-2" asp-action="Register" method="post">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="Name">Ad</label>
+                                    <input type="text" asp-for="Name" class="form-control form-control-lg" placeholder="Adınız" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="Surname">Soyad</label>
+                                    <input type="text" asp-for="Surname" class="form-control form-control-lg" placeholder="Soyadınız" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="TcNo">TC Kimlik Numarası</label>
+                                    <input type="text" asp-for="TcNo" class="form-control form-control-lg" placeholder="11 haneli TC no" maxlength="11" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="PhoneNumber">Telefon Numarası</label>
+                                    <input type="text" asp-for="PhoneNumber" class="form-control form-control-lg" placeholder="05__ ___ ____" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email">E-Posta Adresi</label>
+                                <input type="email" asp-for="Email" class="form-control form-control-lg" placeholder="ornek@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password">Şifre</label>
+                                <input type="password" asp-for="Password" class="form-control form-control-lg" placeholder="••••••••" required>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-gradient-muni">KAYIT OL</button>
+                            </div>
+                            <div class="auth-footer">
+                                Zaten hesabınız var mı? <a asp-action="Login">Giriş Yap</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/vendors/js/vendor.bundle.base.js"></script>
+</body>
+</html>

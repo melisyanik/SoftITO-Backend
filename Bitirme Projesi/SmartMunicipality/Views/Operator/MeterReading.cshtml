@@ -1,0 +1,243 @@
+@{
+    ViewData["Title"] = "Sayaç Okuma";
+    var subscriptions = ViewBag.Subscriptions as List<SmartMunicipality.MODEL.Subscription> ?? new List<SmartMunicipality.MODEL.Subscription>();
+    var selectedId = (int)(ViewBag.SelectedSubscriptionId ?? 0);
+    var history = ViewBag.ConsumptionHistory as List<SmartMunicipality.MODEL.ConsumptionRecord> ?? new List<SmartMunicipality.MODEL.ConsumptionRecord>();
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-speedometer"></i>
+        </span> Sayaç Okuma & Tüketim Girişi
+    </h3>
+</div>
+
+<div class="row">
+    <!-- Sol: Sayaç Giriş Formu -->
+    <div class="col-md-5 grid-margin">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-pencil-box me-2 text-primary"></i>Tüketim Kaydı Ekle</h4>
+                <p class="card-description text-muted">Abonenin sayacındaki güncel değeri giriniz. Sistem otomatik olarak sızıntı/anomali analizi yapacaktır.</p>
+
+                <form asp-action="MeterReading" method="post" class="forms-sample" id="meterForm">
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Abonelik Seçin</label>
+                        <select name="subscriptionId" id="subscriptionSelect" class="form-select mt-1" required style="border-radius: 10px;">
+                            <option value="">-- Abonelik Seçin --</option>
+                            @foreach (var sub in subscriptions)
+                            {
+                                var userName = sub.User != null ? $"{sub.User.Name} {sub.User.Surname}" : "Bilinmeyen";
+                                var serviceName = sub.ServiceType?.Name ?? "Bilinmeyen";
+                                if (sub.Id == selectedId)
+                                {
+                                    <option value="@sub.Id" selected>@userName — @serviceName (@sub.SubscriberNo)</option>
+                                }
+                                else
+                                {
+                                    <option value="@sub.Id">@userName — @serviceName (@sub.SubscriberNo)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Seçili Sayaç Bilgisi -->
+                    @{
+                        var meterDisplayStyle = selectedId > 0 ? "block" : "none";
+                    }
+                    <div id="meterInfo" class="mb-3" style="display:@meterDisplayStyle;">
+                        <div class="p-3" style="background:#f0f4ff; border-radius:12px; border-left:4px solid #0B1849;">
+                            <p class="mb-1 fw-bold text-dark" id="meterInfoText">Sayaç No: —</p>
+                            <p class="mb-1 fw-bold text-primary" id="meterLastValueText">Son Okuma Değeri: —</p>
+                            <p class="mb-0 text-muted small" id="meterAddressText">Adres: —</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="fw-bold">Okuma Tarihi</label>
+                        <input type="date" name="recordDate" class="form-control mt-1"
+                               value="@DateTime.Now.ToString("yyyy-MM-dd")" required style="border-radius: 10px;" />
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="fw-bold">Sayaç Değeri (m³)</label>
+                        <div class="input-group mt-1">
+                            <input type="number" step="0.01" name="consumptionValue" class="form-control"
+                                   placeholder="Örn: 124.50" required style="border-radius: 10px 0 0 10px;" />
+                            <span class="input-group-text" style="border-radius: 0 10px 10px 0; background:#f8f9fa; font-weight:bold;">m³</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary w-100">
+                        <i class="mdi mdi-content-save me-1"></i> Tüketimi Kaydet
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sağ: Geçmiş Tüketim Kayıtları -->
+    <div class="col-md-7 grid-margin">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-history me-2 text-primary"></i>Geçmiş Tüketim Kayıtları</h4>
+                <p class="text-muted small mb-3" id="historySubtitle">
+                    @if (selectedId > 0)
+                    {
+                        var sel = subscriptions.FirstOrDefault(s => s.Id == selectedId);
+                        <span>@(sel?.User?.Name) @(sel?.User?.Surname) — @(sel?.ServiceType?.Name) (@(sel?.SubscriberNo))</span>
+                    }
+                    else
+                    {
+                        <span>Soldan bir abonelik seçerek geçmiş kayıtları görün.</span>
+                    }
+                </p>
+
+                <div id="historyTableWrapper">
+                    @if (selectedId > 0 && history.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="historyTable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tarih</th>
+                                        <th>Tüketim (m³)</th>
+                                        <th>Değişim</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var orderedHistory = history.OrderByDescending(h => h.RecordDate).ToList();
+                                        for (int i = 0; i < orderedHistory.Count; i++)
+                                        {
+                                            var rec = orderedHistory[i];
+                                            var prev = i < orderedHistory.Count - 1 ? orderedHistory[i + 1] : null;
+                                            var diff = prev != null ? rec.ConsumptionValue - prev.ConsumptionValue : 0;
+                                            var diffClass = diff > 0 ? "text-danger" : (diff < 0 ? "text-success" : "text-muted");
+                                            var diffIcon = diff > 0 ? "mdi-trending-up" : (diff < 0 ? "mdi-trending-down" : "mdi-minus");
+                                            <tr>
+                                                <td class="text-muted small">@rec.Id</td>
+                                                <td>@rec.RecordDate.ToString("dd.MM.yyyy")</td>
+                                                <td class="fw-bold">@rec.ConsumptionValue.ToString("F2")</td>
+                                                <td class="@diffClass">
+                                                    @if (prev != null)
+                                                    {
+                                                        <i class="mdi @diffIcon"></i> @(diff > 0 ? "+" : "")@diff.ToString("F2")
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted">—</span>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Mini Grafik -->
+                        <canvas id="consumptionChart" height="100"></canvas>
+                    }
+                    else if (selectedId > 0)
+                    {
+                        <div class="alert alert-light text-center py-4">
+                            <i class="mdi mdi-speedometer fs-2 text-muted d-block mb-2"></i>
+                            Bu abonelik için henüz tüketim kaydı bulunmuyor.
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5 text-muted">
+                            <i class="mdi mdi-hand-pointing-left" style="font-size:3rem; display:block; margin-bottom:1rem;"></i>
+                            Soldan bir abonelik seçin
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        // Subscription select -> navigate to same page with subscriptionId param
+        document.getElementById('subscriptionSelect').addEventListener('change', function () {
+            var id = this.value;
+            if (id) {
+                window.location.href = '/Operator/MeterReading?subscriptionId=' + id;
+            }
+        });
+
+        // Show meter info box when selection changes
+        @if (selectedId > 0)
+        {
+            var selSub = subscriptions.FirstOrDefault(s => s.Id == selectedId);
+            var lastRecord = history.OrderByDescending(h => h.RecordDate).FirstOrDefault();
+            var lastValueStr = lastRecord != null
+                ? $"{lastRecord.ConsumptionValue.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)} m³ ({lastRecord.RecordDate.ToString("dd.MM.yyyy")})"
+                : "Kayıt Yok";
+            var lastValJS = lastRecord != null ? lastRecord.ConsumptionValue.ToString(System.Globalization.CultureInfo.InvariantCulture) : "0";
+
+            if (selSub != null)
+            {
+                var meterNoJS = System.Text.Json.JsonSerializer.Serialize(selSub.MeterNumber ?? "—");
+                var lastValueJS = System.Text.Json.JsonSerializer.Serialize("Son Okuma Değeri: " + lastValueStr);
+                var addressJS = System.Text.Json.JsonSerializer.Serialize("Adres: " + (selSub.Address ?? "—"));
+                <text>
+                document.getElementById('meterInfo').style.display = 'block';
+                document.getElementById('meterInfoText').textContent = 'Sayaç No: ' + @Html.Raw(meterNoJS);
+                document.getElementById('meterLastValueText').textContent = @Html.Raw(lastValueJS);
+                document.getElementById('meterAddressText').textContent = @Html.Raw(addressJS);
+
+                // Prevent entering a consumption lower than previous index
+                document.getElementById('meterForm').addEventListener('submit', function (e) {
+                    var inputVal = parseFloat(document.querySelector('input[name="consumptionValue"]').value);
+                    var lastVal = parseFloat('@lastValJS');
+                    if (lastVal > 0 && lastVal > inputVal) {
+                        e.preventDefault();
+                        alert('Yeni sayaç değeri, son okuma değerinden (' + lastVal + ' m³) küçük olamaz!');
+                    }
+                });
+                </text>
+            }
+        }
+
+        // Chart
+        @if (selectedId > 0 && history.Any())
+        {
+            var chartData = history.OrderBy(h => h.RecordDate).ToList();
+            <text>
+            var ctx = document.getElementById('consumptionChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartData.Select(h => h.RecordDate.ToString("dd.MM")))),
+                        datasets: [{
+                            label: 'Tüketim (m³)',
+                            data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartData.Select(h => h.ConsumptionValue))),
+                            borderColor: '#124D1C',
+                            backgroundColor: 'rgba(18,77,28,0.08)',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: false, grid: { color: 'rgba(0,0,0,0.05)' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+            </text>
+        }
+    </script>
+}

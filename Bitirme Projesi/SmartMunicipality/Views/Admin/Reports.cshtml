@@ -1,0 +1,224 @@
+@{
+    ViewData["Title"] = "Raporlar & Analitik";
+    var stats = ViewBag.Stats as Dictionary<string, int> ?? new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function getVal(obj, ...keys) {
+                for (var k of keys) {
+                    if (obj[k] !== undefined && obj[k] !== null) return obj[k];
+                    var lk = k.charAt(0).toLowerCase() + k.slice(1);
+                    if (obj[lk] !== undefined && obj[lk] !== null) return obj[lk];
+                    var uk = k.charAt(0).toUpperCase() + k.slice(1);
+                    if (obj[uk] !== undefined && obj[uk] !== null) return obj[uk];
+                }
+                return null;
+            }
+
+            // 1. Category Bar Chart
+            var catRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Categories ?? new List<dynamic>()));
+            if (catRaw && catRaw.length > 0) {
+                var catLabels = catRaw.map(x => getVal(x, 'CategoryName', 'categoryName') ?? '');
+                var catValues = catRaw.map(x => getVal(x, 'ComplaintCount', 'complaintCount') ?? 0);
+                new Chart(document.getElementById('categoryChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: catLabels,
+                        datasets: [{
+                            label: 'Şikayet Sayısı',
+                            data: catValues,
+                            backgroundColor: 'rgba(64, 165, 120, 0.75)',
+                            borderColor: 'rgba(64, 165, 120, 1)',
+                            borderWidth: 1.5,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } } }
+                });
+            }
+
+            // 2. Complaint Status Doughnut Chart (Dapper sp_GetComplaintsByStatus)
+            var statusRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.ComplaintStatuses ?? new List<dynamic>()));
+            if (statusRaw && statusRaw.length > 0) {
+                var statusLabels = statusRaw.map(x => getVal(x, 'StatusName', 'statusName') ?? '');
+                var statusValues = statusRaw.map(x => getVal(x, 'ComplaintCount', 'complaintCount') ?? 0);
+                new Chart(document.getElementById('statusChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: statusLabels,
+                        datasets: [{
+                            data: statusValues,
+                            backgroundColor: ['#ffc107', '#17a2b8', '#28a745', '#dc3545'],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+            }
+
+            // 3. District Polar Area Chart
+            var distRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Districts ?? new List<dynamic>()));
+            if (distRaw && distRaw.length > 0) {
+                var distLabels = distRaw.map(x => getVal(x, 'District', 'district') ?? '');
+                var distValues = distRaw.map(x => getVal(x, 'ComplaintCount', 'complaintCount') ?? 0);
+                new Chart(document.getElementById('districtChart'), {
+                    type: 'polarArea',
+                    data: {
+                        labels: distLabels,
+                        datasets: [{
+                            data: distValues,
+                            backgroundColor: [
+                                'rgba(0, 103, 105, 0.65)',
+                                'rgba(64, 165, 120, 0.65)',
+                                'rgba(157, 222, 139, 0.65)',
+                                'rgba(230, 190, 80, 0.65)',
+                                'rgba(239, 83, 80, 0.65)',
+                                'rgba(171, 71, 188, 0.65)',
+                                'rgba(41, 182, 246, 0.65)'
+                            ]
+                        }]
+                    },
+                    options: { responsive: true }
+                });
+            }
+
+            // 4. Monthly Revenue Line Chart
+            var revRaw = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Revenue ?? new List<dynamic>()));
+            if (revRaw && revRaw.length > 0) {
+                var revLabels = revRaw.map(x => (getVal(x, 'MonthNum', 'monthNum') ?? '') + '/' + (getVal(x, 'YearNum', 'yearNum') ?? '')).reverse();
+                var revValues = revRaw.map(x => getVal(x, 'TotalRevenue', 'totalRevenue') ?? 0).reverse();
+                new Chart(document.getElementById('revenueChart'), {
+                    type: 'line',
+                    data: {
+                        labels: revLabels,
+                        datasets: [{
+                            label: 'Aylık Gelir (TL)',
+                            data: revValues,
+                            borderColor: '#006769',
+                            backgroundColor: 'rgba(0, 103, 105, 0.12)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2.5,
+                            pointBackgroundColor: '#006769',
+                            pointRadius: 4
+                        }]
+                    },
+                    options: { responsive: true, scales: { y: { beginAtZero: true } } }
+                });
+            }
+        });
+    </script>
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-chart-bar"></i>
+        </span> Raporlar &amp; Analitik Paneli (Dapper)
+    </h3>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="mdi mdi-check-circle me-2"></i> @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<!-- Özet İstatistik Kartları -->
+<div class="row mb-4">
+    <div class="col-md-3 stretch-card grid-margin">
+        <div class="card bg-gradient-primary text-white" style="border-radius: 15px; border: none;">
+            <div class="card-body">
+                <h6 class="font-weight-normal mb-3"><i class="mdi mdi-account-group me-1"></i> Toplam Kullanıcı</h6>
+                <h2 class="mb-0">@(stats.ContainsKey("TotalUsers") ? stats["TotalUsers"] : 0)</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 stretch-card grid-margin">
+        <div class="card bg-gradient-info text-white" style="border-radius: 15px; border: none;">
+            <div class="card-body">
+                <h6 class="font-weight-normal mb-3"><i class="mdi mdi-alert-circle me-1"></i> Toplam Şikayet</h6>
+                <h2 class="mb-0">@(stats.ContainsKey("TotalComplaints") ? stats["TotalComplaints"] : 0)</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 stretch-card grid-margin">
+        <div class="card bg-gradient-danger text-white" style="border-radius: 15px; border: none;">
+            <div class="card-body">
+                <h6 class="font-weight-normal mb-3"><i class="mdi mdi-clock-outline me-1"></i> Bekleyen Şikayetler</h6>
+                <h2 class="mb-0">@(stats.ContainsKey("PendingComplaints") ? stats["PendingComplaints"] : 0)</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 stretch-card grid-margin">
+        <div class="card bg-gradient-success text-white" style="border-radius: 15px; border: none;">
+            <div class="card-body">
+                <h6 class="font-weight-normal mb-3"><i class="mdi mdi-check-circle me-1"></i> Çözülen Şikayetler</h6>
+                <h2 class="mb-0">@(stats.ContainsKey("ResolvedComplaints") ? stats["ResolvedComplaints"] : 0)</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Kategori Bazlı Şikayetler -->
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-tag-multiple me-2 text-primary"></i>Kategori Bazlı Şikayetler</h4>
+                <p class="card-description text-muted small">Dapper · sp_GetComplaintsByCategory</p>
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Şikayet Durum Dağılımı (yeni — eski Aktif/Pasif abonelik grafiği kaldırıldı) -->
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-chart-donut me-2 text-primary"></i>Şikayet Durum Dağılımı</h4>
+                <p class="card-description text-muted small">Dapper · sp_GetComplaintsByStatus</p>
+                <div style="max-height: 280px; display: flex; justify-content: center;">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <!-- Aylık Gelir Analizi -->
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-currency-try me-2 text-primary"></i>Aylık Gelir Analizi</h4>
+                <p class="card-description text-muted small">Dapper · sp_GetMonthlyRevenue</p>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- İlçe Bazlı Şikayetler -->
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-map-marker me-2 text-primary"></i>İlçe Bazlı Şikayetler</h4>
+                <p class="card-description text-muted small">Dapper · sp_GetComplaintsByDistrict</p>
+                <div style="max-height: 280px; display: flex; justify-content: center;">
+                    <canvas id="districtChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

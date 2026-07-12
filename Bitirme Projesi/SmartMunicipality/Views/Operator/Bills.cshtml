@@ -1,0 +1,122 @@
+@model IEnumerable<SmartMunicipality.MODEL.Bill>
+@{
+    ViewData["Title"] = "Fatura Yönetimi";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-cash-register"></i>
+        </span> Fatura Yönetimi
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-action="AddBill" class="btn btn-gradient-info btn-fw">Yeni Fatura Kes</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Kesilen Faturalar</h4>
+                
+                <div class="mb-4 d-flex gap-2 flex-wrap">
+                    <div class="input-group" style="max-width: 350px;">
+                        <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px; border-color: rgba(0, 103, 105, 0.15);">
+                            <i class="mdi mdi-magnify text-muted"></i>
+                        </span>
+                        <input type="text" id="tableSearchInput" class="form-control border-start-0" style="border-radius: 0; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;" placeholder="Aramak istediğiniz terimi girin..." />
+                    </div>
+                    <select id="searchFieldSelect" class="form-select" style="max-width: 180px; border-radius: 12px; border-color: rgba(0, 103, 105, 0.15); padding: 0.75rem;">
+                        <option value="all">Tüm Alanlar</option>
+                        <option value="0">Hizmet</option>
+                        <option value="1">Abone No</option>
+                        <option value="2">Fatura No</option>
+                        <option value="6">Durum</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Hizmet</th>
+                                <th>Abone No</th>
+                                <th>Fatura No</th>
+                                <th>Dönem</th>
+                                <th>Tutar</th>
+                                <th>Son Ödeme</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-bold">@item.Subscription?.ServiceType?.Name</td>
+                                    <td>@item.Subscription?.SubscriberNo</td>
+                                    <td>@item.BillNo</td>
+                                    <td>@item.BillMonth / @item.BillYear</td>
+                                    <td class="fw-bold text-primary">@item.Amount TL</td>
+                                    <td>@item.DueDate.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @if(item.Status == "Ödendi") {
+                                            <span class="badge badge-success">Ödendi</span>
+                                        } else {
+                                            <span class="badge badge-danger">Ödenmedi</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">Kayıtlı fatura bulunmuyor.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('tableSearchInput');
+            var fieldSelect = document.getElementById('searchFieldSelect');
+            
+            function filterTable() {
+                var query = searchInput.value.toLowerCase().trim();
+                var selectedField = fieldSelect.value;
+                var rows = document.querySelectorAll('table tbody tr');
+                
+                rows.forEach(function (row) {
+                    if (row.cells.length === 1 && row.cells[0].classList.contains('text-center')) return;
+                    
+                    var match = false;
+                    if (selectedField === 'all') {
+                        match = row.textContent.toLowerCase().indexOf(query) > -1;
+                    } else {
+                        var colIndex = parseInt(selectedField);
+                        if (row.cells[colIndex]) {
+                            match = row.cells[colIndex].textContent.toLowerCase().indexOf(query) > -1;
+                        }
+                    }
+                    row.style.display = match ? '' : 'none';
+                });
+            }
+            
+            if (searchInput && fieldSelect) {
+                searchInput.addEventListener('keyup', filterTable);
+                fieldSelect.addEventListener('change', filterTable);
+            }
+        });
+    </script>
+}

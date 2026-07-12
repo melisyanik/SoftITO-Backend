@@ -1,0 +1,141 @@
+@model IEnumerable<SmartMunicipality.MODEL.Announcement>
+@{
+    ViewData["Title"] = "Duyuru Yönetimi";
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+            <i class="mdi mdi-bullhorn"></i>
+        </span> Duyuru Yönetimi
+    </h3>
+</div>
+
+<div class="row">
+    <!-- Sol Taraf: Duyuru Listesi -->
+    <div class="col-md-7 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title">Yayındaki Duyurular</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Başlık</th>
+                                <th style="max-width:220px;">İçerik</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model.OrderByDescending(a => a.PublishDate))
+                            {
+                                <tr>
+                                    <td style="white-space:nowrap;">@item.PublishDate.ToShortDateString()</td>
+                                    <td class="fw-bold">@item.Title</td>
+                                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.Content</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-gradient-info"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editModal"
+                                                    data-id="@item.Id"
+                                                    data-title="@item.Title"
+                                                    data-content="@item.Content">
+                                                <i class="mdi mdi-pencil"></i> Düzenle
+                                            </button>
+                                            <form asp-action="DeleteAnnouncement" method="post" onsubmit="return confirm('Bu duyuruyu silmek istediğinize emin misiniz?');">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-sm btn-gradient-danger">
+                                                    <i class="mdi mdi-delete"></i> Sil
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">Henüz duyuru yayınlanmamış.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sağ Taraf: Yeni Duyuru Yayınla -->
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card" style="border-radius: 20px; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi mdi-plus-circle text-primary me-2"></i>Yeni Duyuru Yayınla</h4>
+
+                <form asp-action="AddAnnouncement" method="post">
+                    <div class="form-group mb-3">
+                        <label for="title">Başlık</label>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Duyuru Başlığı" required style="border-radius:10px;" />
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="content">Duyuru İçeriği</label>
+                        <textarea name="content" id="content" class="form-control" rows="6" placeholder="Duyuru metnini giriniz..." required style="border-radius:10px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary w-100">
+                        <i class="mdi mdi-send me-1"></i> Yayınla
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius:20px; border:none;">
+            <div class="modal-header" style="background: linear-gradient(to right, #0B1849, #124D1C); border-radius: 20px 20px 0 0;">
+                <h5 class="modal-title text-white fw-bold" id="editModalLabel">
+                    <i class="mdi mdi-pencil me-2"></i> Duyuruyu Düzenle
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form asp-action="EditAnnouncement" method="post" id="editForm">
+                    <input type="hidden" name="id" id="editId" />
+                    <div class="form-group mb-3">
+                        <label>Başlık</label>
+                        <input type="text" name="title" id="editTitle" class="form-control" required style="border-radius:10px;" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>İçerik</label>
+                        <textarea name="content" id="editContent" class="form-control" rows="6" required style="border-radius:10px;"></textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-gradient-primary flex-grow-1">
+                            <i class="mdi mdi-content-save me-1"></i> Kaydet
+                        </button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var editModal = document.getElementById('editModal');
+        editModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            document.getElementById('editId').value = button.getAttribute('data-id');
+            document.getElementById('editTitle').value = button.getAttribute('data-title');
+            document.getElementById('editContent').value = button.getAttribute('data-content');
+        });
+    </script>
+}
