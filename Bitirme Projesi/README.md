@@ -115,17 +115,29 @@ Chatbot sayfasına gidiş:
 </p>
 
 #### ⚠️ 7. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
-*Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme ve durumunu takip etme arayüzü.*
+*Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme, onay/cevap sürecini takip etme arayüzü.*
 <p align="center">
-  <strong>Kayıtlı Şikayetler Listesi - Boş Durum (Complaints List - Empty State)</strong><br>
+  <strong>1. Kayıtlı Şikayetler Listesi - Boş Durum (Complaints List - Empty State)</strong><br>
   <img src="Screenshots/05_Complaint_List_Empty.png" width="850" alt="Complaints List Empty">
 </p>
 <p align="center">
-  <strong>Şikayet Bildirim Formu & Kategori Seçimi (Complaint Form & Category Dropdown)</strong><br>
+  <strong>2. Şikayet Bildirim Formu & Kategori Seçimi (Complaint Form & Category Dropdown)</strong><br>
   <img src="Screenshots/05_Complaint_Form.png" width="850" alt="Complaint Submission Form">
 </p>
 <p align="center">
-  <strong>Şikayet Detay ve Bildirilen Konum Haritası (Complaint Details & Geolocation Map)</strong><br>
+  <strong>3. İlçe Seçim Dropdown Menüsü (District Selection Dropdown)</strong><br>
+  <img src="Screenshots/05_Complaint_Form_Districts.png" width="850" alt="Complaint District Selection">
+</p>
+<p align="center">
+  <strong>4. Harita Üzerinde Konum İşaretleme - Leaflet Map (Geolocation Marker on Map)</strong><br>
+  <img src="Screenshots/05_Complaint_Form_Map.png" width="850" alt="Complaint Map Location Selection">
+</p>
+<p align="center">
+  <strong>5. Başarıyla Oluşturuldu Bildirimi & Güncel Liste (Success Toast & Updated List View)</strong><br>
+  <img src="Screenshots/05_Complaint_Success_List.png" width="850" alt="Complaint Success and List">
+</p>
+<p align="center">
+  <strong>6. Şikayet Detay ve Takip Kartı (Complaint Details & Status Tracker Card)</strong><br>
   <img src="Screenshots/05_Complaint_Details.png" width="850" alt="Complaint Details View">
 </p>
 
