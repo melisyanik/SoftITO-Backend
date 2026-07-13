@@ -158,9 +158,14 @@ Chatbot sayfasına gidiş:
 </p>
 
 #### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
-*Vatandaşlardan gelen şikayetlerin incelendiği, sahaya atandığı ve çözümlenerek cevaplandığı merkez.*
+*Vatandaşlardan gelen şikayetlerin incelendiği, durumlara göre (Beklemede, İnceleniyor, Çözüldü) listelendiği, yanıtlanıp çözümlendiği yönetim paneli.*
 <p align="center">
-  <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management">
+  <strong>Gelen Şikayet Talepleri Listesi (Gelen Şikayetler List)</strong><br>
+  <img src="Screenshots/08_Admin_Complaint_List.png" width="850" alt="Admin Complaint List">
+</p>
+<p align="center">
+  <strong>Şikayet Yanıtlama ve Durum Güncelleme (Complaint Resolution & Response Form)</strong><br>
+  <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management Form">
 </p>
 
 #### 👥 11. User Management & Advanced Field Search (Kullanıcı Yönetimi ve Filtreleme)
@@ -216,9 +221,18 @@ Chatbot sayfasına gidiş:
 
 ### 🟢 Phase 4: High-Performance Analytics / Aşama 4: Yüksek Performanslı Analiz
 #### 📊 14. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
-*Dapper ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
+*Dapper ve yüksek performanslı SQL Stored Procedure sorgularıyla beslenen grafiksel analitik raporlama ve coğrafi yoğunluk (HeatMap) takip panelleri.*
 <p align="center">
-  <img src="Screenshots/09_AnalyticalReports.png" width="850" alt="Reporting Dashboard">
+  <strong>Genel İstatistikler ve Şikayet Durum Dağılımı Grafikleri (Overview & Complaint Status Charts)</strong><br>
+  <img src="Screenshots/09_AnalyticalReports_Top.png" width="850" alt="Reporting Dashboard Top">
+</p>
+<p align="center">
+  <strong>Aylık Gelir Analizi ve İlçe Bazlı Şikayet Dağılım Grafikleri (Monthly Revenue & District Complaint Charts)</strong><br>
+  <img src="Screenshots/09_AnalyticalReports_Bottom.png" width="850" alt="Reporting Dashboard Bottom">
+</p>
+<p align="center">
+  <strong>Şikayet Coğrafi Yoğunluk Haritası (Complaint Geolocation HeatMap Analysis)</strong><br>
+  <img src="Screenshots/09_AnalyticalReports_Heatmap.png" width="850" alt="Reporting Dashboard HeatMap">
 </p>
 
 ---
