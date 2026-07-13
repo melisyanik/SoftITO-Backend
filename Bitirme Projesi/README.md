@@ -152,9 +152,26 @@ Chatbot sayfasına gidiş:
 
 ### 🟢 Phase 3: Operator & Admin Console / Aşama 3: Operatör ve Yönetici Paneli
 #### 💼 9. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
-*Operatörlerin yeni abonelik taleplerini inceleyip onayladığı ve dönemsel tüketim faturalarını oluşturduğu yönetim alanı.*
+*Operatörlerin sistemdeki aktif abonelikleri (Su, Doğalgaz vb.) listelediği, yeni abonelikler tanımladığı ve dönemsel tüketim sayaçlarını okuyup faturalandırdığı panel.*
 <p align="center">
-  <img src="Screenshots/07_OperatorApproval.png" width="850" alt="Operator Approvals">
+  <strong>1. Kayıtlı Abonelikler Listesi (Operator Subscriptions Table)</strong><br>
+  <img src="Screenshots/07_Operator_Subscriptions_List.png" width="850" alt="Operator Subscriptions List">
+</p>
+<p align="center">
+  <strong>2. Yeni Abonelik Kayıt Formu (New Subscription Form View)</strong><br>
+  <img src="Screenshots/07_Operator_Subscription_Form_Empty.png" width="850" alt="New Subscription Form">
+</p>
+<p align="center">
+  <strong>3. Kayıtlı Vatandaş Arama & Seçim Dropdown Menüsü (Citizen Dropdown Selection)</strong><br>
+  <img src="Screenshots/07_Operator_Subscription_Form_CitizenDropdown.png" width="850" alt="Citizen Selection Dropdown">
+</p>
+<p align="center">
+  <strong>4. Abonelik ve Sayaç Detaylarının Girilmesi (Filling Subscription & Meter Details)</strong><br>
+  <img src="Screenshots/07_Operator_Subscription_Form_Filled.png" width="850" alt="Subscription Form Filled">
+</p>
+<p align="center">
+  <strong>5. Abonelik Başarıyla Oluşturuldu Bildirimi ve Güncel Liste (Subscription Created Success Alert)</strong><br>
+  <img src="Screenshots/07_Operator_Subscription_Success.png" width="850" alt="Subscription Created Success">
 </p>
 
 #### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
