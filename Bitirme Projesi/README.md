@@ -25,43 +25,74 @@
 
 ---
 
-# 📸 Screenshots
+# 📸 Step-by-Step User Journey & Screenshots / Adım Adım Kullanıcı Akışı ve Ekran Görüntüleri
 
-> *SmartMunicipality'nin temel modüllerine ait ekran görüntüleri.*
+> *Sistemdeki temel iş akışları ve modüllere ait adım adım ekran görüntüleri.*
 
-### 🔐 Login / Giriş Yap
+---
+
+### 🟢 Phase 1: Authentication & Access / Aşama 1: Kimlik Doğrulama ve Giriş
+#### 🔐 1. Login & Registration (Giriş Yap ve Kayıt Ol)
+*Vatandaşlar ve belediye operatörleri için güvenli, JWT & Cookie tabanlı giriş ve kayıt ekranı.*
 <p align="center">
-<img src="Screenshots/Login.png" width="850">
+  <img src="Screenshots/01_Login.png" width="850" alt="Login & Registration">
 </p>
 
-### 📊 Dashboard / Yönetici Paneli
+---
+
+### 🟢 Phase 2: Citizen Portal Journey / Aşama 2: Vatandaş Portal Akışı
+#### 📊 2. Citizen Dashboard (Vatandaş Yönetim Paneli)
+*Vatandaşın aktif abonelik özetlerini, güncel fatura borçlarını ve belediye duyurularını takip ettiği panel.*
 <p align="center">
-<img src="Screenshots/Dashboard.png" width="850">
+  <img src="Screenshots/02_CitizenDashboard.png" width="850" alt="Citizen Dashboard">
 </p>
 
-### 💧 Subscription Management / Abonelik Yönetimi
+#### 💧 3. Utility Subscription Application (Yeni Abonelik Başvurusu)
+*Su, doğalgaz ve diğer şebeke hizmetleri için hızlı başvuru formu ve gerekli evrak yükleme arayüzü.*
 <p align="center">
-<img src="Screenshots/Subscription.png" width="850">
+  <img src="Screenshots/03_SubscriptionApplication.png" width="850" alt="Subscription Application">
 </p>
 
-### 💵 Bill Management & Payment / Fatura Yönetimi ve Ödeme
+#### 💵 4. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
+*Aboneliklere ait faturaların listelenmesi ve sanal POS üzerinden 3D Secure simülasyonlu ödeme adımı.*
 <p align="center">
-<img src="Screenshots/Bill.png" width="850">
+  <img src="Screenshots/04_InvoicePayment.png" width="850" alt="Invoice and Payment">
 </p>
 
-### ⚠️ Complaint Submission & Tracking / Şikayet Bildirimi ve Takibi
+#### ⚠️ 5. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
+*Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme arayüzü.*
 <p align="center">
-<img src="Screenshots/Complaint.png" width="850">
+  <img src="Screenshots/05_ComplaintSubmission.png" width="850" alt="Complaint Submission">
 </p>
 
-### 📢 Announcements / Duyurular ve Haberler
+#### 🤖 6. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
+*Gemini & OpenAI API ile entegre, vatandaşın sorularını yanıtlayan ve şikayet/başvuru adımlarını yönlendiren chatbot.*
 <p align="center">
-<img src="Screenshots/Announcement.png" width="850">
+  <img src="Screenshots/06_AIChatbot.png" width="850" alt="AI Chatbot Assistant">
 </p>
 
-### 🤖 AI Chatbot / Yapay Zeka Belediye Asistanı
+---
+
+### 🟢 Phase 3: Operator & Admin Console / Aşama 3: Operatör ve Yönetici Paneli
+#### 💼 7. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
+*Operatörlerin yeni abonelik taleplerini inceleyip onayladığı ve dönemsel tüketim faturalarını oluşturduğu yönetim alanı.*
 <p align="center">
-<img src="Screenshots/AIChatbot.png" width="850">
+  <img src="Screenshots/07_OperatorApproval.png" width="850" alt="Operator Approvals">
+</p>
+
+#### 🛠️ 8. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
+*Vatandaşlardan gelen şikayetlerin incelendiği, sahaya atandığı ve çözümlenerek cevaplandığı merkez.*
+<p align="center">
+  <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management">
+</p>
+
+---
+
+### 🟢 Phase 4: High-Performance Analytics / Aşama 4: Yüksek Performanslı Analiz
+#### 📊 9. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
+*Dapper ve Stored Procedure'ler ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
+<p align="center">
+  <img src="Screenshots/09_AnalyticalReports.png" width="850" alt="Reporting Dashboard">
 </p>
 
 ---
@@ -136,7 +167,7 @@ Sistem bünyesinde barındırdığı `AIService` ile vatandaşların su/doğalga
 - **EF Core & Dapper Hibrit ORM**: Yazma ve ilişkisel işlemler için EF Core, yüksek performanslı raporlama okumaları için Dapper.
 - **Güvenlik & Rol Yetkilendirme**: ASP.NET Core Identity altyapısı, JWT (JSON Web Tokens) ile güvenli API iletişimi, Rol Bazlı Yetkilendirme (Vatandaş ve Operatör rolleri).
 - **Abonelik Yönetimi**: Su, doğalgaz, elektrik vb. abonelik başvuruları ve onay süreçleri.
-- **Fatura ve Ödeme**: Otomatik fatura oluşturma, fatura detayları ve sanal pos ile ödeme entegyonu.
+- **Fatura ve Ödeme**: Otomatik fatura oluşturma, fatura detayları ve sanal pos ile ödeme entegrasyonu.
 - **Akıllı Şikayet Yönetimi**: Harita/Konum destekli şikayet kaydı oluşturma, durum güncelleme ve operatör yönlendirmesi.
 - **Anlık Bildirimler**: Şikayet güncellemeleri ve önemli olaylar için anlık bildirim sistemi.
 - **Rapor Dışa Aktarma**: PDF çıktıları (QuestPDF) ve Excel listeleri (EPPlus) olarak veri aktarma.
