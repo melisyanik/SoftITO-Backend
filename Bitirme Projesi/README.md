@@ -77,30 +77,46 @@ Chatbot sayfasına gidiş:
 
 ### 🟢 Phase 2: Citizen Portal Journey / Aşama 2: Vatandaş Portal Akışı
 #### 📊 3. Citizen Dashboard (Vatandaş Yönetim Paneli)
-*Vatandaşın aktif abonelik özetlerini, güncel fatura borçlarını ve belediye duyurularını takip ettiği panel.*
+*Vatandaşın giriş yaptığında kendisini özel karşılama mesajıyla karşılayan, aktif abonelik özetlerini ve güncel fatura borçlarını takip ettiği ana panel.*
 <p align="center">
-  <img src="Screenshots/02_CitizenDashboard.png" width="850" alt="Citizen Dashboard">
+  <img src="Screenshots/02_Citizen_Dashboard.png" width="850" alt="Citizen Dashboard">
 </p>
 
-#### 💧 4. Utility Subscription Application (Yeni Abonelik Başvurusu)
+#### 👤 4. Profile Management (Kişisel Bilgileri Güncelleme)
+*Vatandaşın kendi T.C. Kimlik No, İletişim, İlçe ve Açık Adres gibi sistem profili detaylarını görüntülediği ve güncellediği güvenli alan.*
+<p align="center">
+  <strong>Profil Detay Ekranı (Profile Details View)</strong><br>
+  <img src="Screenshots/02_Profile_View.png" width="850" alt="Profile View">
+</p>
+<p align="center">
+  <strong>Bilgileri Güncelleme Formu (Update Profile Form)</strong><br>
+  <img src="Screenshots/02_Profile_Edit.png" width="850" alt="Profile Edit Form">
+</p>
+<p align="center">
+  <strong>Başarılı Güncelleme Bildirimi (Profile Update Success Notification Toast)</strong><br>
+  <img src="Screenshots/02_Profile_Success.png" width="850" alt="Profile Update Success">
+</p>
+
+#### 💧 5. Utility Subscription Application (Yeni Abonelik Başvurusu)
 *Su, doğalgaz ve diğer şebeke hizmetleri için hızlı başvuru formu ve gerekli evrak yükleme arayüzü.*
 <p align="center">
   <img src="Screenshots/03_SubscriptionApplication.png" width="850" alt="Subscription Application">
 </p>
 
-#### 💵 5. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
+#### 💵 6. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
 *Aboneliklere ait faturaların listelenmesi ve sanal POS üzerinden 3D Secure simülasyonlu ödeme adımı.*
 <p align="center">
   <img src="Screenshots/04_InvoicePayment.png" width="850" alt="Invoice and Payment">
 </p>
 
-#### ⚠️ 6. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
+#### ⚠️ 7. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
 *Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme arayüzü.*
 <p align="center">
-  <img src="Screenshots/05_ComplaintSubmission.png" width="850" alt="Complaint Submission">
+  <strong>Şikayet Bildirim Formu & Kategori Seçimi (Complaint Form & Category Dropdown)</strong><br>
+  <img src="Screenshots/05_Complaint_Form.png" width="850" alt="Complaint Submission Form">
 </p>
 
-#### 🤖 7. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
+#### 🤖 8. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
 *Gemini & OpenAI API ile entegre, vatandaşın sorularını yanıtlayan ve şikayet/başvuru adımlarını yönlendiren chatbot.*
 <p align="center">
   <img src="Screenshots/06_AIChatbot.png" width="850" alt="AI Chatbot Assistant">
