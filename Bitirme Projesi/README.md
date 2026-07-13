@@ -151,23 +151,49 @@ Chatbot sayfasına gidiş:
 ---
 
 ### 🟢 Phase 3: Operator & Admin Console / Aşama 3: Operatör ve Yönetici Paneli
-#### 💼 8. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
+#### 💼 9. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
 *Operatörlerin yeni abonelik taleplerini inceleyip onayladığı ve dönemsel tüketim faturalarını oluşturduğu yönetim alanı.*
 <p align="center">
   <img src="Screenshots/07_OperatorApproval.png" width="850" alt="Operator Approvals">
 </p>
 
-#### 🛠️ 9. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
+#### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
 *Vatandaşlardan gelen şikayetlerin incelendiği, sahaya atandığı ve çözümlenerek cevaplandığı merkez.*
 <p align="center">
   <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management">
 </p>
 
+#### 👥 11. User Management & Advanced Field Search (Kullanıcı Yönetimi ve Filtreleme)
+*Yöneticilerin sistemdeki kayıtlı kullanıcıları (Yönetici, Personel, Vatandaş) görüntülediği, düzenleyip sildiği ve alan bazlı (Ad Soyad, E-Posta, TC No, İlçe, Rol) gelişmiş arama yapabildiği panel.*
+<p align="center">
+  <strong>Kayıtlı Kullanıcılar Tablosu (Registered Users List)</strong><br>
+  <img src="Screenshots/08_Admin_User_Management.png" width="850" alt="Admin User Management">
+</p>
+<p align="center">
+  <strong>Gelişmiş Arama Filtreleri (Advanced Search Dropdown Fields)</strong><br>
+  <img src="Screenshots/08_Admin_User_Search_Fields.png" width="850" alt="Admin User Search Fields">
+</p>
+<p align="center">
+  <strong>İlçe Bazlı Arama ve Sonuç Listesi (District Filter Search Results)</strong><br>
+  <img src="Screenshots/08_Admin_User_Search_Filtered.png" width="850" alt="Admin User Search Filtered">
+</p>
+
+#### 📢 12. Announcement Management & Publishing (Belediye Duyuru Yönetimi)
+*Yöneticilerin belediye duyurularını ve planlı kesinti haberlerini yönettiği, yeni duyuru yayınlayabildiği veya yayındaki duyuruları silebildiği panel.*
+<p align="center">
+  <strong>Duyuru Listesi & Yeni Yayınlama Formu (Announcements List & Publishing Form)</strong><br>
+  <img src="Screenshots/09_Admin_Announcements.png" width="850" alt="Admin Announcements Management">
+</p>
+<p align="center">
+  <strong>Duyuru Silme ve Düzenleme İşlemleri (Announcements Table Actions)</strong><br>
+  <img src="Screenshots/09_Admin_Announcements_Actions.png" width="850" alt="Admin Announcements Actions">
+</p>
+
 ---
 
 ### 🟢 Phase 4: High-Performance Analytics / Aşama 4: Yüksek Performanslı Analiz
-#### 📊 10. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
-*Dapper ve Stored Procedure'ler ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
+#### 📊 13. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
+*Dapper ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
 <p align="center">
   <img src="Screenshots/09_AnalyticalReports.png" width="850" alt="Reporting Dashboard">
 </p>
@@ -175,13 +201,13 @@ Chatbot sayfasına gidiş:
 ---
 
 ### 🟢 Phase 5: API Documentation & Swagger UI / Aşama 5: API Dokümantasyonu ve Swagger Arayüzleri
-#### 🔌 11. SmartMunicipality.EFCoreApi (Swagger UI)
+#### 🔌 14. SmartMunicipality.EFCoreApi (Swagger UI)
 *Kullanıcı kimlik doğrulama, abonelik ve şikayet CRUD işlemlerinin test edildiği ana API arayüzü.*
 <p align="center">
   <img src="Screenshots/10_EFCoreApi_Swagger.png" width="850" alt="EFCoreApi Swagger Documentation">
 </p>
 
-#### ⚡ 12. SmartMunicipality.DapperApi (Swagger UI)
+#### ⚡ 15. SmartMunicipality.DapperApi (Swagger UI)
 *Yüksek hızlı analitik sorguların, gösterge paneli istatistiklerinin ve raporların test edildiği Dapper API arayüzü.*
 <p align="center">
   <img src="Screenshots/11_DapperApi_Swagger.png" width="850" alt="DapperApi Swagger Documentation">
