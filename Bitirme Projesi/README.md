@@ -49,9 +49,28 @@ Chatbot sayfasına gidiş:
 </p>
 
 #### 🔐 2. Login & Registration (Giriş Yap ve Kayıt Ol)
-*Vatandaşlar ve belediye operatörleri için güvenli, JWT & Cookie tabanlı giriş ve kayıt ekranı.*
+*Vatandaşlar, operatörler ve yöneticiler için güvenli, rol bazlı JWT & Cookie kimlik doğrulama altyapısına sahip kayıt ve giriş ekranları.*
+> [!NOTE]
+> Sistemde rol ayrımı e-posta uzantılarına (domain) göre dinamik olarak yönetilir:
+> - **Yönetici (Admin)** girişi için: `@belediye.bel.tr` uzantılı e-posta adresleri kullanılır.
+> - **Operatör (Operator)** girişi için: `@operator.bel.tr` uzantılı e-posta adresleri kullanılır.
+> - **Vatandaş (Citizen)** girişi için: Diğer tüm genel e-posta adresleri kullanılır.
+
 <p align="center">
-  <img src="Screenshots/01_Login.png" width="850" alt="Login & Registration">
+  <strong>Vatandaş Hesap Oluşturma Ekranı (Citizen Registration)</strong><br>
+  <img src="Screenshots/01_Register.png" width="850" alt="Citizen Registration">
+</p>
+<p align="center">
+  <strong>Vatandaş Giriş Paneli (Citizen Login)</strong><br>
+  <img src="Screenshots/01_Login_Citizen.png" width="850" alt="Citizen Login">
+</p>
+<p align="center">
+  <strong>Yönetici Giriş Paneli (Admin Login - @belediye.bel.tr)</strong><br>
+  <img src="Screenshots/01_Login_Admin.png" width="850" alt="Admin Login">
+</p>
+<p align="center">
+  <strong>Operatör Giriş Paneli (Operator Login - @operator.bel.tr)</strong><br>
+  <img src="Screenshots/01_Login_Operator.png" width="850" alt="Operator Login">
 </p>
 
 ---
