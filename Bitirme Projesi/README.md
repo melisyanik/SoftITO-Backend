@@ -86,6 +86,14 @@ Chatbot sayfasına gidiş:
   <strong>Vatandaş Yönetim Paneli ve Hızlı İşlemler (Citizen Dashboard Inner & Quick Actions)</strong><br>
   <img src="Screenshots/02_Citizen_Dashboard_Inner.png" width="850" alt="Citizen Dashboard Inner">
 </p>
+<p align="center">
+  <strong>Bildirim Paneli - Şikayet ve Fatura Bildirimleri (Notification Center - Status Updates & Bill Alerts)</strong><br>
+  <img src="Screenshots/02_Citizen_Notifications_List.png" width="850" alt="Citizen Notification Center List">
+</p>
+<p align="center">
+  <strong>Bildirim Paneli - Fatura ve Ödeme Bildirimleri (Notification Center - Invoice & Payment Receipts)</strong><br>
+  <img src="Screenshots/02_Citizen_Notifications_Payment.png" width="850" alt="Citizen Notification Center Payment">
+</p>
 
 #### 👤 4. Profile Management (Kişisel Bilgileri Güncelleme)
 *Vatandaşın kendi T.C. Kimlik No, İletişim, İlçe ve Açık Adres gibi sistem profili detaylarını görüntülediği ve güncellediği güvenli alan.*
@@ -163,8 +171,16 @@ Chatbot sayfasına gidiş:
   <img src="Screenshots/05_Complaint_Success_List.png" width="850" alt="Complaint Success and List">
 </p>
 <p align="center">
-  <strong>6. Şikayet Detay ve Takip Kartı (Complaint Details & Status Tracker Card)</strong><br>
+  <strong>6. Şikayet Detay ve İlk Takip Kartı (Complaint Details & Status Tracker Card)</strong><br>
   <img src="Screenshots/05_Complaint_Details.png" width="850" alt="Complaint Details View">
+</p>
+<p align="center">
+  <strong>7. Operatör İşlemi Sonrası Güncellenmiş Şikayet Durumu (Complaint List - Status Updated)</strong><br>
+  <img src="Screenshots/05_Complaint_List_Updated.png" width="850" alt="Complaint Status Updated List">
+</p>
+<p align="center">
+  <strong>8. Şikayet Detayı ve Belediye Çözüm Yanıtı (Complaint Details with Municipality Response)</strong><br>
+  <img src="Screenshots/05_Complaint_Details_With_Response.png" width="850" alt="Complaint Details with Response View">
 </p>
 
 #### 🤖 8. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
