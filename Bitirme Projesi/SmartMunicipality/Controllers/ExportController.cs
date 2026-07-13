@@ -32,7 +32,7 @@ namespace SmartMunicipality.Controllers
 
             if (bill == null || bill.Subscription == null || bill.Subscription.UserId != userId) return NotFound();
 
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.License.SetNonCommercialPersonal("SmartMunicipality");
 
             using (var package = new ExcelPackage())
             {
