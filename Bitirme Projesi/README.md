@@ -79,7 +79,12 @@ Chatbot sayfasına gidiş:
 #### 📊 3. Citizen Dashboard (Vatandaş Yönetim Paneli)
 *Vatandaşın giriş yaptığında kendisini özel karşılama mesajıyla karşılayan, aktif abonelik özetlerini ve güncel fatura borçlarını takip ettiği ana panel.*
 <p align="center">
-  <img src="Screenshots/02_Citizen_Dashboard.png" width="850" alt="Citizen Dashboard">
+  <strong>Vatandaş Ana Karşılama Ekranı (Citizen Home View)</strong><br>
+  <img src="Screenshots/02_Citizen_Dashboard.png" width="850" alt="Citizen Dashboard Home">
+</p>
+<p align="center">
+  <strong>Vatandaş Yönetim Paneli ve Hızlı İşlemler (Citizen Dashboard Inner & Quick Actions)</strong><br>
+  <img src="Screenshots/02_Citizen_Dashboard_Inner.png" width="850" alt="Citizen Dashboard Inner">
 </p>
 
 #### 👤 4. Profile Management (Kişisel Bilgileri Güncelleme)
@@ -110,16 +115,25 @@ Chatbot sayfasına gidiş:
 </p>
 
 #### ⚠️ 7. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
-*Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme arayüzü.*
+*Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme ve durumunu takip etme arayüzü.*
+<p align="center">
+  <strong>Kayıtlı Şikayetler Listesi - Boş Durum (Complaints List - Empty State)</strong><br>
+  <img src="Screenshots/05_Complaint_List_Empty.png" width="850" alt="Complaints List Empty">
+</p>
 <p align="center">
   <strong>Şikayet Bildirim Formu & Kategori Seçimi (Complaint Form & Category Dropdown)</strong><br>
   <img src="Screenshots/05_Complaint_Form.png" width="850" alt="Complaint Submission Form">
+</p>
+<p align="center">
+  <strong>Şikayet Detay ve Bildirilen Konum Haritası (Complaint Details & Geolocation Map)</strong><br>
+  <img src="Screenshots/05_Complaint_Details.png" width="850" alt="Complaint Details View">
 </p>
 
 #### 🤖 8. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
 *Gemini & OpenAI API ile entegre, vatandaşın sorularını yanıtlayan ve şikayet/başvuru adımlarını yönlendiren chatbot.*
 <p align="center">
-  <img src="Screenshots/06_AIChatbot.png" width="850" alt="AI Chatbot Assistant">
+  <strong>Akıllı Asistan ile Canlı Sohbet Oturumu (AI Chatbot Chat Session)</strong><br>
+  <img src="Screenshots/06_AIChatbot_Chat.png" width="850" alt="AI Chatbot Chat Session">
 </p>
 
 ---
