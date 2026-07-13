@@ -124,8 +124,20 @@ Chatbot sayfasına gidiş:
   <img src="Screenshots/03_Citizen_Subscription_Invoices_List.png" width="850" alt="Citizen Subscription Invoices List">
 </p>
 <p align="center">
-  <strong>2. Güvenli Fatura Ödeme Ekranı (Secure POS Invoice Payment Screen)</strong><br>
-  <img src="Screenshots/04_InvoicePayment.png" width="850" alt="Invoice and Payment">
+  <strong>2. Güvenli Fatura Ödeme ve Kart Bilgileri Formu (Secure POS Invoice Payment Form)</strong><br>
+  <img src="Screenshots/04_Invoice_Payment_Form.png" width="850" alt="Invoice Payment Form">
+</p>
+<p align="center">
+  <strong>3. Ödeme Başarılı ve Fatura Kapatıldı Bildirimi (Payment Success & Invoice Settled Toast)</strong><br>
+  <img src="Screenshots/04_Invoice_Payment_Success.png" width="850" alt="Invoice Payment Success Alert">
+</p>
+<p align="center">
+  <strong>4. Durumu 'Ödendi' Olarak Güncellenen Fatura Listesi (Updated Invoice List - Paid Status)</strong><br>
+  <img src="Screenshots/04_Invoice_Paid_Updated_List.png" width="850" alt="Invoice Settled List View">
+</p>
+<p align="center">
+  <strong>5. PDF Fatura Çıktısı / Dekont Üretimi (Generated PDF Invoice Receipt)</strong><br>
+  <img src="Screenshots/04_Invoice_PDF_Print.png" width="850" alt="Invoice PDF Print View">
 </p>
 
 #### ⚠️ 7. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
