@@ -185,14 +185,37 @@ Chatbot sayfasına gidiş:
   <img src="Screenshots/09_Admin_Announcements.png" width="850" alt="Admin Announcements Management">
 </p>
 <p align="center">
+  <strong>Duyuru Oluşturma Formu (Publishing New Announcement)</strong><br>
+  <img src="Screenshots/09_Admin_Announcements_Form_Filled.png" width="850" alt="Publish New Announcement Form">
+</p>
+<p align="center">
+  <strong>Canlı Kayan Şerit Bildirimi (Live Marquee Alert Updated)</strong><br>
+  <img src="Screenshots/09_Admin_Announcements_Ticker_Updated.png" width="850" alt="Marquee Alert Updated">
+</p>
+<p align="center">
   <strong>Duyuru Silme ve Düzenleme İşlemleri (Announcements Table Actions)</strong><br>
   <img src="Screenshots/09_Admin_Announcements_Actions.png" width="850" alt="Admin Announcements Actions">
+</p>
+
+#### 🗂️ 13. Complaint Categories Management (Şikayet Kategori Yönetimi)
+*Yöneticilerin vatandaşların bildirdiği şikayet türlerini sınıflandırmak amacıyla yeni kategoriler (Altyapı, Ulaşım vb.) ekleyip düzenlediği panel.*
+<p align="center">
+  <strong>Kategori Yönetim Paneli (Complaint Categories Dashboard)</strong><br>
+  <img src="Screenshots/13_Admin_Complaint_Categories_List.png" width="850" alt="Categories List">
+</p>
+<p align="center">
+  <strong>Yeni Kategori Giriş Formu (Adding New Category Form)</strong><br>
+  <img src="Screenshots/13_Admin_Complaint_Categories_Form_Filled.png" width="850" alt="Add Category Form">
+</p>
+<p align="center">
+  <strong>Kategori Başarıyla Eklendi Bildirimi (Category Added Successfully Toast)</strong><br>
+  <img src="Screenshots/13_Admin_Complaint_Categories_Success.png" width="850" alt="Category Success">
 </p>
 
 ---
 
 ### 🟢 Phase 4: High-Performance Analytics / Aşama 4: Yüksek Performanslı Analiz
-#### 📊 13. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
+#### 📊 14. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
 *Dapper ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
 <p align="center">
   <img src="Screenshots/09_AnalyticalReports.png" width="850" alt="Reporting Dashboard">
@@ -201,13 +224,13 @@ Chatbot sayfasına gidiş:
 ---
 
 ### 🟢 Phase 5: API Documentation & Swagger UI / Aşama 5: API Dokümantasyonu ve Swagger Arayüzleri
-#### 🔌 14. SmartMunicipality.EFCoreApi (Swagger UI)
+#### 🔌 15. SmartMunicipality.EFCoreApi (Swagger UI)
 *Kullanıcı kimlik doğrulama, abonelik ve şikayet CRUD işlemlerinin test edildiği ana API arayüzü.*
 <p align="center">
   <img src="Screenshots/10_EFCoreApi_Swagger.png" width="850" alt="EFCoreApi Swagger Documentation">
 </p>
 
-#### ⚡ 15. SmartMunicipality.DapperApi (Swagger UI)
+#### ⚡ 16. SmartMunicipality.DapperApi (Swagger UI)
 *Yüksek hızlı analitik sorguların, gösterge paneli istatistiklerinin ve raporların test edildiği Dapper API arayüzü.*
 <p align="center">
   <img src="Screenshots/11_DapperApi_Swagger.png" width="850" alt="DapperApi Swagger Documentation">
