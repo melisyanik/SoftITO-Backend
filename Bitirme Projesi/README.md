@@ -147,6 +147,10 @@ Chatbot sayfasına gidiş:
   <strong>5. PDF Fatura Çıktısı / Dekont Üretimi (Generated PDF Invoice Receipt)</strong><br>
   <img src="Screenshots/04_Invoice_PDF_Print.png" width="850" alt="Invoice PDF Print View">
 </p>
+<p align="center">
+  <strong>6. Excel Fatura Tablosu Raporu (Generated Excel Invoice Spreadsheet Report)</strong><br>
+  <img src="Screenshots/04_Invoice_Excel_Sheet.png" width="850" alt="Invoice Excel Spreadsheet View">
+</p>
 
 #### ⚠️ 7. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
 *Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme, onay/cevap sürecini takip etme arayüzü.*
@@ -346,17 +350,10 @@ Chatbot sayfasına gidiş:
 ---
 
 ### 🟢 Phase 5: API Documentation & Swagger UI / Aşama 5: API Dokümantasyonu ve Swagger Arayüzleri
-#### 🔌 15. SmartMunicipality.EFCoreApi (Swagger UI)
-*Kullanıcı kimlik doğrulama, abonelik ve şikayet CRUD işlemlerinin test edildiği ana API arayüzü.*
-<p align="center">
-  <img src="Screenshots/10_EFCoreApi_Swagger.png" width="850" alt="EFCoreApi Swagger Documentation">
-</p>
+Projede, geliştirme ve test süreçlerini kolaylaştırmak amacıyla Swagger UI entegrasyonu kullanılmıştır:
 
-#### ⚡ 16. SmartMunicipality.DapperApi (Swagger UI)
-*Yüksek hızlı analitik sorguların, gösterge paneli istatistiklerinin ve raporların test edildiği Dapper API arayüzü.*
-<p align="center">
-  <img src="Screenshots/11_DapperApi_Swagger.png" width="850" alt="DapperApi Swagger Documentation">
-</p>
+* **SmartMunicipality.EFCoreApi (Swagger UI)**: Kullanıcı kimlik doğrulama, JWT tabanlı yetkilendirme, abonelik ve şikayet CRUD işlemlerinin test edildiği ana API servis dokümantasyonudur.
+* **SmartMunicipality.DapperApi (Swagger UI)**: Yüksek hızlı analitik SQL sorgularının, gösterge paneli istatistiklerinin ve rapor verilerinin test edildiği Dapper API servis dokümantasyonudur.
 
 ---
 
