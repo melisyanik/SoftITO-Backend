@@ -160,12 +160,20 @@ Chatbot sayfasına gidiş:
 #### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
 *Vatandaşlardan gelen şikayetlerin incelendiği, durumlara göre (Beklemede, İnceleniyor, Çözüldü) listelendiği, yanıtlanıp çözümlendiği yönetim paneli.*
 <p align="center">
-  <strong>Gelen Şikayet Talepleri Listesi (Gelen Şikayetler List)</strong><br>
+  <strong>1. Gelen Şikayet Talepleri Listesi (Gelen Şikayetler List)</strong><br>
   <img src="Screenshots/08_Admin_Complaint_List.png" width="850" alt="Admin Complaint List">
 </p>
 <p align="center">
-  <strong>Şikayet Yanıtlama ve Durum Güncelleme (Complaint Resolution & Response Form)</strong><br>
-  <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management Form">
+  <strong>2. Şikayet Detayı ve Durum Güncelleme Seçenekleri (Complaint Detail & Status Dropdown)</strong><br>
+  <img src="Screenshots/08_Admin_Complaint_Response_Status.png" width="850" alt="Complaint Response Status Options">
+</p>
+<p align="center">
+  <strong>3. Belediye Yanıt Metnini Oluşturma (Writing Municipality Response Message)</strong><br>
+  <img src="Screenshots/08_Admin_Complaint_Response_Form.png" width="850" alt="Complaint Response Form">
+</p>
+<p align="center">
+  <strong>4. Şikayet Durumu ve Yanıtı Başarıyla Kaydedildi (Response Saved & List Updated)</strong><br>
+  <img src="Screenshots/08_Admin_Complaint_Response_Success.png" width="850" alt="Complaint Response Success View">
 </p>
 
 #### 👥 11. User Management & Advanced Field Search (Kullanıcı Yönetimi ve Filtreleme)
@@ -181,6 +189,10 @@ Chatbot sayfasına gidiş:
 <p align="center">
   <strong>İlçe Bazlı Arama ve Sonuç Listesi (District Filter Search Results)</strong><br>
   <img src="Screenshots/08_Admin_User_Search_Filtered.png" width="850" alt="Admin User Search Filtered">
+</p>
+<p align="center">
+  <strong>Yönetici Profil Görünümü ve Profilim Menüsü (Admin Profile Details & Dropdown View)</strong><br>
+  <img src="Screenshots/08_Admin_Profile_View.png" width="850" alt="Admin Profile View">
 </p>
 
 #### 📢 12. Announcement Management & Publishing (Belediye Duyuru Yönetimi)
