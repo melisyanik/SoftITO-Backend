@@ -102,15 +102,29 @@ Chatbot sayfasına gidiş:
   <img src="Screenshots/02_Profile_Success.png" width="850" alt="Profile Update Success">
 </p>
 
-#### 💧 5. Utility Subscription Application (Yeni Abonelik Başvurusu)
-*Su, doğalgaz ve diğer şebeke hizmetleri için hızlı başvuru formu ve gerekli evrak yükleme arayüzü.*
+#### 💧 5. Utility Subscription Application (Yeni Abonelik Başvurusu & Yönetimi)
+*Su, doğalgaz ve diğer şebeke hizmetleri için başvuru, aktif abonelik kartlarının takibi ve geçmiş tüketim analiz grafik arayüzü.*
 <p align="center">
+  <strong>Yeni Abonelik Talep Formu (Subscription Application Form)</strong><br>
   <img src="Screenshots/03_SubscriptionApplication.png" width="850" alt="Subscription Application">
+</p>
+<p align="center">
+  <strong>Aktif Abonelik Kartları Görünümü (Active Subscriptions Dashboard Card)</strong><br>
+  <img src="Screenshots/03_Citizen_Subscriptions_Card.png" width="850" alt="Citizen Subscriptions Card">
+</p>
+<p align="center">
+  <strong>Abonelik Detayı ve Son 6 Aylık Tüketim Analiz Grafiği (Subscription Details & Consumption Trend Chart)</strong><br>
+  <img src="Screenshots/03_Citizen_Subscription_Details_Chart.png" width="850" alt="Citizen Subscription Details Chart">
 </p>
 
 #### 💵 6. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
-*Aboneliklere ait faturaların listelenmesi ve sanal POS üzerinden 3D Secure simülasyonlu ödeme adımı.*
+*Aboneliklere ait faturaların listelenmesi, Excel/PDF indirilebilmesi, sanal POS üzerinden 3D Secure simülasyonlu güvenli ödeme adımı.*
 <p align="center">
+  <strong>1. Aboneliğe Ait Ödenmemiş Faturalar Listesi (Unpaid Invoices List for Citizen)</strong><br>
+  <img src="Screenshots/03_Citizen_Subscription_Invoices_List.png" width="850" alt="Citizen Subscription Invoices List">
+</p>
+<p align="center">
+  <strong>2. Güvenli Fatura Ödeme Ekranı (Secure POS Invoice Payment Screen)</strong><br>
   <img src="Screenshots/04_InvoicePayment.png" width="850" alt="Invoice and Payment">
 </p>
 
@@ -201,6 +215,14 @@ Chatbot sayfasına gidiş:
 <p align="center">
   <strong>2. Alan Bazlı Fatura Arama Filtreleri (Invoice Advanced Dropdown Search Fields)</strong><br>
   <img src="Screenshots/07_Operator_Invoice_Filters.png" width="850" alt="Operator Invoice Filters">
+</p>
+<p align="center">
+  <strong>3. Durum Bazlı Arama Sonuçları - Ödenenler (Filtered Invoices - Paid Status)</strong><br>
+  <img src="Screenshots/07_Operator_Invoice_Filtered_Paid.png" width="850" alt="Paid Invoices List">
+</p>
+<p align="center">
+  <strong>4. Operatör Profil Görünümü (Operator Profile Details View)</strong><br>
+  <img src="Screenshots/07_Operator_Profile_View.png" width="850" alt="Operator Profile Details">
 </p>
 
 #### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
