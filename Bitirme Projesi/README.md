@@ -35,7 +35,17 @@
 #### 🏠 1. Homepage (Belediye Portalı Ana Sayfa)
 *Uygulama ilk çalıştığında kullanıcıyı karşılayan, belediye tanıtımı, duyurular ve portal giriş bağlantılarını içeren genel ana sayfa.*
 <p align="center">
-  <img src="Screenshots/00_Homepage.png" width="850" alt="Municipal Homepage">
+<img width="1919" height="875" alt="Ekran görüntüsü 2026-07-13 230829" src="https://github.com/user-attachments/assets/674e7db8-4bcc-4f6f-a298-a261b3eef9ff" />
+<img width="1919" height="874" alt="Ekran görüntüsü 2026-07-13 230846" src="https://github.com/user-attachments/assets/a2a70d1b-0029-4050-8f96-e95b54463c45" />
+<img width="1919" height="873" alt="Ekran görüntüsü 2026-07-13 230900" src="https://github.com/user-attachments/assets/7102d252-93cf-4ab6-89db-85f0e278715d" />
+<img width="1919" height="871" alt="Ekran görüntüsü 2026-07-13 230910" src="https://github.com/user-attachments/assets/1e634130-1bc0-42a0-9316-17913397e2c3" />
+<img width="1919" height="869" alt="Ekran görüntüsü 2026-07-13 230930" src="https://github.com/user-attachments/assets/417f35d7-925a-4341-b962-d3cebbe50d14" />
+<img width="1919" height="871" alt="Ekran görüntüsü 2026-07-13 230938" src="https://github.com/user-attachments/assets/1606a7f9-7265-4f16-990e-d46dbd943035" />
+Haber detay sayfası:
+<img width="1919" height="868" alt="Ekran görüntüsü 2026-07-13 230945" src="https://github.com/user-attachments/assets/6cc3d24a-e2b6-440d-bc34-f65c6e28989d" />
+Chatbot sayfasına gidiş:
+<img width="1919" height="875" alt="Ekran görüntüsü 2026-07-13 231002" src="https://github.com/user-attachments/assets/c7fce7c2-9ef9-411e-89e9-e64ae0ca6ce8" />
+
 </p>
 
 #### 🔐 2. Login & Registration (Giriş Yap ve Kayıt Ol)
