@@ -152,7 +152,12 @@ Chatbot sayfasına gidiş:
 
 ### 🟢 Phase 3: Operator & Admin Console / Aşama 3: Operatör ve Yönetici Paneli
 #### 💼 9. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
-*Operatörlerin sistemdeki aktif abonelikleri (Su, Doğalgaz vb.) listelediği, yeni abonelikler tanımladığı ve dönemsel tüketim sayaçlarını okuyup faturalandırdığı panel.*
+*Operatörlerin sistemdeki aktif abonelikleri (Su, Doğalgaz vb.) listelediği, yeni abonelikler tanımladığı, dönemsel tüketim sayaçlarını okuyup faturalandırdığı panel.*
+
+> [!NOTE]
+> Abonelik başvuruları vatandaşlar tarafından kendi portalları üzerinden de yapılabilmektedir. Kolaylık açısından bu akışta, operatörün doğrudan sisteme yeni bir abonelik kaydetmesi ve ardından faturalandırması simüle edilmiştir.
+
+##### 📋 Abonelik Kayıt ve Tanımlama Süreci (Subscription Creation Flow)
 <p align="center">
   <strong>1. Kayıtlı Abonelikler Listesi (Operator Subscriptions Table)</strong><br>
   <img src="Screenshots/07_Operator_Subscriptions_List.png" width="850" alt="Operator Subscriptions List">
@@ -172,6 +177,30 @@ Chatbot sayfasına gidiş:
 <p align="center">
   <strong>5. Abonelik Başarıyla Oluşturuldu Bildirimi ve Güncel Liste (Subscription Created Success Alert)</strong><br>
   <img src="Screenshots/07_Operator_Subscription_Success.png" width="850" alt="Subscription Created Success">
+</p>
+
+##### 🔌 Sayaç Okuma ve Tüketim Değeri Girişi (Meter Reading & Consumption Entry)
+<p align="center">
+  <strong>1. Sayaç Okuma Butonu ve İpucu (Meter Reading Action Row Tooltip)</strong><br>
+  <img src="Screenshots/07_Operator_Meter_Tooltip.png" width="850" alt="Meter Reading Tooltip">
+</p>
+<p align="center">
+  <strong>2. Yeni Tüketim Değeri Giriş Formu (Entering Consumption End Index)</strong><br>
+  <img src="Screenshots/07_Operator_Meter_Reading_Form.png" width="850" alt="Meter Reading Form">
+</p>
+<p align="center">
+  <strong>3. Geçmiş Tüketim Değişim Analiz Grafiği ve Tüketim Kaydı (Consumption Trend Chart & History Update)</strong><br>
+  <img src="Screenshots/07_Operator_Meter_Reading_Success.png" width="850" alt="Meter Reading Success">
+</p>
+
+##### 💵 Fatura Listeleme ve Gelişmiş Arama (Invoice Management & Advanced Search)
+<p align="center">
+  <strong>1. Kesilen Faturalar Tablosu (Generated Invoices List)</strong><br>
+  <img src="Screenshots/07_Operator_Invoice_List.png" width="850" alt="Operator Invoices List">
+</p>
+<p align="center">
+  <strong>2. Alan Bazlı Fatura Arama Filtreleri (Invoice Advanced Dropdown Search Fields)</strong><br>
+  <img src="Screenshots/07_Operator_Invoice_Filters.png" width="850" alt="Operator Invoice Filters">
 </p>
 
 #### 🛠️ 10. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
