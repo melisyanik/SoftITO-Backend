@@ -68,12 +68,9 @@ namespace SmartMunicipality.Controllers
                 worksheet.Cells["A3:A9"].Style.Font.Bold = true;
                 worksheet.Cells.AutoFitColumns();
 
-                var stream = new MemoryStream();
-                package.SaveAs(stream);
-                stream.Position = 0;
-
+                var bytes = package.GetAsByteArray();
                 string excelName = $"Fatura-{bill.BillNo}.xlsx";
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
+                return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
             }
         }
 
