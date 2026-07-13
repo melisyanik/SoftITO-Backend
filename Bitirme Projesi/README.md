@@ -31,8 +31,14 @@
 
 ---
 
-### 🟢 Phase 1: Authentication & Access / Aşama 1: Kimlik Doğrulama ve Giriş
-#### 🔐 1. Login & Registration (Giriş Yap ve Kayıt Ol)
+### 🟢 Phase 1: Welcome & Authentication / Aşama 1: Karşılama ve Kimlik Doğrulama
+#### 🏠 1. Homepage (Belediye Portalı Ana Sayfa)
+*Uygulama ilk çalıştığında kullanıcıyı karşılayan, belediye tanıtımı, duyurular ve portal giriş bağlantılarını içeren genel ana sayfa.*
+<p align="center">
+  <img src="Screenshots/00_Homepage.png" width="850" alt="Municipal Homepage">
+</p>
+
+#### 🔐 2. Login & Registration (Giriş Yap ve Kayıt Ol)
 *Vatandaşlar ve belediye operatörleri için güvenli, JWT & Cookie tabanlı giriş ve kayıt ekranı.*
 <p align="center">
   <img src="Screenshots/01_Login.png" width="850" alt="Login & Registration">
@@ -41,31 +47,31 @@
 ---
 
 ### 🟢 Phase 2: Citizen Portal Journey / Aşama 2: Vatandaş Portal Akışı
-#### 📊 2. Citizen Dashboard (Vatandaş Yönetim Paneli)
+#### 📊 3. Citizen Dashboard (Vatandaş Yönetim Paneli)
 *Vatandaşın aktif abonelik özetlerini, güncel fatura borçlarını ve belediye duyurularını takip ettiği panel.*
 <p align="center">
   <img src="Screenshots/02_CitizenDashboard.png" width="850" alt="Citizen Dashboard">
 </p>
 
-#### 💧 3. Utility Subscription Application (Yeni Abonelik Başvurusu)
+#### 💧 4. Utility Subscription Application (Yeni Abonelik Başvurusu)
 *Su, doğalgaz ve diğer şebeke hizmetleri için hızlı başvuru formu ve gerekli evrak yükleme arayüzü.*
 <p align="center">
   <img src="Screenshots/03_SubscriptionApplication.png" width="850" alt="Subscription Application">
 </p>
 
-#### 💵 4. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
+#### 💵 5. Invoice Inquiries & Secure Payment (Fatura Sorgulama ve Güvenli Ödeme)
 *Aboneliklere ait faturaların listelenmesi ve sanal POS üzerinden 3D Secure simülasyonlu ödeme adımı.*
 <p align="center">
   <img src="Screenshots/04_InvoicePayment.png" width="850" alt="Invoice and Payment">
 </p>
 
-#### ⚠️ 5. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
+#### ⚠️ 6. Geolocation-Based Complaint Submission (Konum Destekli Şikayet Bildirimi)
 *Harita üzerinden nokta konum seçerek, kategori bazlı fotoğraf ve açıklama ile şikayet bildirme arayüzü.*
 <p align="center">
   <img src="Screenshots/05_ComplaintSubmission.png" width="850" alt="Complaint Submission">
 </p>
 
-#### 🤖 6. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
+#### 🤖 7. AI Municipal Assistant Chatbot (Yapay Zeka Destekli Belediye Asistanı)
 *Gemini & OpenAI API ile entegre, vatandaşın sorularını yanıtlayan ve şikayet/başvuru adımlarını yönlendiren chatbot.*
 <p align="center">
   <img src="Screenshots/06_AIChatbot.png" width="850" alt="AI Chatbot Assistant">
@@ -74,13 +80,13 @@
 ---
 
 ### 🟢 Phase 3: Operator & Admin Console / Aşama 3: Operatör ve Yönetici Paneli
-#### 💼 7. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
+#### 💼 8. Subscription Review & Bill Generation (Abonelik Onay ve Fatura Tanımlama)
 *Operatörlerin yeni abonelik taleplerini inceleyip onayladığı ve dönemsel tüketim faturalarını oluşturduğu yönetim alanı.*
 <p align="center">
   <img src="Screenshots/07_OperatorApproval.png" width="850" alt="Operator Approvals">
 </p>
 
-#### 🛠️ 8. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
+#### 🛠️ 9. Complaint Tracking & Status Management (Şikayet Değerlendirme ve Süreç Takibi)
 *Vatandaşlardan gelen şikayetlerin incelendiği, sahaya atandığı ve çözümlenerek cevaplandığı merkez.*
 <p align="center">
   <img src="Screenshots/08_ComplaintManagement.png" width="850" alt="Complaint Management">
@@ -89,10 +95,25 @@
 ---
 
 ### 🟢 Phase 4: High-Performance Analytics / Aşama 4: Yüksek Performanslı Analiz
-#### 📊 9. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
+#### 📊 10. Dapper Reporting Dashboard (Yönetici Analitik Rapor Ekranı)
 *Dapper ve Stored Procedure'ler ile beslenen, mahalle bazlı şikayet yoğunluk haritaları ve gelir grafiklerini içeren analitik panel.*
 <p align="center">
   <img src="Screenshots/09_AnalyticalReports.png" width="850" alt="Reporting Dashboard">
+</p>
+
+---
+
+### 🟢 Phase 5: API Documentation & Swagger UI / Aşama 5: API Dokümantasyonu ve Swagger Arayüzleri
+#### 🔌 11. SmartMunicipality.EFCoreApi (Swagger UI)
+*Kullanıcı kimlik doğrulama, abonelik ve şikayet CRUD işlemlerinin test edildiği ana API arayüzü.*
+<p align="center">
+  <img src="Screenshots/10_EFCoreApi_Swagger.png" width="850" alt="EFCoreApi Swagger Documentation">
+</p>
+
+#### ⚡ 12. SmartMunicipality.DapperApi (Swagger UI)
+*Yüksek hızlı analitik sorguların, gösterge paneli istatistiklerinin ve raporların test edildiği Dapper API arayüzü.*
+<p align="center">
+  <img src="Screenshots/11_DapperApi_Swagger.png" width="850" alt="DapperApi Swagger Documentation">
 </p>
 
 ---
